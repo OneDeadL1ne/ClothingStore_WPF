@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6140576e3e9c4767a741d23447330d0a" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Category" Width="1.5" PointX="3" PointY="11.125" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Client" Width="1.5" PointX="5.25" PointY="6.25" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.ClothingBarn" Width="1.5" PointX="7.5" PointY="13.125" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Color" Width="1.5" PointX="5.25" PointY="16.625" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Employee" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Gender" Width="1.5" PointX="0.75" PointY="3.375" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Order" Width="1.5" PointX="7.5" PointY="4.25" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.OrderProduct" Width="1.5" PointX="9.75" PointY="4.375" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Position" Width="1.5" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Product" Width="1.5" PointX="5.25" PointY="10.875" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Size" Width="1.5" PointX="5.25" PointY="13.875" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.Status" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.125" />
+        <EntityTypeShape EntityType="ClothingStorePanBabModel.User" Width="1.5" PointX="3" PointY="2.375" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Product_Category" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Size_Category" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Client_User" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Order_Client" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Characteristic_Color" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Characteristic_Product" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Characteristic_Size" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_OrderProduct_ClothingBarn" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Employee_Position1" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Employee_User" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Order_Employee" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_User_Gender" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_Order_Status" />
+        <AssociationConnector Association="ClothingStorePanBabModel.FK_OrderProduct_Order" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

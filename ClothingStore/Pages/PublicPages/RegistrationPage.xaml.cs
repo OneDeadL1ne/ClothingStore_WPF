@@ -28,9 +28,11 @@ namespace ClothingStore.Pages.PublicPages
         public RegistrationPage()
         {
             InitializeComponent();
-            //cb_Gender.ItemsSource = Context.Gender.ToList();
-            //cb_Gender.DisplayMemberPath = "GenderName";
-            //cb_Gender.SelectedIndex = 0;
+            cb_Gender.ItemsSource = Context.Gender.ToList();
+            cb_Gender.DisplayMemberPath = "GenderName";
+            cb_Gender.SelectedIndex = 0;
+            
+
 
         }
 
@@ -73,11 +75,11 @@ namespace ClothingStore.Pages.PublicPages
 
         private void HidePassword()
         {
-            //MessageBox.Show("1");
+
             ImgShowHide.Source = showImage;
             tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
             tbPasswordbox.Visibility = Visibility.Visible;
-            
+
             tbPasswordbox.Focus();
         }
         //Template="{StaticResource passwordbox}"
@@ -89,8 +91,12 @@ namespace ClothingStore.Pages.PublicPages
                 tbVisiblePasswordbox.Foreground= Brushes.Black;
                 
                 ImgShowHide.Visibility = Visibility.Visible;
-                
-                HidePassword();
+
+                ImgShowHide.Source = showImage;
+                tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
+                tbPasswordbox.Visibility = Visibility.Visible;
+
+                tbPasswordbox.Focus();
             }
             else
             {
@@ -112,10 +118,7 @@ namespace ClothingStore.Pages.PublicPages
             tbPasswordbox.Focus();
         }
 
-        private void tbVisiblePasswordbox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-           
-        }
+     
 
         private void tbPasswordbox_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -131,6 +134,132 @@ namespace ClothingStore.Pages.PublicPages
              
             
         }
+
+        private void tbVisiblePasswordbox1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tbVisiblePasswordbox1.Visibility = Visibility.Collapsed;
+            tbPasswordbox1.Visibility = Visibility.Visible;
+            tbPasswordbox1.Focus();
+        }
+
+        private void tbPasswordbox1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+            if (tbPasswordbox1.Password == "")
+            {
+                tbVisiblePasswordbox1.Visibility = Visibility.Visible;
+                tbPasswordbox1.Visibility = Visibility.Collapsed;
+                tbVisiblePasswordbox1.Text = "Повтори пароль";
+                tbVisiblePasswordbox1.Foreground = Brushes.Gray;
+
+            }
+        }
+
+        private void tbPasswordbox1_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (tbPasswordbox1.Password.Length > 0)
+            {
+                tbPasswordbox1.Foreground = Brushes.Black;
+                tbVisiblePasswordbox1.Foreground = Brushes.Black;
+
+               
+
+                
+                tbVisiblePasswordbox1.Visibility = Visibility.Collapsed;
+                tbPasswordbox1.Visibility = Visibility.Visible;
+
+                tbPasswordbox1.Focus();
+            }
+            
+        }
+
+        public void GotFocusText(object sender, RoutedEventArgs e)
+        {
+
+            string str="";
+            
+            TextBox textBox = (TextBox)sender;
+            
+
+            switch (textBox.Name)
+            {
+                case "tbFirstName":
+                    str = "Имя";
+                    break;
+                case "tbLastName":
+                    str = "Фамилия";
+                    break;
+                case "tbPatronymic":
+                    str = "Отчество";
+                    break;
+                case "tbPhone":
+                    str = "Телефон";
+                    break;
+                case "tbEmail":
+                    str = "Email";
+                    break;
+                case "tbLogin":
+                    str = "Логин";
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (textBox.Text == str)
+            {
+                textBox.Text = "";
+                textBox.Focus();
+                textBox.Foreground = Brushes.Black;
+            }
+
+        }
+
+        public void LostFocusText(object sender, RoutedEventArgs e)
+        {
+
+            string str = "";
+
+            TextBox textBox = (TextBox)sender;
+
+
+            switch (textBox.Name)
+            {
+                case "tbFirstName":
+                    str = "Имя";
+                    break;
+                case "tbLastName":
+                    str = "Фамилия";
+                    break;
+                case "tbPatronymic":
+                    str = "Отчество";
+                    break;
+                case "tbPhone":
+                    str = "Телефон";
+                    break;
+                case "tbEmail":
+                    str = "Email";
+                    break;
+                case "tbLogin":
+                    str = "Логин";
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (textBox.Text == "")
+            {
+                textBox.Text = str;
+                
+                textBox.Foreground = Brushes.Gray;
+            }
+
+        }
+
+        
+
+       
     }
 
 

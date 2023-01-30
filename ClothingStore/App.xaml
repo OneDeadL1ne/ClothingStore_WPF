@@ -109,7 +109,14 @@
                             <TextBox Name="PART_EditableTextBox"
                              Style="{StaticResource ComboBoxTextBoxStyle}"
                              Padding="5,0,0,0"
-                             Height="{TemplateBinding Height}"/>
+                            
+                             Text="{Binding Text}"
+                             IsReadOnly="True"
+                             Foreground="Gray"
+                             Height="{TemplateBinding Height}">
+                                
+                                
+                            </TextBox>
                             <ToggleButton Grid.Column="1" Margin="0"
                             Height="{TemplateBinding Height}"
                             Style="{StaticResource ComboBoxButtonStyle}"
@@ -151,7 +158,10 @@
                                 </Grid>
                             </Popup>
                         </Grid>
+                        
+                        
                     </ControlTemplate>
+                  
                 </Setter.Value>
             </Setter>
         </Style>

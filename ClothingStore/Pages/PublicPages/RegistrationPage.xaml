@@ -64,30 +64,43 @@
                 >Регистрация</TextBlock>
 
             <TextBox
+                x:Name="tbFirstName"
                 Grid.ColumnSpan="2"                                
                 Grid.Row="1"                                
                 Style="{StaticResource tbStyle}"
                 Text="Имя"
+                LostFocus="LostFocusText"
+                GotFocus="GotFocusText"
                 Foreground="Gray"
                 />
 
             <TextBox
+                
                 Grid.ColumnSpan="2"                                
-                Grid.Row="2"                                
+                Grid.Row="2" 
+                x:Name="tbLastName"
+                LostFocus="LostFocusText"
+                GotFocus="GotFocusText"
                 Style="{StaticResource tbStyle}"
                 Text="Фамилия"
                 Foreground="Gray"
                 />
 
             <TextBox
+                x:Name="tbPatronymic"
                 Grid.ColumnSpan="2"                                
                 Grid.Row="3"                                
                 Style="{StaticResource tbStyle}"
                 Text="Отчество"
                 Foreground="Gray"
+                LostFocus="LostFocusText"
+                GotFocus="GotFocusText"
                 />
 
             <TextBox
+                x:Name="tbPhone"
+                GotFocus="GotFocusText"
+                LostFocus="LostFocusText"
                 Grid.ColumnSpan="2"                                
                 Grid.Row="4"                                
                 Style="{StaticResource tbStyle}"
@@ -96,27 +109,46 @@
                 />
 
             <TextBox
+                x:Name="tbEmail"
+                LostFocus="LostFocusText"
+                GotFocus="GotFocusText"
                 Grid.ColumnSpan="2"                                
                 Grid.Row="5"                                
                 Style="{StaticResource tbStyle}"
                 Text="Email"
                 Foreground="Gray"
+                
                 />
 
 
 
 
+            <!--Style="{DynamicResource DatePickerStyle}"-->
 
-
-            <DatePicker Style="{DynamicResource DatePickerStyle}" 
+            <DatePicker  
                 Grid.Row="6" 
                 Grid.Column="0"
                 Height="35"
+                x:Name="dpDate"
                 Width="190"
                 Margin="55 0 0 0"
                 FontSize="22"
+                Text=""
                 Foreground="Gray"        
-                        />
+                        >
+                <DatePicker.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Style.Resources>
+                            
+                            
+
+                        </Style.Resources>
+                    </Style> 
+
+
+                </DatePicker.Resources>
+                
+            </DatePicker>
 
 
 
@@ -138,7 +170,10 @@
 
             <TextBox
                 Grid.ColumnSpan="2"                                
-                Grid.Row="7"                                
+                Grid.Row="7"  
+                x:Name="tbLogin"
+                GotFocus="GotFocusText"
+                LostFocus="LostFocusText"
                 Style="{StaticResource tbStyle}"
                 Text="Логин"
                 Foreground="Gray"
@@ -165,7 +200,7 @@
                 x:Name="tbVisiblePasswordbox"
                 Foreground="Gray"
                GotFocus="tbVisiblePasswordbox_GotFocus"
-                TextChanged="tbVisiblePasswordbox_TextChanged"
+               
                 Text="Введи пароль"
                 />
 
@@ -175,13 +210,31 @@
                MouseLeave="OnMouseLeave" PreviewMouseDown="OnPreviewMouseDown" PreviewMouseUp="OnPreviewMouseUp" Grid.Column="1"  Grid.Row="8" Margin="165,0,0,0"/>
 
 
+            
+
+            
+
             <PasswordBox
                 Grid.ColumnSpan="2"
                 Grid.Row="9"  
                 Height="35"
                 Style="{StaticResource psStyle}"
                 Foreground="Gray"
+                x:Name="tbPasswordbox1"
+                LostFocus="tbPasswordbox1_LostFocus"
+                PasswordChanged="tbPasswordbox1_PasswordChanged"
                 Template="{StaticResource passwordbox}"
+                />
+            <TextBox
+                Grid.ColumnSpan="2"                                
+                Grid.Row="9"      
+                
+                Style="{StaticResource tbStyle}"
+                x:Name="tbVisiblePasswordbox1"
+                Foreground="Gray"
+                GotFocus="tbVisiblePasswordbox1_GotFocus"
+               
+                Text="Повтори пароль"
                 />
 
 

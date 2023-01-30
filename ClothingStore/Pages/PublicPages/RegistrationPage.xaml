@@ -45,7 +45,6 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
             <Border
@@ -151,6 +150,7 @@
                 Style="{StaticResource RoundComboBox}"
                 Width="190"
                 Height="35"
+                
                 Margin="0 0 55 0"
                 x:Name="cb_Gender"
                 FontSize="22"
@@ -196,14 +196,13 @@
                 />
 
 
-           
-            <Image Panel.ZIndex="2"  Visibility="Collapsed" Height="30" HorizontalAlignment="Left"  x:Name="ImgShowHide" Stretch="Fill" VerticalAlignment="Center" Width="30" 
+            
+                    <Image Panel.ZIndex="2"  Visibility="Collapsed" Height="30" HorizontalAlignment="Left"  x:Name="ImgShowHide" Stretch="Fill" VerticalAlignment="Center" Width="30" 
                MouseLeave="OnMouseLeave" PreviewMouseDown="OnPreviewMouseDown" PreviewMouseUp="OnPreviewMouseUp" Grid.Column="1"  Grid.Row="8" Margin="165,0,0,0"/>
-
-
             
 
-            
+
+
 
             <PasswordBox
                 Grid.ColumnSpan="2"
@@ -227,6 +226,22 @@
                
                 Text="Повтори пароль"
                 />
+
+            <Button
+                Grid.Row="10"
+                Height="40"
+                Width="100"
+                Content="Назад"
+                FontSize="20"
+                
+                >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                    
+                </Button.Resources>
+            </Button>
 
 
         </Grid>

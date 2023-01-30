@@ -20,6 +20,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="3"/>
         </Style>
 
         <Style TargetType="{x:Type PasswordBox}" x:Key="psStyle">
@@ -110,11 +111,11 @@
                              Style="{StaticResource ComboBoxTextBoxStyle}"
                              Padding="5,0,0,0"
                             
-                             Text="{Binding Text}"
+                             Text=""
                              IsReadOnly="True"
                              Foreground="Gray"
                              Height="{TemplateBinding Height}">
-                                
+                             
                                 
                             </TextBox>
                             <ToggleButton Grid.Column="1" Margin="0"

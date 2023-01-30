@@ -32,15 +32,6 @@ namespace ClothingStore.Pages.PublicPages
             cb_Gender.ItemsSource = Context.Gender.ToList();
             cb_Gender.DisplayMemberPath = "GenderName";
             cb_Gender.SelectedIndex = 0;
-            
-          
-
-
-
-
-
-
-
         }
 
         private void bt_Authorization_Click(object sender, RoutedEventArgs e)

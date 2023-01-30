@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -32,6 +33,12 @@ namespace ClothingStore.Pages.PublicPages
             cb_Gender.DisplayMemberPath = "GenderName";
             cb_Gender.SelectedIndex = 0;
             
+          
+
+
+
+
+
 
 
         }

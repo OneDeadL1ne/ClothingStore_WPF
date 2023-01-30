@@ -166,7 +166,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="DatePickerStyle" TargetType="{x:Type DatePicker}">
+        <Style x:Key="DatePickerStyle" x:Name="DatePickerTemplate" TargetType="{x:Type DatePicker}">
             <Setter Property="Foreground" Value="#FF333333"/>
             <Setter Property="IsTodayHighlighted" Value="True"/>
             <Setter Property="SelectedDateFormat" Value="Short"/>
@@ -301,7 +301,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Button x:Name="PART_Button" Grid.Column="1" Foreground="{TemplateBinding Foreground}" Focusable="False" HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" Template="{StaticResource DropDownButtonTemplate}" VerticalAlignment="Top" Width="20"/>
-                                <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0"  HorizontalContentAlignment="Stretch" Grid.Row="0" VerticalContentAlignment="Stretch"/>
+                                <DatePickerTextBox x:Name="PART_TextBox" Grid.Column="0"  HorizontalContentAlignment="Stretch" Grid.Row="0"  VerticalContentAlignment="Stretch"/>
                                 <Grid x:Name="PART_DisabledVisual" Grid.Column="0" Grid.ColumnSpan="2" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>

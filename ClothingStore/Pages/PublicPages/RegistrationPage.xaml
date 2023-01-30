@@ -123,9 +123,10 @@
 
 
 
-            <!--Style="{DynamicResource DatePickerStyle}"-->
+           <!---->
 
-            <DatePicker  
+            <DatePicker
+                Style="{DynamicResource DatePickerStyle}"
                 Grid.Row="6" 
                 Grid.Column="0"
                 Height="35"
@@ -133,22 +134,12 @@
                 Width="190"
                 Margin="55 0 0 0"
                 FontSize="22"
-                Text=""
-                Foreground="Gray"        
-                        >
-                <DatePicker.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Style.Resources>
-                            
-                            
-
-                        </Style.Resources>
-                    </Style> 
-
-
-                </DatePicker.Resources>
                 
-            </DatePicker>
+                Foreground="Black"        
+                        />
+               
+
+
 
 
 

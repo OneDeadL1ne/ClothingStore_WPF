@@ -20,8 +20,8 @@ namespace ClothingStore.DB
             this.Order = new HashSet<Order>();
         }
     
-        public int IDStatus { get; set; }
-        public string StatusName { get; set; }
+        public int StatusID { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }

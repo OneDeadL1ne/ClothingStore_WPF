@@ -233,7 +233,7 @@
                 Width="100"
                 Content="Назад"
                 FontSize="20"
-                
+                x:Name="bt_Back"
                 >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

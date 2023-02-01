@@ -20,9 +20,9 @@ namespace ClothingStore.DB
             this.Order = new HashSet<Order>();
         }
     
-        public int IDEmployee { get; set; }
-        public int IDPosition { get; set; }
-        public int IDUser { get; set; }
+        public int EmployeeID { get; set; }
+        public Nullable<int> PositionID { get; set; }
+        public Nullable<int> UserID { get; set; }
     
         public virtual Position Position { get; set; }
         public virtual User User { get; set; }

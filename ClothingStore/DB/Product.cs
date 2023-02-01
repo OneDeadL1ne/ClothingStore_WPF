@@ -20,13 +20,13 @@ namespace ClothingStore.DB
             this.ClothingBarn = new HashSet<ClothingBarn>();
         }
     
-        public int IDProduct { get; set; }
-        public string Name { get; set; }
+        public int ProductID { get; set; }
+        public string Title { get; set; }
         public decimal Price { get; set; }
-        public int IDCategory { get; set; }
+        public int TypeID { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClothingBarn> ClothingBarn { get; set; }
+        public virtual Type Type { get; set; }
     }
 }

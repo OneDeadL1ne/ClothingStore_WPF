@@ -4,35 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6140576e3e9c4767a741d23447330d0a" Name="Diagram1" ZoomLevel="72">
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Category" Width="1.5" PointX="3" PointY="11.125" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Client" Width="1.5" PointX="5.25" PointY="6.25" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.ClothingBarn" Width="1.5" PointX="7.5" PointY="13.125" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Color" Width="1.5" PointX="5.25" PointY="16.625" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Employee" Width="1.5" PointX="5.25" PointY="3.125" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Gender" Width="1.5" PointX="0.75" PointY="3.375" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Order" Width="1.5" PointX="7.5" PointY="4.25" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.OrderProduct" Width="1.5" PointX="9.75" PointY="4.375" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Position" Width="1.5" PointX="3" PointY="8.375" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Product" Width="1.5" PointX="5.25" PointY="10.875" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Size" Width="1.5" PointX="5.25" PointY="13.875" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.Status" Width="1.5" PointX="5.25" PointY="0.75" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.125" />
-        <EntityTypeShape EntityType="ClothingStorePanBabModel.User" Width="1.5" PointX="3" PointY="2.375" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Product_Category" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Size_Category" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Client_User" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Order_Client" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Characteristic_Color" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Characteristic_Product" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Characteristic_Size" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_OrderProduct_ClothingBarn" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Employee_Position1" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Employee_User" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Order_Employee" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_User_Gender" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_Order_Status" />
-        <AssociationConnector Association="ClothingStorePanBabModel.FK_OrderProduct_Order" />
+      <Diagram DiagramId="0fcc50f849734ed9813322b1b641748b" Name="Diagram1">
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Category" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Client" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.ClothingBarn" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Color" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Employee" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Gender" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Order" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.OrderProduct" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Position" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Product" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Size" Width="1.5" PointX="5.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Status" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.Type" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothingStoreTestModel.User" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Size__CategoryID__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Type__CategoryID__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Client__UserID__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Order__ClientID__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__ClothingB__Color__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__ClothingB__Produ__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__ClothingB__SizeI__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__OrderProd__Cloth__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Employee__Positi__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Employee__UserID__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Order__EmployeeI__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__User__GenderID__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Order__StatusID__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__OrderProd__Order__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="ClothingStoreTestModel.FK__Product__TypeID__2C3393D0" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

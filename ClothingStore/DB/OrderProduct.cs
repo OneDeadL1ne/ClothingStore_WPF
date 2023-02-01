@@ -14,10 +14,10 @@ namespace ClothingStore.DB
     
     public partial class OrderProduct
     {
-        public int IDOrdProd { get; set; }
-        public int IDOrder { get; set; }
+        public int OrderProductID { get; set; }
+        public Nullable<int> OrderID { get; set; }
         public int Quantity { get; set; }
-        public int IDClothingBarn { get; set; }
+        public Nullable<int> ClothingBarnID { get; set; }
         public decimal Price { get; set; }
     
         public virtual ClothingBarn ClothingBarn { get; set; }

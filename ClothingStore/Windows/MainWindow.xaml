@@ -11,11 +11,12 @@
         MinWidth="1200"
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
+        
         Icon="{Icon:MaterialImage Kind=TshirtCrew}"
         >
     <Grid>
         
-          <Frame x:Name="mainFrame"
+          <Frame x:Name="windowFrame"
              NavigationUIVisibility="Hidden"  
              />
 

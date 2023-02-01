@@ -30,7 +30,7 @@ namespace ClothingStore.Pages.PublicPages
         {
             InitializeComponent();
             cb_Gender.ItemsSource = Context.Gender.ToList();
-            cb_Gender.DisplayMemberPath = "GenderName";
+            cb_Gender.DisplayMemberPath = "Title";
             cb_Gender.SelectedIndex = 0;
         }
 
@@ -255,9 +255,10 @@ namespace ClothingStore.Pages.PublicPages
 
         }
 
-        
-
-       
+        private void bt_Back_Click(object sender, RoutedEventArgs e)
+        {
+            ClassHelper.NavigateClass.authorizationFrame.Navigate(new AuthorizationPage());
+        }
     }
 
 

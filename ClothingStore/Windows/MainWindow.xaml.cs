@@ -24,10 +24,10 @@ namespace ClothingStore.Windows
         {
             InitializeComponent();
             ClassHelper.NavigateClass.authorizationFrame = AuthorizationFrame;
-            ClassHelper.NavigateClass.mainFrame = mainFrame;
+            
             AuthorizationFrame.Navigate(new AuthorizationPage());
-            //ClassHelper.NavigateClass.authorizationFrame.Visibility= Visibility.Collapsed;
-            mainFrame.Navigate(new HomePage());
+            ClassHelper.NavigateClass.authorizationFrame.Visibility= Visibility.Collapsed;
+            windowFrame.Navigate(new HomePage());
         }
     }
 }

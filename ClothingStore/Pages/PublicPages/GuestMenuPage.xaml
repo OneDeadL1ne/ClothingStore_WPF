@@ -1,0 +1,102 @@
+﻿<Page x:Class="ClothingStore.Pages.PublicPages.GuestMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ClothingStore.Pages.PublicPages"
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+      xmlns:Gif="http://wpfanimatedgif.codeplex.com"
+      mc:Ignorable="d" 
+      d:DesignHeight="60" d:DesignWidth="1200"
+      Title="GuestMenuPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border
+            Grid.ColumnSpan="20"
+            CornerRadius="10"
+            Background="White"
+            />
+
+        
+        
+        <Button Grid.Column="9" 
+                Grid.ColumnSpan="2"  
+                Padding="3" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Style="{StaticResource ButtonStyle}"  
+                BorderThickness="0"
+                x:Name="btn_Login"
+                Click="bt_Login_Click"
+                >
+            <StackPanel Orientation="Horizontal">
+                <Image 
+            Source="{Icon:MaterialImage Kind=AccountCircleOutline}" 
+            Height="25" 
+            Width="25" 
+            HorizontalAlignment="Left"
+           
+            />
+                <TextBlock  
+            Text="Войти в аккаунт" 
+           
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="15"
+           
+            />
+
+            </StackPanel>
+        </Button>
+
+        <Button
+            Style="{StaticResource ButtonStyle}" 
+            BorderThickness="0"
+            x:Name="btn_Catalog"
+            Click="bt_Catalog_Click"
+            >
+            <StackPanel Orientation="Horizontal" >
+                <Image Height="30"
+               Width="30"
+            Gif:ImageBehavior.AutoStart="False"
+            
+            Grid.Column="6"
+            Gif:ImageBehavior.AnimatedSource="/Res/Images/CatalogGif.gif"
+            
+            />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    Text="Каталог"
+                    FontSize="15"
+                    />
+
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="btn_Cart" Click="btn_Cart_Click" Grid.Column="3">
+            <StackPanel>
+                <TextBlock Text="Корзина"/>
+            </StackPanel>
+
+        </Button>
+
+
+
+
+
+    </Grid>
+</Page>

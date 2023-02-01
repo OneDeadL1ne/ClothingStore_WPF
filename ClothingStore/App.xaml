@@ -14,8 +14,7 @@
             </Style.Resources>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="Width" Value="416"/>
+
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -26,8 +25,6 @@
         <Style TargetType="{x:Type PasswordBox}" x:Key="psStyle">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Height" Value="45"/>
-            <Setter Property="Width" Value="416"/>
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -36,30 +33,26 @@
         </Style>
 
 
-    <ControlTemplate x:Key="passwordbox" TargetType="{x:Type PasswordBox}">
-            
-        <Border Background="{TemplateBinding Background}" 
+        <ControlTemplate x:Key="passwordbox" TargetType="{x:Type PasswordBox}">
+
+            <Border Background="{TemplateBinding Background}" 
     x:Name="Bd" BorderBrush="Black"
     BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
-            <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-        </Border>
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-            </Trigger>
-            <Trigger Property="Width" Value="Auto">
-                <Setter Property="MinWidth" Value="100"/>
-            </Trigger>
-            <Trigger Property="Height" Value="Auto">
-                <Setter Property="MinHeight" Value="20"/>
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-        
-        
-
-
+                <ScrollViewer Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="Width" Value="Auto">
+                    <Setter Property="MinWidth" Value="100"/>
+                </Trigger>
+                <Trigger Property="Height" Value="Auto">
+                    <Setter Property="MinHeight" Value="20"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
 
         <Style x:Key="ComboBoxTextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
@@ -77,6 +70,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
         <Style x:Key="ComboBoxButtonStyle" TargetType="{x:Type ToggleButton}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -324,6 +318,18 @@
             </Setter>
         </Style>
 
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Style.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Style.Resources>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        
 
     </Application.Resources>
 </Application>

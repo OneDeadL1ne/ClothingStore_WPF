@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ClothingStore.Pages.PublicPages"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1200"
+      d:DesignHeight="900" d:DesignWidth="1400"
       Title="HomePage">
 
     <Grid>
@@ -19,7 +19,31 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Background="Black" Grid.Row="0" Grid.Column="1"  Grid.RowSpan="3" Width="900" Height="800" >
+        <Grid   Grid.Row="0" Grid.Column="1"  Grid.RowSpan="3" Width="1200" Height="900" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Grid.ColumnSpan="3"
+                Grid.Row="1"
+                Grid.RowSpan="4"
+                Background="#E5E5E5"
+                CornerRadius="20"
+                />
+            <!--HEADER-->
+            <Frame Grid.ColumnSpan="4" x:Name="menuFrame"/>
+           
+            
+            <Frame x:Name="mainFrame" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
 
             
         </Grid>

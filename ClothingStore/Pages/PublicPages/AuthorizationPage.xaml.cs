@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ClothingStore.ClassHelper;
 using static ClothingStore.ClassHelper.EFClass;
 using static ClothingStore.ClassHelper.NavigateClass;
+using static ClothingStore.ClassHelper.MenuClass;
 
 
 namespace ClothingStore.Pages.PublicPages
@@ -42,12 +43,19 @@ namespace ClothingStore.Pages.PublicPages
 
         private void bt_Enter_Click(object sender, RoutedEventArgs e)
         {
-            var Connection = Context.User.ToList().Where(i => i.Login == tb_Login.Text && i.Password == pb_Password.Password).FirstOrDefault();
+            //var Connection = Context.User.ToList().Where(i => i.Login == tb_Login.Text && i.Password == pb_Password.Password).FirstOrDefault();
 
-            if (Connection != null)
-            {
-                authorizationFrame.Visibility = Visibility.Collapsed;
-            }
+            //if (Connection != null)
+            //{
+            //    authorizationFrame.Visibility = Visibility.Collapsed;
+            //}
+        }
+
+        private void bt_Close_Click(object sender, RoutedEventArgs e)
+        {
+            authorizationFrame.Visibility = Visibility.Collapsed;
+            SetIsEnabledTrue();
+            
         }
     }
 }

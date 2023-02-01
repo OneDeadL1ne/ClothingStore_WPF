@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace ClothingStore.Pages.PublicPages
 {
     /// <summary>
@@ -23,6 +24,10 @@ namespace ClothingStore.Pages.PublicPages
         public HomePage()
         {
             InitializeComponent();
+            ClassHelper.NavigateClass.mainFrame = mainFrame;
+            menuFrame.Navigate(new GuestMenuPage());
         }
+
+        
     }
 }

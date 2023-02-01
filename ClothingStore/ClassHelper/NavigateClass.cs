@@ -11,6 +11,9 @@ namespace ClothingStore.ClassHelper
     {
         public static Frame authorizationFrame;
         public static Frame mainFrame;
+        public static Frame menuFrame;
+       
+       
         
 
 

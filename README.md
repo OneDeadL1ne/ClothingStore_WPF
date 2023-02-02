@@ -1,7 +1,7 @@
 # ClothingStore
 <h1>Проект делает студент группы 3исп9-13 Пантелеев Михаил Алексадрович</h1>
 <h2>Структура проекта</h2>
-![image](https://user-images.githubusercontent.com/119927472/216268046-0f652fd3-b136-4301-bdee-a9b482b63674.png)
+![image](https://user-images.githubusercontent.com/119927472/216271640-1a054d6a-93ea-4b17-9780-1ea827b5b50b.png)
 
 <h2>Диаграмма БД</h2>
 

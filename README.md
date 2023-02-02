@@ -17,4 +17,8 @@
 
 <h2>Страница Регистрации</h2>
 
+![image](https://user-images.githubusercontent.com/119927472/216273153-b7de28b2-2879-438c-91cc-9a0c1fb14d5c.png)
+
+  
+
 

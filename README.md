@@ -18,6 +18,14 @@
 <h2>Страница Регистрации</h2>
 
 ![image](https://user-images.githubusercontent.com/119927472/216273153-b7de28b2-2879-438c-91cc-9a0c1fb14d5c.png)
+<h2>Класс навигации</h2>
+![image](https://user-images.githubusercontent.com/119927472/216273904-79db2e0b-0eb6-4ab0-b4d6-39271a39eddd.png)
+
+<h2>Класс для работы с БД</h2>
+![image](https://user-images.githubusercontent.com/119927472/216273863-b06e6286-7d2f-4ec9-a702-c0ad0c8f07af.png)
+
+
+
 
   
 

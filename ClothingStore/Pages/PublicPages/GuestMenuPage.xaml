@@ -72,8 +72,7 @@
             <StackPanel Orientation="Horizontal" >
                 <Image Height="30"
                Width="30"
-            Gif:ImageBehavior.AutoStart="False"
-            
+            Gif:ImageBehavior.AutoStart="False"          
             Grid.Column="6"
             Gif:ImageBehavior.AnimatedSource="/Res/Images/CatalogGif.gif"
             

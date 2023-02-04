@@ -12,20 +12,23 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Type
+    public partial class GeneralItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type()
+        public GeneralItem()
         {
-            this.GeneralItem = new HashSet<GeneralItem>();
+            this.CurrentItem = new HashSet<CurrentItem>();
         }
     
+        public int GeneralItemID { get; set; }
+        public int CustomerGroupID { get; set; }
         public int TypeID { get; set; }
-        public int CategoryID { get; set; }
-        public string TypeTitle { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralItem> GeneralItem { get; set; }
+        public virtual ICollection<CurrentItem> CurrentItem { get; set; }
+        public virtual CustomerGroup CustomerGroup { get; set; }
+        public virtual Type Type { get; set; }
     }
 }

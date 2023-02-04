@@ -12,18 +12,13 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Position
+    public partial class CurrentItemCart
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Position()
-        {
-            this.Employee = new HashSet<Employee>();
-        }
+        public int CurrentItemID { get; set; }
+        public int CartID { get; set; }
+        public int Quantity { get; set; }
     
-        public int PositionID { get; set; }
-        public string Title { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual Cart Cart { get; set; }
+        public virtual CurrentItem CurrentItem { get; set; }
     }
 }

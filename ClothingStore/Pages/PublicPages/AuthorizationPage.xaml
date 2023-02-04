@@ -76,7 +76,7 @@
                 HorizontalAlignment="Center"
                 Style="{StaticResource psStyle}"
                 Foreground="Gray"
-                x:Name="tbPasswordbox1"
+                x:Name="tb_Passwordbox"
                 Template="{StaticResource passwordbox}"
                 />
 

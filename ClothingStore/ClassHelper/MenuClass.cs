@@ -46,7 +46,7 @@ namespace ClothingStore.ClassHelper
                    
                     break;
                 default:
-                    //SetIsEnabledTrue();
+                    SetIsEnabledTrue();
                     break;
 
             }

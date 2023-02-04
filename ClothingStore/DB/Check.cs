@@ -12,15 +12,15 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderProduct
+    public partial class Check
     {
-        public int OrderProductID { get; set; }
-        public Nullable<int> OrderID { get; set; }
-        public int Quantity { get; set; }
-        public Nullable<int> ClothingBarnID { get; set; }
-        public decimal Price { get; set; }
+        public int CheckID { get; set; }
+        public int CartID { get; set; }
+        public int EmployeeID { get; set; }
+        public System.DateTime CheckDateTime { get; set; }
+        public decimal TotalPrice { get; set; }
     
-        public virtual ClothingBarn ClothingBarn { get; set; }
-        public virtual Order Order { get; set; }
+        public virtual Cart Cart { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

@@ -27,21 +27,27 @@ namespace ClothingStore.DB
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BonusCard> BonusCard { get; set; }
+        public virtual DbSet<Cart> Cart { get; set; }
         public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<ClothingBarn> ClothingBarn { get; set; }
+        public virtual DbSet<Check> Check { get; set; }
         public virtual DbSet<Color> Color { get; set; }
+        public virtual DbSet<CurrentItem> CurrentItem { get; set; }
+        public virtual DbSet<CurrentItemCart> CurrentItemCart { get; set; }
+        public virtual DbSet<CurrentItemStore> CurrentItemStore { get; set; }
+        public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<CustomerGroup> CustomerGroup { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<OrderProduct> OrderProduct { get; set; }
-        public virtual DbSet<Position> Position { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<GeneralItem> GeneralItem { get; set; }
+        public virtual DbSet<History> History { get; set; }
+        public virtual DbSet<Passport> Passport { get; set; }
+        public virtual DbSet<Photo> Photo { get; set; }
+        public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Size> Size { get; set; }
-        public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type> Type { get; set; }
-        public virtual DbSet<User> User { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

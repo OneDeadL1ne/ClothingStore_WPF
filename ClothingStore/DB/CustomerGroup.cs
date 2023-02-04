@@ -12,23 +12,18 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class CustomerGroup
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
+        public CustomerGroup()
         {
-            this.OrderProduct = new HashSet<OrderProduct>();
+            this.GeneralItem = new HashSet<GeneralItem>();
         }
     
-        public int OrderID { get; set; }
-        public Nullable<int> ClientID { get; set; }
-        public Nullable<int> EmployeeID { get; set; }
-        public Nullable<int> StatusID { get; set; }
+        public int CustomerGroupID { get; set; }
+        public string GruopTitle { get; set; }
     
-        public virtual Client Client { get; set; }
-        public virtual Employee Employee { get; set; }
-        public virtual Status Status { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderProduct> OrderProduct { get; set; }
+        public virtual ICollection<GeneralItem> GeneralItem { get; set; }
     }
 }

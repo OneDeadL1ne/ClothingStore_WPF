@@ -22,7 +22,7 @@ namespace ClothingStore.DB
         }
     
         public int CategoryID { get; set; }
-        public string Title { get; set; }
+        public string CategoryTitle { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Size> Size { get; set; }

@@ -43,12 +43,29 @@ namespace ClothingStore.Pages.PublicPages
 
         private void bt_Enter_Click(object sender, RoutedEventArgs e)
         {
-            //var Connection = Context.User.ToList().Where(i => i.Login == tb_Login.Text && i.Password == pb_Password.Password).FirstOrDefault();
+                var Connection = Context.User.ToList().Where(i => i.Login == tb_Login.Text && i.Password == tb_Passwordbox.Password).FirstOrDefault();
 
-            //if (Connection != null)
-            //{
-            //    authorizationFrame.Visibility = Visibility.Collapsed;
-            //}
+                if (Connection != null)
+                {
+                    int userId = Connection.UserID;
+                    var CheckEmp = Context.Employee.ToList().Where(i => i.UserID== userId).FirstOrDefault();
+
+                    var CheckClient= Context.Client.ToList().Where(i => i.UserID== userId).FirstOrDefault();
+
+                    if (CheckEmp != null)
+                    {
+                    MessageBox.Show("Работник");
+                    }
+
+                    if (CheckClient !=null)
+                    {
+                    MessageBox.Show("Клиент");
+                    }
+                    authorizationFrame.Visibility = Visibility.Collapsed;
+                    SetIsEnabledTrue();
+                    tb_Login.Text = "";
+                    tb_Passwordbox.Password = "";
+                }
         }
 
         private void bt_Close_Click(object sender, RoutedEventArgs e)

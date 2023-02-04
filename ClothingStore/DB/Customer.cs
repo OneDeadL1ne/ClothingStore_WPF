@@ -12,30 +12,33 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Customer()
         {
-            this.Client = new HashSet<Client>();
-            this.Employee = new HashSet<Employee>();
+            this.BonusCard = new HashSet<BonusCard>();
+            this.Cart = new HashSet<Cart>();
+            this.History = new HashSet<History>();
         }
     
-        public int UserID { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
+        public int CustomerID { get; set; }
+        public string FName { get; set; }
+        public string LName { get; set; }
         public string Patronymic { get; set; }
+        public Nullable<System.DateTime> BirthDate { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public System.DateTime Birthdate { get; set; }
+        public string Password { get; set; }
         public Nullable<int> GenderID { get; set; }
+        public Nullable<int> BonusCardID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Client> Client { get; set; }
+        public virtual ICollection<BonusCard> BonusCard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Cart> Cart { get; set; }
         public virtual Gender Gender { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History> History { get; set; }
     }
 }

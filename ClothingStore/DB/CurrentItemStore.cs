@@ -12,19 +12,13 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class CurrentItemStore
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Client()
-        {
-            this.Order = new HashSet<Order>();
-        }
+        public int CurrentItemID { get; set; }
+        public int StoreID { get; set; }
+        public int InStock { get; set; }
     
-        public int ClientID { get; set; }
-        public int UserID { get; set; }
-    
-        public virtual User User { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual CurrentItem CurrentItem { get; set; }
+        public virtual Store Store { get; set; }
     }
 }

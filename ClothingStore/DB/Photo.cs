@@ -12,18 +12,12 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Status
+    public partial class Photo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Status()
-        {
-            this.Order = new HashSet<Order>();
-        }
+        public string PhotoID { get; set; }
+        public int CurrentItemID { get; set; }
+        public string PhotoPath { get; set; }
     
-        public int StatusID { get; set; }
-        public string Title { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual CurrentItem CurrentItem { get; set; }
     }
 }

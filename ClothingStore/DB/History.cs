@@ -12,24 +12,20 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class ClothingBarn
+    public partial class History
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ClothingBarn()
+        public History()
         {
-            this.OrderProduct = new HashSet<OrderProduct>();
+            this.CurrentItem = new HashSet<CurrentItem>();
         }
     
-        public int ClothingBarnID { get; set; }
-        public int ColorID { get; set; }
-        public int SizeID { get; set; }
-        public int ProductID { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public int HistoryID { get; set; }
+        public int CustomerID { get; set; }
+        public System.DateTime DateTime { get; set; }
     
-        public virtual Color Color { get; set; }
-        public virtual Product Product { get; set; }
-        public virtual Size Size { get; set; }
+        public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderProduct> OrderProduct { get; set; }
+        public virtual ICollection<CurrentItem> CurrentItem { get; set; }
     }
 }

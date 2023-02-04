@@ -239,6 +239,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Res\Images\ImageCatalog.png" />
     <Resource Include="Res\Images\CatalogGif.gif" />
     <Resource Include="Res\Images\btnClose.png" />
     <Resource Include="Res\Images\btnBack.png" />

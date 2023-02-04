@@ -12,20 +12,14 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Type
+    public partial class Passport
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type()
-        {
-            this.GeneralItem = new HashSet<GeneralItem>();
-        }
+        public int PassportID { get; set; }
+        public int EmployeeID { get; set; }
+        public string Series { get; set; }
+        public string Number { get; set; }
+        public System.DateTime DateOfRelease { get; set; }
     
-        public int TypeID { get; set; }
-        public int CategoryID { get; set; }
-        public string TypeTitle { get; set; }
-    
-        public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GeneralItem> GeneralItem { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

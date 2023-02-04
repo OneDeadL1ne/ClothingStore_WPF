@@ -12,21 +12,12 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class BonusCard
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
-        {
-            this.ClothingBarn = new HashSet<ClothingBarn>();
-        }
+        public int BonusCardID { get; set; }
+        public decimal BounsProcent { get; set; }
+        public int CustomerID { get; set; }
     
-        public int ProductID { get; set; }
-        public string Title { get; set; }
-        public decimal Price { get; set; }
-        public int TypeID { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ClothingBarn> ClothingBarn { get; set; }
-        public virtual Type Type { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

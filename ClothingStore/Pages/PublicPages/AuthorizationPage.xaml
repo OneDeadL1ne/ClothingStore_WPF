@@ -58,26 +58,46 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="4"
-                FontSize="25"
                 Style="{StaticResource tbStyle}"
-                x:Name="tb_Login"
+                x:Name="tb_PhoneOrEmail"
+                TextChanged="tb_PhoneOrEmail_TextChanged"
                 Width="350"
                 VerticalAlignment="Center"
+                LostFocus="tb_PhoneOrEmail_LostFocus"
+                GotFocus="tb_PhoneOrEmail_GotFocus"
+                Text="Введи почту/телефон"
+                Foreground="Gray"
                 Height="40"
                 />
 
             <PasswordBox
                 Grid.ColumnSpan="4"
                 Grid.Row="2"
-                
+                Padding="1"
                 Height="40"
                 Width="350"     
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Center"
                 Style="{StaticResource psStyle}"
                 Foreground="Gray"
+                LostFocus="tb_Passwordbox_LostFocus"
                 x:Name="tb_Passwordbox"
                 Template="{StaticResource passwordbox}"
+                />
+           
+            <TextBox
+                Grid.ColumnSpan="4"                                
+                Grid.Row="2"      
+                Width="350"
+                Height="40"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Style="{StaticResource tbStyle}"
+                x:Name="tbVisiblePasswordbox"
+                Foreground="Gray"
+                GotFocus="tbVisiblePasswordbox_GotFocus"
+               
+                Text="Введи пароль"
                 />
 
             <TextBlock

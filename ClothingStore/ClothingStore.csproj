@@ -159,11 +159,11 @@
     <Compile Include="DB\Type.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PublicPages\GuestMenuPage.xaml.cs">
-      <DependentUpon>GuestMenuPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\PublicPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PublicPages\MenuPage.xaml.cs">
+      <DependentUpon>MenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PublicPages\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
@@ -183,11 +183,11 @@
     <Compile Include="Pages\PublicPages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="Pages\PublicPages\GuestMenuPage.xaml">
+    <Page Include="Pages\PublicPages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PublicPages\HomePage.xaml">
+    <Page Include="Pages\PublicPages\MenuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

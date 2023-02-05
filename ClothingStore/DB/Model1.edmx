@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ClothingStoreModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ClothingStoreModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BonusCard">
           <Key>
             <PropertyRef Name="BonusCardID" />
@@ -83,7 +83,7 @@
           <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
           <Property Name="BirthDate" Type="date" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GenderID" Type="int" />
           <Property Name="BonusCardID" Type="int" />
@@ -100,13 +100,13 @@
             <PropertyRef Name="EmployeeID" />
           </Key>
           <Property Name="EmployeeID" Type="int" Nullable="false" />
-          <Property Name="FName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="MName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Patronymic" Type="nvarchar" MaxLength="100" />
+          <Property Name="FName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
           <Property Name="BirthDate" Type="date" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GenderID" Type="int" Nullable="false" />
           <Property Name="StoreID" Type="int" Nullable="false" />
           <Property Name="RoleID" Type="int" Nullable="false" />
@@ -642,629 +642,11 @@
             <End Role="Type" EntitySet="Type" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClothingStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="BonusCard">
-          <Key>
-            <PropertyRef Name="BonusCardID" />
-          </Key>
-          <Property Name="BonusCardID" Type="Int32" Nullable="false" />
-          <Property Name="BounsProcent" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_BonusCard_Customer" FromRole="BonusCard" ToRole="Customer" />
-        </EntityType>
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="CartID" />
-          </Key>
-          <Property Name="CartID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Cart_Customer" FromRole="Cart" ToRole="Customer" />
-          <NavigationProperty Name="Check" Relationship="Self.FK_Check_Cart" FromRole="Cart" ToRole="Check" />
-          <NavigationProperty Name="CurrentItemCart" Relationship="Self.FK_CurrentItemCart_Cart" FromRole="Cart" ToRole="CurrentItemCart" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="CategoryID" />
-          </Key>
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="CategoryTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Size" Relationship="Self.FK_Size_Category" FromRole="Category" ToRole="Size" />
-          <NavigationProperty Name="Type" Relationship="Self.FK_Type_Category" FromRole="Category" ToRole="Type" />
-        </EntityType>
-        <EntityType Name="Check">
-          <Key>
-            <PropertyRef Name="CheckID" />
-          </Key>
-          <Property Name="CheckID" Type="Int32" Nullable="false" />
-          <Property Name="CartID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="CheckDateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Cart" Relationship="Self.FK_Check_Cart" FromRole="Check" ToRole="Cart" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Check_Employee" FromRole="Check" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Color">
-          <Key>
-            <PropertyRef Name="ColorID" />
-          </Key>
-          <Property Name="ColorID" Type="Int32" Nullable="false" />
-          <Property Name="ColorTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CurrentItem" Relationship="Self.FK_CurrentItem_Color" FromRole="Color" ToRole="CurrentItem" />
-        </EntityType>
-        <EntityType Name="CurrentItem">
-          <Key>
-            <PropertyRef Name="CurrentItemID" />
-          </Key>
-          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
-          <Property Name="GeneralItemID" Type="Int32" Nullable="false" />
-          <Property Name="ColorID" Type="Int32" Nullable="false" />
-          <Property Name="SizeID" Type="Int32" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Color" Relationship="Self.FK_CurrentItem_Color" FromRole="CurrentItem" ToRole="Color" />
-          <NavigationProperty Name="GeneralItem" Relationship="Self.FK_CurrentItem_GeneralItem" FromRole="CurrentItem" ToRole="GeneralItem" />
-          <NavigationProperty Name="Size" Relationship="Self.FK_CurrentItem_Size" FromRole="CurrentItem" ToRole="Size" />
-          <NavigationProperty Name="CurrentItemCart" Relationship="Self.FK_CurrentItemCart_CurrentItem" FromRole="CurrentItem" ToRole="CurrentItemCart" />
-          <NavigationProperty Name="CurrentItemStore" Relationship="Self.FK_CurrentItemStore_CurrentItem" FromRole="CurrentItem" ToRole="CurrentItemStore" />
-          <NavigationProperty Name="Photo" Relationship="Self.FK_Photo_CurrentItem" FromRole="CurrentItem" ToRole="Photo" />
-          <NavigationProperty Name="History" Relationship="Self.HistoryCurrentItem" FromRole="CurrentItem" ToRole="History" />
-        </EntityType>
-        <EntityType Name="CurrentItemCart">
-          <Key>
-            <PropertyRef Name="CurrentItemID" />
-            <PropertyRef Name="CartID" />
-          </Key>
-          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
-          <Property Name="CartID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cart" Relationship="Self.FK_CurrentItemCart_Cart" FromRole="CurrentItemCart" ToRole="Cart" />
-          <NavigationProperty Name="CurrentItem" Relationship="Self.FK_CurrentItemCart_CurrentItem" FromRole="CurrentItemCart" ToRole="CurrentItem" />
-        </EntityType>
-        <EntityType Name="CurrentItemStore">
-          <Key>
-            <PropertyRef Name="CurrentItemID" />
-            <PropertyRef Name="StoreID" />
-          </Key>
-          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
-          <Property Name="StoreID" Type="Int32" Nullable="false" />
-          <Property Name="InStock" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CurrentItem" Relationship="Self.FK_CurrentItemStore_CurrentItem" FromRole="CurrentItemStore" ToRole="CurrentItem" />
-          <NavigationProperty Name="Store" Relationship="Self.FK_CurrentItemStore_Store" FromRole="CurrentItemStore" ToRole="Store" />
-        </EntityType>
-        <EntityType Name="Customer">
-          <Key>
-            <PropertyRef Name="CustomerID" />
-          </Key>
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GenderID" Type="Int32" />
-          <Property Name="BonusCardID" Type="Int32" />
-          <NavigationProperty Name="BonusCard" Relationship="Self.FK_BonusCard_Customer" FromRole="Customer" ToRole="BonusCard" />
-          <NavigationProperty Name="Cart" Relationship="Self.FK_Cart_Customer" FromRole="Customer" ToRole="Cart" />
-          <NavigationProperty Name="Gender" Relationship="Self.FK_Customer_Gender" FromRole="Customer" ToRole="Gender" />
-          <NavigationProperty Name="History" Relationship="Self.FK_History_Customer" FromRole="Customer" ToRole="History" />
-        </EntityType>
-        <EntityType Name="CustomerGroup">
-          <Key>
-            <PropertyRef Name="CustomerGroupID" />
-          </Key>
-          <Property Name="CustomerGroupID" Type="Int32" Nullable="false" />
-          <Property Name="GruopTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="GeneralItem" Relationship="Self.FK_Item_CustomerGroup" FromRole="CustomerGroup" ToRole="GeneralItem" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="EmployeeID" />
-          </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="FName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GenderID" Type="Int32" Nullable="false" />
-          <Property Name="StoreID" Type="Int32" Nullable="false" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Check" Relationship="Self.FK_Check_Employee" FromRole="Employee" ToRole="Check" />
-          <NavigationProperty Name="Gender" Relationship="Self.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
-          <NavigationProperty Name="Store" Relationship="Self.FK_Employee_Store1" FromRole="Employee" ToRole="Store" />
-          <NavigationProperty Name="Passport" Relationship="Self.FK_Passport_Employee" FromRole="Employee" ToRole="Passport" />
-        </EntityType>
-        <EntityType Name="Gender">
-          <Key>
-            <PropertyRef Name="GenderID" />
-          </Key>
-          <Property Name="GenderID" Type="Int32" Nullable="false" />
-          <Property Name="GenTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Customer_Gender" FromRole="Gender" ToRole="Customer" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Gender" FromRole="Gender" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="GeneralItem">
-          <Key>
-            <PropertyRef Name="GeneralItemID" />
-          </Key>
-          <Property Name="GeneralItemID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerGroupID" Type="Int32" Nullable="false" />
-          <Property Name="TypeID" Type="Int32" Nullable="false" />
-          <Property Name="Brand" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CurrentItem" Relationship="Self.FK_CurrentItem_GeneralItem" FromRole="GeneralItem" ToRole="CurrentItem" />
-          <NavigationProperty Name="CustomerGroup" Relationship="Self.FK_Item_CustomerGroup" FromRole="GeneralItem" ToRole="CustomerGroup" />
-          <NavigationProperty Name="Type" Relationship="Self.FK_Item_Type" FromRole="GeneralItem" ToRole="Type" />
-        </EntityType>
-        <EntityType Name="History">
-          <Key>
-            <PropertyRef Name="HistoryID" />
-          </Key>
-          <Property Name="HistoryID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="Int32" Nullable="false" />
-          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_History_Customer" FromRole="History" ToRole="Customer" />
-          <NavigationProperty Name="CurrentItem" Relationship="Self.HistoryCurrentItem" FromRole="History" ToRole="CurrentItem" />
-        </EntityType>
-        <EntityType Name="Passport">
-          <Key>
-            <PropertyRef Name="PassportID" />
-          </Key>
-          <Property Name="PassportID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="Series" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Number" Type="String" MaxLength="6" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="DateOfRelease" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Passport_Employee" FromRole="Passport" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Photo">
-          <Key>
-            <PropertyRef Name="PhotoID" />
-          </Key>
-          <Property Name="PhotoID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CurrentItem" Relationship="Self.FK_Photo_CurrentItem" FromRole="Photo" ToRole="CurrentItem" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="RoleID" />
-          </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="RoleTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Size">
-          <Key>
-            <PropertyRef Name="SizeID" />
-          </Key>
-          <Property Name="SizeID" Type="Int32" Nullable="false" />
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="SizeTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Size_Category" FromRole="Size" ToRole="Category" />
-          <NavigationProperty Name="CurrentItem" Relationship="Self.FK_CurrentItem_Size" FromRole="Size" ToRole="CurrentItem" />
-        </EntityType>
-        <EntityType Name="Store">
-          <Key>
-            <PropertyRef Name="StoreID" />
-          </Key>
-          <Property Name="StoreID" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CurrentItemStore" Relationship="Self.FK_CurrentItemStore_Store" FromRole="Store" ToRole="CurrentItemStore" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Store1" FromRole="Store" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Type">
-          <Key>
-            <PropertyRef Name="TypeID" />
-          </Key>
-          <Property Name="TypeID" Type="Int32" Nullable="false" />
-          <Property Name="CategoryID" Type="Int32" Nullable="false" />
-          <Property Name="TypeTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Type_Category" FromRole="Type" ToRole="Category" />
-          <NavigationProperty Name="GeneralItem" Relationship="Self.FK_Item_Type" FromRole="Type" ToRole="GeneralItem" />
-        </EntityType>
-        <Association Name="FK_BonusCard_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="BonusCard" Type="Self.BonusCard" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="BonusCard">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Check_Cart">
-          <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
-          <End Role="Check" Type="Self.Check" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cart">
-              <PropertyRef Name="CartID" />
-            </Principal>
-            <Dependent Role="Check">
-              <PropertyRef Name="CartID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CurrentItemCart_Cart">
-          <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
-          <End Role="CurrentItemCart" Type="Self.CurrentItemCart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cart">
-              <PropertyRef Name="CartID" />
-            </Principal>
-            <Dependent Role="CurrentItemCart">
-              <PropertyRef Name="CartID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Size_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Size" Type="Self.Size" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="Size">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Type_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Type" Type="Self.Type" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="Type">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Check_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Check" Type="Self.Check" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="Check">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CurrentItem_Color">
-          <End Role="Color" Type="Self.Color" Multiplicity="1" />
-          <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Color">
-              <PropertyRef Name="ColorID" />
-            </Principal>
-            <Dependent Role="CurrentItem">
-              <PropertyRef Name="ColorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CurrentItem_GeneralItem">
-          <End Role="GeneralItem" Type="Self.GeneralItem" Multiplicity="1" />
-          <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="GeneralItem">
-              <PropertyRef Name="GeneralItemID" />
-            </Principal>
-            <Dependent Role="CurrentItem">
-              <PropertyRef Name="GeneralItemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CurrentItem_Size">
-          <End Role="Size" Type="Self.Size" Multiplicity="1" />
-          <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Size">
-              <PropertyRef Name="SizeID" />
-            </Principal>
-            <Dependent Role="CurrentItem">
-              <PropertyRef Name="SizeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CurrentItemCart_CurrentItem">
-          <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="1" />
-          <End Role="CurrentItemCart" Type="Self.CurrentItemCart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CurrentItem">
-              <PropertyRef Name="CurrentItemID" />
-            </Principal>
-            <Dependent Role="CurrentItemCart">
-              <PropertyRef Name="CurrentItemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CurrentItemStore_CurrentItem">
-          <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="1" />
-          <End Role="CurrentItemStore" Type="Self.CurrentItemStore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CurrentItem">
-              <PropertyRef Name="CurrentItemID" />
-            </Principal>
-            <Dependent Role="CurrentItemStore">
-              <PropertyRef Name="CurrentItemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Photo_CurrentItem">
-          <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="1" />
-          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CurrentItem">
-              <PropertyRef Name="CurrentItemID" />
-            </Principal>
-            <Dependent Role="Photo">
-              <PropertyRef Name="CurrentItemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CurrentItemStore_Store">
-          <End Role="Store" Type="Self.Store" Multiplicity="1" />
-          <End Role="CurrentItemStore" Type="Self.CurrentItemStore" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Store">
-              <PropertyRef Name="StoreID" />
-            </Principal>
-            <Dependent Role="CurrentItemStore">
-              <PropertyRef Name="StoreID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Customer_Gender">
-          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
-          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="GenderID" />
-            </Principal>
-            <Dependent Role="Customer">
-              <PropertyRef Name="GenderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_History_Customer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="History" Type="Self.History" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="History">
-              <PropertyRef Name="CustomerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Item_CustomerGroup">
-          <End Role="CustomerGroup" Type="Self.CustomerGroup" Multiplicity="1" />
-          <End Role="GeneralItem" Type="Self.GeneralItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerGroup">
-              <PropertyRef Name="CustomerGroupID" />
-            </Principal>
-            <Dependent Role="GeneralItem">
-              <PropertyRef Name="CustomerGroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Gender">
-          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender">
-              <PropertyRef Name="GenderID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="GenderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employee_Store1">
-          <End Role="Store" Type="Self.Store" Multiplicity="1" />
-          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Store">
-              <PropertyRef Name="StoreID" />
-            </Principal>
-            <Dependent Role="Employee">
-              <PropertyRef Name="StoreID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Passport_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Passport" Type="Self.Passport" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="Passport">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Item_Type">
-          <End Role="Type" Type="Self.Type" Multiplicity="1" />
-          <End Role="GeneralItem" Type="Self.GeneralItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Type">
-              <PropertyRef Name="TypeID" />
-            </Principal>
-            <Dependent Role="GeneralItem">
-              <PropertyRef Name="TypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="HistoryCurrentItem">
-          <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="*" />
-          <End Role="History" Type="Self.History" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BonusCard" EntityType="Self.BonusCard" />
-          <EntitySet Name="Cart" EntityType="Self.Cart" />
-          <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="Check" EntityType="Self.Check" />
-          <EntitySet Name="Color" EntityType="Self.Color" />
-          <EntitySet Name="CurrentItem" EntityType="Self.CurrentItem" />
-          <EntitySet Name="CurrentItemCart" EntityType="Self.CurrentItemCart" />
-          <EntitySet Name="CurrentItemStore" EntityType="Self.CurrentItemStore" />
-          <EntitySet Name="Customer" EntityType="Self.Customer" />
-          <EntitySet Name="CustomerGroup" EntityType="Self.CustomerGroup" />
-          <EntitySet Name="Employee" EntityType="Self.Employee" />
-          <EntitySet Name="Gender" EntityType="Self.Gender" />
-          <EntitySet Name="GeneralItem" EntityType="Self.GeneralItem" />
-          <EntitySet Name="History" EntityType="Self.History" />
-          <EntitySet Name="Passport" EntityType="Self.Passport" />
-          <EntitySet Name="Photo" EntityType="Self.Photo" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Size" EntityType="Self.Size" />
-          <EntitySet Name="Store" EntityType="Self.Store" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Type" EntityType="Self.Type" />
-          <AssociationSet Name="FK_BonusCard_Customer" Association="Self.FK_BonusCard_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="BonusCard" EntitySet="BonusCard" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_Customer" Association="Self.FK_Cart_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Cart" EntitySet="Cart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Check_Cart" Association="Self.FK_Check_Cart">
-            <End Role="Cart" EntitySet="Cart" />
-            <End Role="Check" EntitySet="Check" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CurrentItemCart_Cart" Association="Self.FK_CurrentItemCart_Cart">
-            <End Role="Cart" EntitySet="Cart" />
-            <End Role="CurrentItemCart" EntitySet="CurrentItemCart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Size_Category" Association="Self.FK_Size_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Size" EntitySet="Size" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Type_Category" Association="Self.FK_Type_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Type" EntitySet="Type" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Check_Employee" Association="Self.FK_Check_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Check" EntitySet="Check" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CurrentItem_Color" Association="Self.FK_CurrentItem_Color">
-            <End Role="Color" EntitySet="Color" />
-            <End Role="CurrentItem" EntitySet="CurrentItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CurrentItem_GeneralItem" Association="Self.FK_CurrentItem_GeneralItem">
-            <End Role="GeneralItem" EntitySet="GeneralItem" />
-            <End Role="CurrentItem" EntitySet="CurrentItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CurrentItem_Size" Association="Self.FK_CurrentItem_Size">
-            <End Role="Size" EntitySet="Size" />
-            <End Role="CurrentItem" EntitySet="CurrentItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CurrentItemCart_CurrentItem" Association="Self.FK_CurrentItemCart_CurrentItem">
-            <End Role="CurrentItem" EntitySet="CurrentItem" />
-            <End Role="CurrentItemCart" EntitySet="CurrentItemCart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CurrentItemStore_CurrentItem" Association="Self.FK_CurrentItemStore_CurrentItem">
-            <End Role="CurrentItem" EntitySet="CurrentItem" />
-            <End Role="CurrentItemStore" EntitySet="CurrentItemStore" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Photo_CurrentItem" Association="Self.FK_Photo_CurrentItem">
-            <End Role="CurrentItem" EntitySet="CurrentItem" />
-            <End Role="Photo" EntitySet="Photo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CurrentItemStore_Store" Association="Self.FK_CurrentItemStore_Store">
-            <End Role="Store" EntitySet="Store" />
-            <End Role="CurrentItemStore" EntitySet="CurrentItemStore" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Customer_Gender" Association="Self.FK_Customer_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="Customer" EntitySet="Customer" />
-          </AssociationSet>
-          <AssociationSet Name="FK_History_Customer" Association="Self.FK_History_Customer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Item_CustomerGroup" Association="Self.FK_Item_CustomerGroup">
-            <End Role="CustomerGroup" EntitySet="CustomerGroup" />
-            <End Role="GeneralItem" EntitySet="GeneralItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Gender" Association="Self.FK_Employee_Gender">
-            <End Role="Gender" EntitySet="Gender" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employee_Store1" Association="Self.FK_Employee_Store1">
-            <End Role="Store" EntitySet="Store" />
-            <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Passport_Employee" Association="Self.FK_Passport_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Passport" EntitySet="Passport" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Item_Type" Association="Self.FK_Item_Type">
-            <End Role="Type" EntitySet="Type" />
-            <End Role="GeneralItem" EntitySet="GeneralItem" />
-          </AssociationSet>
-          <AssociationSet Name="HistoryCurrentItem" Association="Self.HistoryCurrentItem">
-            <End Role="CurrentItem" EntitySet="CurrentItem" />
-            <End Role="History" EntitySet="History" />
-          </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1295,6 +677,119 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="BonusCard" EntityType="ClothingStoreModel.BonusCard" />
+          <EntitySet Name="Cart" EntityType="ClothingStoreModel.Cart" />
+          <EntitySet Name="Category" EntityType="ClothingStoreModel.Category" />
+          <EntitySet Name="Check" EntityType="ClothingStoreModel.Check" />
+          <EntitySet Name="Color" EntityType="ClothingStoreModel.Color" />
+          <EntitySet Name="CurrentItem" EntityType="ClothingStoreModel.CurrentItem" />
+          <EntitySet Name="CurrentItemCart" EntityType="ClothingStoreModel.CurrentItemCart" />
+          <EntitySet Name="CurrentItemStore" EntityType="ClothingStoreModel.CurrentItemStore" />
+          <EntitySet Name="Customer" EntityType="ClothingStoreModel.Customer" />
+          <EntitySet Name="CustomerGroup" EntityType="ClothingStoreModel.CustomerGroup" />
+          <EntitySet Name="Employee" EntityType="ClothingStoreModel.Employee" />
+          <EntitySet Name="Gender" EntityType="ClothingStoreModel.Gender" />
+          <EntitySet Name="GeneralItem" EntityType="ClothingStoreModel.GeneralItem" />
+          <EntitySet Name="History" EntityType="ClothingStoreModel.History" />
+          <EntitySet Name="Passport" EntityType="ClothingStoreModel.Passport" />
+          <EntitySet Name="Photo" EntityType="ClothingStoreModel.Photo" />
+          <EntitySet Name="Role" EntityType="ClothingStoreModel.Role" />
+          <EntitySet Name="Size" EntityType="ClothingStoreModel.Size" />
+          <EntitySet Name="Store" EntityType="ClothingStoreModel.Store" />
+          <EntitySet Name="sysdiagrams" EntityType="ClothingStoreModel.sysdiagrams" />
+          <EntitySet Name="Type" EntityType="ClothingStoreModel.Type" />
+          <AssociationSet Name="FK_BonusCard_Customer" Association="ClothingStoreModel.FK_BonusCard_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="BonusCard" EntitySet="BonusCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_Customer" Association="ClothingStoreModel.FK_Cart_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Cart" Association="ClothingStoreModel.FK_Check_Cart">
+            <End Role="Cart" EntitySet="Cart" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentItemCart_Cart" Association="ClothingStoreModel.FK_CurrentItemCart_Cart">
+            <End Role="Cart" EntitySet="Cart" />
+            <End Role="CurrentItemCart" EntitySet="CurrentItemCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Size_Category" Association="ClothingStoreModel.FK_Size_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Size" EntitySet="Size" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Type_Category" Association="ClothingStoreModel.FK_Type_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Type" EntitySet="Type" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Check_Employee" Association="ClothingStoreModel.FK_Check_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Check" EntitySet="Check" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentItem_Color" Association="ClothingStoreModel.FK_CurrentItem_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="CurrentItem" EntitySet="CurrentItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentItem_GeneralItem" Association="ClothingStoreModel.FK_CurrentItem_GeneralItem">
+            <End Role="GeneralItem" EntitySet="GeneralItem" />
+            <End Role="CurrentItem" EntitySet="CurrentItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentItem_Size" Association="ClothingStoreModel.FK_CurrentItem_Size">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="CurrentItem" EntitySet="CurrentItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentItemCart_CurrentItem" Association="ClothingStoreModel.FK_CurrentItemCart_CurrentItem">
+            <End Role="CurrentItem" EntitySet="CurrentItem" />
+            <End Role="CurrentItemCart" EntitySet="CurrentItemCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentItemStore_CurrentItem" Association="ClothingStoreModel.FK_CurrentItemStore_CurrentItem">
+            <End Role="CurrentItem" EntitySet="CurrentItem" />
+            <End Role="CurrentItemStore" EntitySet="CurrentItemStore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photo_CurrentItem" Association="ClothingStoreModel.FK_Photo_CurrentItem">
+            <End Role="CurrentItem" EntitySet="CurrentItem" />
+            <End Role="Photo" EntitySet="Photo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentItemStore_Store" Association="ClothingStoreModel.FK_CurrentItemStore_Store">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="CurrentItemStore" EntitySet="CurrentItemStore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Gender" Association="ClothingStoreModel.FK_Customer_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History_Customer" Association="ClothingStoreModel.FK_History_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_CustomerGroup" Association="ClothingStoreModel.FK_Item_CustomerGroup">
+            <End Role="CustomerGroup" EntitySet="CustomerGroup" />
+            <End Role="GeneralItem" EntitySet="GeneralItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Gender" Association="ClothingStoreModel.FK_Employee_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Role" Association="ClothingStoreModel.FK_Employee_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Store1" Association="ClothingStoreModel.FK_Employee_Store1">
+            <End Role="Store" EntitySet="Store" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Passport_Employee" Association="ClothingStoreModel.FK_Passport_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Passport" EntitySet="Passport" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Type" Association="ClothingStoreModel.FK_Item_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="GeneralItem" EntitySet="GeneralItem" />
+          </AssociationSet>
+          <AssociationSet Name="HistoryCurrentItem" Association="ClothingStoreModel.HistoryCurrentItem">
+            <End Role="CurrentItem" EntitySet="CurrentItem" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1307,229 +802,516 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="BonusCard">
+          <Key>
+            <PropertyRef Name="BonusCardID" />
+          </Key>
+          <Property Name="BonusCardID" Type="Int32" Nullable="false" />
+          <Property Name="BounsProcent" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="ClothingStoreModel.FK_BonusCard_Customer" FromRole="BonusCard" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="ClothingStoreModel.FK_Cart_Customer" FromRole="Cart" ToRole="Customer" />
+          <NavigationProperty Name="Check" Relationship="ClothingStoreModel.FK_Check_Cart" FromRole="Cart" ToRole="Check" />
+          <NavigationProperty Name="CurrentItemCart" Relationship="ClothingStoreModel.FK_CurrentItemCart_Cart" FromRole="Cart" ToRole="CurrentItemCart" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Size" Relationship="ClothingStoreModel.FK_Size_Category" FromRole="Category" ToRole="Size" />
+          <NavigationProperty Name="Type" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="Category" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="Check">
+          <Key>
+            <PropertyRef Name="CheckID" />
+          </Key>
+          <Property Name="CheckID" Type="Int32" Nullable="false" />
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="CheckDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Cart" Relationship="ClothingStoreModel.FK_Check_Cart" FromRole="Check" ToRole="Cart" />
+          <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Check_Employee" FromRole="Check" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="ColorTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_Color" FromRole="Color" ToRole="CurrentItem" />
+        </EntityType>
+        <EntityType Name="CurrentItem">
+          <Key>
+            <PropertyRef Name="CurrentItemID" />
+          </Key>
+          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
+          <Property Name="GeneralItemID" Type="Int32" Nullable="false" />
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="SizeID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Color" Relationship="ClothingStoreModel.FK_CurrentItem_Color" FromRole="CurrentItem" ToRole="Color" />
+          <NavigationProperty Name="GeneralItem" Relationship="ClothingStoreModel.FK_CurrentItem_GeneralItem" FromRole="CurrentItem" ToRole="GeneralItem" />
+          <NavigationProperty Name="Size" Relationship="ClothingStoreModel.FK_CurrentItem_Size" FromRole="CurrentItem" ToRole="Size" />
+          <NavigationProperty Name="CurrentItemCart" Relationship="ClothingStoreModel.FK_CurrentItemCart_CurrentItem" FromRole="CurrentItem" ToRole="CurrentItemCart" />
+          <NavigationProperty Name="CurrentItemStore" Relationship="ClothingStoreModel.FK_CurrentItemStore_CurrentItem" FromRole="CurrentItem" ToRole="CurrentItemStore" />
+          <NavigationProperty Name="Photo" Relationship="ClothingStoreModel.FK_Photo_CurrentItem" FromRole="CurrentItem" ToRole="Photo" />
+          <NavigationProperty Name="History" Relationship="ClothingStoreModel.HistoryCurrentItem" FromRole="CurrentItem" ToRole="History" />
+        </EntityType>
+        <EntityType Name="CurrentItemCart">
+          <Key>
+            <PropertyRef Name="CurrentItemID" />
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cart" Relationship="ClothingStoreModel.FK_CurrentItemCart_Cart" FromRole="CurrentItemCart" ToRole="Cart" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItemCart_CurrentItem" FromRole="CurrentItemCart" ToRole="CurrentItem" />
+        </EntityType>
+        <EntityType Name="CurrentItemStore">
+          <Key>
+            <PropertyRef Name="CurrentItemID" />
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="InStock" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItemStore_CurrentItem" FromRole="CurrentItemStore" ToRole="CurrentItem" />
+          <NavigationProperty Name="Store" Relationship="ClothingStoreModel.FK_CurrentItemStore_Store" FromRole="CurrentItemStore" ToRole="Store" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderID" Type="Int32" />
+          <Property Name="BonusCardID" Type="Int32" />
+          <NavigationProperty Name="BonusCard" Relationship="ClothingStoreModel.FK_BonusCard_Customer" FromRole="Customer" ToRole="BonusCard" />
+          <NavigationProperty Name="Cart" Relationship="ClothingStoreModel.FK_Cart_Customer" FromRole="Customer" ToRole="Cart" />
+          <NavigationProperty Name="Gender" Relationship="ClothingStoreModel.FK_Customer_Gender" FromRole="Customer" ToRole="Gender" />
+          <NavigationProperty Name="History" Relationship="ClothingStoreModel.FK_History_Customer" FromRole="Customer" ToRole="History" />
+        </EntityType>
+        <EntityType Name="CustomerGroup">
+          <Key>
+            <PropertyRef Name="CustomerGroupID" />
+          </Key>
+          <Property Name="CustomerGroupID" Type="Int32" Nullable="false" />
+          <Property Name="GruopTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GeneralItem" Relationship="ClothingStoreModel.FK_Item_CustomerGroup" FromRole="CustomerGroup" ToRole="GeneralItem" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="FName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Check" Relationship="ClothingStoreModel.FK_Check_Employee" FromRole="Employee" ToRole="Check" />
+          <NavigationProperty Name="Gender" Relationship="ClothingStoreModel.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
+          <NavigationProperty Name="Role" Relationship="ClothingStoreModel.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+          <NavigationProperty Name="Store" Relationship="ClothingStoreModel.FK_Employee_Store1" FromRole="Employee" ToRole="Store" />
+          <NavigationProperty Name="Passport" Relationship="ClothingStoreModel.FK_Passport_Employee" FromRole="Employee" ToRole="Passport" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <Property Name="GenTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="ClothingStoreModel.FK_Customer_Gender" FromRole="Gender" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Employee_Gender" FromRole="Gender" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="GeneralItem">
+          <Key>
+            <PropertyRef Name="GeneralItemID" />
+          </Key>
+          <Property Name="GeneralItemID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerGroupID" Type="Int32" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="Brand" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_GeneralItem" FromRole="GeneralItem" ToRole="CurrentItem" />
+          <NavigationProperty Name="CustomerGroup" Relationship="ClothingStoreModel.FK_Item_CustomerGroup" FromRole="GeneralItem" ToRole="CustomerGroup" />
+          <NavigationProperty Name="Type" Relationship="ClothingStoreModel.FK_Item_Type" FromRole="GeneralItem" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="HistoryID" />
+          </Key>
+          <Property Name="HistoryID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="ClothingStoreModel.FK_History_Customer" FromRole="History" ToRole="Customer" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.HistoryCurrentItem" FromRole="History" ToRole="CurrentItem" />
+        </EntityType>
+        <EntityType Name="Passport">
+          <Key>
+            <PropertyRef Name="PassportID" />
+          </Key>
+          <Property Name="PassportID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Series" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="DateOfRelease" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Passport_Employee" FromRole="Passport" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="PhotoID" />
+          </Key>
+          <Property Name="PhotoID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
+          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_Photo_CurrentItem" FromRole="Photo" ToRole="CurrentItem" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="RoleTitle" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SizeTitle" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="ClothingStoreModel.FK_Size_Category" FromRole="Size" ToRole="Category" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_Size" FromRole="Size" ToRole="CurrentItem" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="StoreID" />
+          </Key>
+          <Property Name="StoreID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CurrentItemStore" Relationship="ClothingStoreModel.FK_CurrentItemStore_Store" FromRole="Store" ToRole="CurrentItemStore" />
+          <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Employee_Store1" FromRole="Store" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="TypeTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="Type" ToRole="Category" />
+          <NavigationProperty Name="GeneralItem" Relationship="ClothingStoreModel.FK_Item_Type" FromRole="Type" ToRole="GeneralItem" />
+        </EntityType>
+        <Association Name="FK_BonusCard_Customer">
+          <End Type="ClothingStoreModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="ClothingStoreModel.BonusCard" Role="BonusCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="BonusCard">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_Customer">
+          <End Type="ClothingStoreModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="ClothingStoreModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Cart">
+          <End Type="ClothingStoreModel.Cart" Role="Cart" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Check" Role="Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentItemCart_Cart">
+          <End Type="ClothingStoreModel.Cart" Role="Cart" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CurrentItemCart" Role="CurrentItemCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="CurrentItemCart">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Size_Category">
+          <End Type="ClothingStoreModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Size" Role="Size" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Size">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Type_Category">
+          <End Type="ClothingStoreModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Type" Role="Type" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Type">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Check_Employee">
+          <End Type="ClothingStoreModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Check" Role="Check" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Check">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentItem_Color">
+          <End Type="ClothingStoreModel.Color" Role="Color" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="CurrentItem">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentItem_GeneralItem">
+          <End Type="ClothingStoreModel.GeneralItem" Role="GeneralItem" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GeneralItem">
+              <PropertyRef Name="GeneralItemID" />
+            </Principal>
+            <Dependent Role="CurrentItem">
+              <PropertyRef Name="GeneralItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentItem_Size">
+          <End Type="ClothingStoreModel.Size" Role="Size" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="CurrentItem">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentItemCart_CurrentItem">
+          <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CurrentItemCart" Role="CurrentItemCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentItem">
+              <PropertyRef Name="CurrentItemID" />
+            </Principal>
+            <Dependent Role="CurrentItemCart">
+              <PropertyRef Name="CurrentItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentItemStore_CurrentItem">
+          <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CurrentItemStore" Role="CurrentItemStore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentItem">
+              <PropertyRef Name="CurrentItemID" />
+            </Principal>
+            <Dependent Role="CurrentItemStore">
+              <PropertyRef Name="CurrentItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Photo_CurrentItem">
+          <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Photo" Role="Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CurrentItem">
+              <PropertyRef Name="CurrentItemID" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="CurrentItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentItemStore_Store">
+          <End Type="ClothingStoreModel.Store" Role="Store" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CurrentItemStore" Role="CurrentItemStore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="CurrentItemStore">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Gender">
+          <End Type="ClothingStoreModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="ClothingStoreModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History_Customer">
+          <End Type="ClothingStoreModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="ClothingStoreModel.History" Role="History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_CustomerGroup">
+          <End Type="ClothingStoreModel.CustomerGroup" Role="CustomerGroup" Multiplicity="1" />
+          <End Type="ClothingStoreModel.GeneralItem" Role="GeneralItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerGroup">
+              <PropertyRef Name="CustomerGroupID" />
+            </Principal>
+            <Dependent Role="GeneralItem">
+              <PropertyRef Name="CustomerGroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Gender">
+          <End Type="ClothingStoreModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Role">
+          <End Type="ClothingStoreModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Store1">
+          <End Type="ClothingStoreModel.Store" Role="Store" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Store">
+              <PropertyRef Name="StoreID" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="StoreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Passport_Employee">
+          <End Type="ClothingStoreModel.Employee" Role="Employee" Multiplicity="1" />
+          <End Type="ClothingStoreModel.Passport" Role="Passport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="Passport">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Type">
+          <End Type="ClothingStoreModel.Type" Role="Type" Multiplicity="1" />
+          <End Type="ClothingStoreModel.GeneralItem" Role="GeneralItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="GeneralItem">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HistoryCurrentItem">
+          <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="*" />
+          <End Type="ClothingStoreModel.History" Role="History" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ClothingStoreModelContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="BonusCard">
-            <EntityTypeMapping TypeName="ClothingStoreModel.BonusCard">
-              <MappingFragment StoreEntitySet="BonusCard">
-                <ScalarProperty Name="BonusCardID" ColumnName="BonusCardID" />
-                <ScalarProperty Name="BounsProcent" ColumnName="BounsProcent" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cart">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Cart">
-              <MappingFragment StoreEntitySet="Cart">
-                <ScalarProperty Name="CartID" ColumnName="CartID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Category">
-              <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="CategoryTitle" ColumnName="CategoryTitle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Check">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Check">
-              <MappingFragment StoreEntitySet="Check">
-                <ScalarProperty Name="CheckID" ColumnName="CheckID" />
-                <ScalarProperty Name="CartID" ColumnName="CartID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="CheckDateTime" ColumnName="CheckDateTime" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Color">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Color">
-              <MappingFragment StoreEntitySet="Color">
-                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
-                <ScalarProperty Name="ColorTitle" ColumnName="ColorTitle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CurrentItem">
-            <EntityTypeMapping TypeName="ClothingStoreModel.CurrentItem">
-              <MappingFragment StoreEntitySet="CurrentItem">
-                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
-                <ScalarProperty Name="GeneralItemID" ColumnName="GeneralItemID" />
-                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
-                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CurrentItemCart">
-            <EntityTypeMapping TypeName="ClothingStoreModel.CurrentItemCart">
-              <MappingFragment StoreEntitySet="CurrentItemCart">
-                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
-                <ScalarProperty Name="CartID" ColumnName="CartID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CurrentItemStore">
-            <EntityTypeMapping TypeName="ClothingStoreModel.CurrentItemStore">
-              <MappingFragment StoreEntitySet="CurrentItemStore">
-                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
-                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
-                <ScalarProperty Name="InStock" ColumnName="InStock" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Customer">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Customer">
-              <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
-                <ScalarProperty Name="BonusCardID" ColumnName="BonusCardID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerGroup">
-            <EntityTypeMapping TypeName="ClothingStoreModel.CustomerGroup">
-              <MappingFragment StoreEntitySet="CustomerGroup">
-                <ScalarProperty Name="CustomerGroupID" ColumnName="CustomerGroupID" />
-                <ScalarProperty Name="GruopTitle" ColumnName="GruopTitle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="MName" ColumnName="MName" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
-                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Gender">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Gender">
-              <MappingFragment StoreEntitySet="Gender">
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
-                <ScalarProperty Name="GenTitle" ColumnName="GenTitle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GeneralItem">
-            <EntityTypeMapping TypeName="ClothingStoreModel.GeneralItem">
-              <MappingFragment StoreEntitySet="GeneralItem">
-                <ScalarProperty Name="GeneralItemID" ColumnName="GeneralItemID" />
-                <ScalarProperty Name="CustomerGroupID" ColumnName="CustomerGroupID" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="History">
-            <EntityTypeMapping TypeName="ClothingStoreModel.History">
-              <MappingFragment StoreEntitySet="History">
-                <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Passport">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Passport">
-              <MappingFragment StoreEntitySet="Passport">
-                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Series" ColumnName="Series" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="DateOfRelease" ColumnName="DateOfRelease" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Photo">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Photo">
-              <MappingFragment StoreEntitySet="Photo">
-                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
-                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Size">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Size">
-              <MappingFragment StoreEntitySet="Size">
-                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="SizeTitle" ColumnName="SizeTitle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Store">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Store">
-              <MappingFragment StoreEntitySet="Store">
-                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="ClothingStoreModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Type">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Type">
-              <MappingFragment StoreEntitySet="Type">
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="TypeTitle" ColumnName="TypeTitle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="HistoryCurrentItem" TypeName="ClothingStoreModel.HistoryCurrentItem" StoreEntitySet="HistoryCurrentItem">
-            <EndProperty Name="CurrentItem">
-              <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
-            </EndProperty>
-            <EndProperty Name="History">
-              <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище ClothingStoreModel.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище ClothingStoreModel.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище ClothingStoreModel.sp_dropdiagram" />
@@ -1554,6 +1336,223 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище ClothingStoreModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище ClothingStoreModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="BonusCard">
+            <EntityTypeMapping TypeName="ClothingStoreModel.BonusCard">
+              <MappingFragment StoreEntitySet="BonusCard">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="BounsProcent" ColumnName="BounsProcent" />
+                <ScalarProperty Name="BonusCardID" ColumnName="BonusCardID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryTitle" ColumnName="CategoryTitle" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Check">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Check">
+              <MappingFragment StoreEntitySet="Check">
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="CheckDateTime" ColumnName="CheckDateTime" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="CheckID" ColumnName="CheckID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Color">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="ColorTitle" ColumnName="ColorTitle" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentItem">
+            <EntityTypeMapping TypeName="ClothingStoreModel.CurrentItem">
+              <MappingFragment StoreEntitySet="CurrentItem">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="GeneralItemID" ColumnName="GeneralItemID" />
+                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentItemCart">
+            <EntityTypeMapping TypeName="ClothingStoreModel.CurrentItemCart">
+              <MappingFragment StoreEntitySet="CurrentItemCart">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CurrentItemStore">
+            <EntityTypeMapping TypeName="ClothingStoreModel.CurrentItemStore">
+              <MappingFragment StoreEntitySet="CurrentItemStore">
+                <ScalarProperty Name="InStock" ColumnName="InStock" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="BonusCardID" ColumnName="BonusCardID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerGroup">
+            <EntityTypeMapping TypeName="ClothingStoreModel.CustomerGroup">
+              <MappingFragment StoreEntitySet="CustomerGroup">
+                <ScalarProperty Name="GruopTitle" ColumnName="GruopTitle" />
+                <ScalarProperty Name="CustomerGroupID" ColumnName="CustomerGroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="GenTitle" ColumnName="GenTitle" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralItem">
+            <EntityTypeMapping TypeName="ClothingStoreModel.GeneralItem">
+              <MappingFragment StoreEntitySet="GeneralItem">
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="CustomerGroupID" ColumnName="CustomerGroupID" />
+                <ScalarProperty Name="GeneralItemID" ColumnName="GeneralItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="ClothingStoreModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passport">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Passport">
+              <MappingFragment StoreEntitySet="Passport">
+                <ScalarProperty Name="DateOfRelease" ColumnName="DateOfRelease" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photo">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Size">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="SizeTitle" ColumnName="SizeTitle" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Store">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ClothingStoreModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type">
+            <EntityTypeMapping TypeName="ClothingStoreModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="TypeTitle" ColumnName="TypeTitle" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="HistoryCurrentItem" TypeName="ClothingStoreModel.HistoryCurrentItem" StoreEntitySet="HistoryCurrentItem">
+            <EndProperty Name="History">
+              <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+            </EndProperty>
+            <EndProperty Name="CurrentItem">
+              <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

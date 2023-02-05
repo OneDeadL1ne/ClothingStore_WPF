@@ -25,7 +25,8 @@ namespace ClothingStore.Pages.PublicPages
         {
             InitializeComponent();
             ClassHelper.NavigateClass.mainFrame = mainFrame;
-            menuFrame.Navigate(new GuestMenuPage());
+            ClassHelper.NavigateClass.menuFrame = menuFrame;
+            menuFrame.Navigate(new MenuPage());
         }
 
         

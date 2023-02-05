@@ -30,7 +30,7 @@ namespace ClothingStore.Pages.PublicPages
         {
             InitializeComponent();
             cb_Gender.ItemsSource = Context.Gender.ToList();
-            cb_Gender.DisplayMemberPath = "Title";
+            cb_Gender.DisplayMemberPath = "GenTitle";
             cb_Gender.SelectedIndex = 0;
         }
 
@@ -196,10 +196,6 @@ namespace ClothingStore.Pages.PublicPages
                 case "tbEmail":
                     str = "Email";
                     break;
-                case "tbLogin":
-                    str = "Логин";
-                    break;
-
                 default:
                     break;
             }
@@ -238,10 +234,6 @@ namespace ClothingStore.Pages.PublicPages
                 case "tbEmail":
                     str = "Email";
                     break;
-                case "tbLogin":
-                    str = "Логин";
-                    break;
-
                 default:
                     break;
             }

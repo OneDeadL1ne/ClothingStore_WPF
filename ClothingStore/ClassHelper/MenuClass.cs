@@ -13,12 +13,13 @@ namespace ClothingStore.ClassHelper
         public static Button buttonLogin;
         public static Button buttonCatalog;
         public static Button buttonCart;
+        public static Button buttonPersonalAccount;
         public static void SetIsEnabledTrue()
         {
             buttonLogin.IsEnabled = true;
             buttonCatalog.IsEnabled = true;
             buttonCart.IsEnabled = true;
-            
+           
 
         }
         public static void SetIsEnabledFalse()
@@ -26,6 +27,7 @@ namespace ClothingStore.ClassHelper
             buttonLogin.IsEnabled = false;
             buttonCatalog.IsEnabled = false;
             buttonCart.IsEnabled = false;
+            
 
         }
         public static void SetFocusButton(object sender)

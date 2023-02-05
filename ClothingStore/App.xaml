@@ -29,6 +29,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Padding" Value="3"/>
            
         </Style>
 

@@ -8,7 +8,8 @@
 
 <h3>Диаграмма БД</h3>
 
-![Снимок экрана 2023-02-02 112538](https://user-images.githubusercontent.com/119927472/216271499-bc4629d8-861a-40ae-9844-bcd4a0afc561.png)
+![DB](https://user-images.githubusercontent.com/119927472/216910051-46d37184-df29-49be-b33c-aed729621b86.jpg)
+
 
 <h3>Страница Авторизации</h3>
 

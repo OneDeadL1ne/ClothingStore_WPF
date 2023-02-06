@@ -58,7 +58,7 @@ namespace ClothingStore.Pages.PublicPages
             
             Employee employee = null;
             Customer customer = null;
-            string login = tb_PhoneOrEmail.Text.Trim().ToLower();
+            string login = tb_PhoneOrEmail.Text.Trim();
             string PhoneOrEmail;
             string email = null;
             string phone = null;

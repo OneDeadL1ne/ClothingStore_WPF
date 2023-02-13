@@ -301,6 +301,7 @@ namespace ClothingStore.Pages.PublicPages
 
             if (ValidationPhone(tbPhone.Text) || (tbPhone.Text.Length<16 || tbPhone.Text.Length > 16))
             {
+                
                 tb_ER_Phone.Visibility = Visibility.Visible;
                 tbPhone.BorderBrush = Brushes.Red;
                 IsOkey = false;

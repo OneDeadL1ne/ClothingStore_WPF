@@ -71,7 +71,7 @@
                 Style="{StaticResource ButtonStyle}"  
                 BorderThickness="0"
                 x:Name="btn_PersonalAccount"
-               
+               Click="btn_PersonalAccount_Click"
                 >
             <StackPanel Orientation="Horizontal">
                 <Image 

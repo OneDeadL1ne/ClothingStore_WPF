@@ -24,8 +24,8 @@ namespace ClothingStore.Windows
         {
             InitializeComponent();
             ClassHelper.NavigateClass.authorizationFrame = AuthorizationFrame;
-            
-            AuthorizationFrame.Navigate(new AuthorizationPage());
+            ClassHelper.NavigateClass.windowFrame = windowFrame;
+            //AuthorizationFrame.Navigate(new AuthorizationPage());
             ClassHelper.NavigateClass.authorizationFrame.Visibility= Visibility.Collapsed;
             windowFrame.Navigate(new HomePage());
         }

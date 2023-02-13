@@ -5,27 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="92ff51d9585e4b79a43dff45d43eae2b" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="ClothingStoreModel.BonusCard" Width="1.5" PointX="7.5" PointY="16.125" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Cart" Width="1.5" PointX="7.5" PointY="13" />
+        <EntityTypeShape EntityType="ClothingStoreModel.BonusCard" Width="1.5" PointX="5.25" PointY="18.875" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Cart" Width="1.5" PointX="5.25" PointY="15.75" />
         <EntityTypeShape EntityType="ClothingStoreModel.Category" Width="1.5" PointX="0.75" PointY="7.25" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Check" Width="1.5" PointX="15" PointY="10.75" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Color" Width="1.5" PointX="5.25" PointY="9.25" />
-        <EntityTypeShape EntityType="ClothingStoreModel.CurrentItem" Width="1.5" PointX="7.5" PointY="6.25" />
-        <EntityTypeShape EntityType="ClothingStoreModel.CurrentItemCart" Width="1.5" PointX="9.75" PointY="4" />
-        <EntityTypeShape EntityType="ClothingStoreModel.CurrentItemStore" Width="1.5" PointX="9.75" PointY="7" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Customer" Width="1.5" PointX="5.25" PointY="12.125" />
-        <EntityTypeShape EntityType="ClothingStoreModel.CustomerGroup" Width="1.5" PointX="3" PointY="3" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Employee" Width="1.5" PointX="12.75" PointY="6.875" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Gender" Width="1.5" PointX="3" PointY="13.125" />
-        <EntityTypeShape EntityType="ClothingStoreModel.GeneralItem" Width="1.5" PointX="5.25" PointY="5.5" />
-        <EntityTypeShape EntityType="ClothingStoreModel.History" Width="1.5" PointX="9.75" PointY="10" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Passport" Width="1.5" PointX="15" PointY="7.875" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Photo" Width="1.5" PointX="9.75" PointY="15.25" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Role" Width="1.5" PointX="10.5" PointY="1.125" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Size" Width="1.5" PointX="3" PointY="8.5" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Store" Width="1.5" PointX="7.5" PointY="3" />
-        <EntityTypeShape EntityType="ClothingStoreModel.sysdiagrams" Width="1.5" PointX="11.75" PointY="3.75" />
-        <EntityTypeShape EntityType="ClothingStoreModel.Type" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Check" Width="1.5" PointX="12.75" PointY="8.5" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Color" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.CurrentItem" Width="1.5" PointX="5.25" PointY="5" />
+        <EntityTypeShape EntityType="ClothingStoreModel.CurrentItemCart" Width="1.5" PointX="7.5" PointY="2.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.CurrentItemStore" Width="1.5" PointX="7.5" PointY="5.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Customer" Width="1.5" PointX="3" PointY="14.875" />
+        <EntityTypeShape EntityType="ClothingStoreModel.CustomerGroup" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Employee" Width="1.5" PointX="10.5" PointY="7.625" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Gender" Width="1.5" PointX="0.75" PointY="15.875" />
+        <EntityTypeShape EntityType="ClothingStoreModel.GeneralItem" Width="1.5" PointX="5.25" PointY="10.25" />
+        <EntityTypeShape EntityType="ClothingStoreModel.History" Width="1.5" PointX="7.5" PointY="8.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Passport" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Photo" Width="1.5" PointX="7.5" PointY="14.125" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Role" Width="1.5" PointX="8.25" PointY="16.875" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Size" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Store" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClothingStoreModel.Type" Width="1.5" PointX="3" PointY="8.5" />
         <AssociationConnector Association="ClothingStoreModel.FK_BonusCard_Customer" />
         <AssociationConnector Association="ClothingStoreModel.FK_Cart_Customer" />
         <AssociationConnector Association="ClothingStoreModel.FK_Check_Cart" />

@@ -12,26 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static ClothingStore.ClassHelper.MenuClass;
-
 
 namespace ClothingStore.Pages.PublicPages
 {
     /// <summary>
-    /// Логика взаимодействия для HomePage.xaml
+    /// Логика взаимодействия для CartPage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class CartPage : Page
     {
-        public HomePage()
+        public CartPage()
         {
             InitializeComponent();
-            ClassHelper.NavigateClass.mainFrame = mainFrame;
-            ClassHelper.NavigateClass.menuFrame = menuFrame;
-            menuFrame.Navigate(new MenuPage());
-            mainFrame.Navigate(new CatalogePage());
-            buttonCatalog.IsEnabled = false;
         }
-
-        
     }
 }

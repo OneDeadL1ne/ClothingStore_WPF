@@ -45,7 +45,7 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
+             
             </Grid.RowDefinitions>
 
             <Border
@@ -71,10 +71,23 @@
                 Height="35"
                 Style="{StaticResource tbStyle}"
                 Text="Имя"
+              
                 LostFocus="LostFocusText"
                 GotFocus="GotFocusText"
                 Foreground="Gray"
                 />
+            <TextBlock
+            x:Name="tb_ER_FName"
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            Text="*Не правильно заполнено Имя"
+            FontSize="15"
+            Margin="0 0 0 7"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
 
             <TextBox
                 Width="416"
@@ -88,6 +101,18 @@
                 Text="Фамилия"
                 Foreground="Gray"
                 />
+            <TextBlock
+            x:Name="tb_ER_LName"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            Text="*Не правильно заполнена Фамилия"
+            FontSize="15"
+            Margin="0 0 0 7"
+           Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
 
             <TextBox
                 Width="416"
@@ -102,6 +127,19 @@
                 GotFocus="GotFocusText"
                 />
 
+            <TextBlock
+            x:Name="tb_ER_PName"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            Text="*Не правильно заполнено Отчество"
+            FontSize="15"
+            Margin="0 0 0 7"
+           Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
+
             <TextBox
                 Width="416"
                 Height="35"
@@ -112,8 +150,22 @@
                 Grid.Row="4"                                
                 Style="{StaticResource tbStyle}"
                 Text="Телефон"
+                TextChanged="tbPhone_TextChanged"
+              
                 Foreground="Gray"
                 />
+            <TextBlock
+            x:Name="tb_ER_Phone"
+            Grid.Row="4"
+            Grid.ColumnSpan="2"
+            Text="*Не правильно заполнен Телефон"
+            FontSize="15"
+            Margin="0 0 0 7"
+           Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
 
             <TextBox
                 Width="416"
@@ -128,8 +180,20 @@
                 Foreground="Gray"
                 
                 />
+            <TextBlock
+            x:Name="tb_ER_Email"
+            Grid.Row="5"
+            Grid.ColumnSpan="2"
+            Text="*Не правильно заполнена  почта"
+            FontSize="15"
+            Margin="0 0 0 7"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
 
-
+             
 
 
            <!---->
@@ -143,10 +207,21 @@
                 Width="190"
                 Margin="55 0 0 0"
                 FontSize="22"
-                
+                VerticalAlignment="Top"
                 Foreground="Black"        
                         />
-               
+            <TextBlock
+            x:Name="tb_ER_Bitrhday"
+            Grid.Row="6"
+            Grid.Column="0"
+            Text="*Не выбрана дата рождения"
+            FontSize="15"
+            Margin="0 0 10 7"
+           Visibility="Collapsed"
+            HorizontalAlignment="Right"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
 
 
 
@@ -160,13 +235,14 @@
                 Style="{StaticResource RoundComboBox}"
                 Width="190"
                 Height="35"
-                
+                VerticalAlignment="Top"
                 Margin="0 0 55 0"
                 x:Name="cb_Gender"
                 FontSize="22"
                 
             />
-
+            
+           
 
 
           
@@ -174,19 +250,20 @@
 
             <PasswordBox
                 Grid.ColumnSpan="2"
-                Grid.Row="8"    
+                Grid.Row="7"    
                 Height="35"
                 Width="416"                
                 Style="{StaticResource psStyle}"
                 Foreground="Gray"
-                x:Name="tbPasswordbox"
+                x:Name="pbPasswordbox"
+                VerticalAlignment="Top"
                 LostFocus="tbPasswordbox_LostFocus"
                 PasswordChanged="tbPasswordbox_PasswordChanged"
                 Template="{StaticResource passwordbox}"
                 />
             <TextBox
                 Grid.ColumnSpan="2"                                
-                Grid.Row="8"      
+                Grid.Row="7"      
                 Width="416"
                 Height="35"
                 Style="{StaticResource tbStyle}"
@@ -199,28 +276,40 @@
 
 
             
-                    <Image Panel.ZIndex="2"  Visibility="Collapsed" Height="30" HorizontalAlignment="Left"  x:Name="ImgShowHide" Stretch="Fill" VerticalAlignment="Center" Width="30" 
+                    <Image Panel.ZIndex="2"  Visibility="Collapsed" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  x:Name="ImgShowHide" Stretch="Fill"  Width="30" 
                MouseLeave="OnMouseLeave" PreviewMouseDown="OnPreviewMouseDown" PreviewMouseUp="OnPreviewMouseUp" Grid.Column="1"  Grid.Row="8" Margin="165,0,0,0"/>
-            
 
+            <TextBlock
+            x:Name="tb_ER_Password"
+            Grid.Row="7"
+            Grid.ColumnSpan="2"
+            Text="*Не правильно заполнен Пароль"
+            FontSize="15"
+            Margin="0 0 0 7"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
 
 
 
             <PasswordBox
                 Grid.ColumnSpan="2"
-                Grid.Row="9"  
+                Grid.Row="8"  
                 Height="35"
                 Width="416"                
                 Style="{StaticResource psStyle}"
                 Foreground="Gray"
-                x:Name="tbPasswordbox1"
+                VerticalAlignment="Top"
+                x:Name="pbPasswordbox1"
                 LostFocus="tbPasswordbox1_LostFocus"
                 PasswordChanged="tbPasswordbox1_PasswordChanged"
                 Template="{StaticResource passwordbox}"
                 />
             <TextBox
                 Grid.ColumnSpan="2"                                
-                Grid.Row="9"      
+                Grid.Row="8"      
                 Width="416"
                 Height="35"
                 Style="{StaticResource tbStyle}"
@@ -230,6 +319,19 @@
                
                 Text="Повтори пароль"
                 />
+
+            <TextBlock
+            x:Name="tb_ER_PasswordRepeat"
+            Grid.Row="8"
+            Grid.ColumnSpan="2"
+            Text="*Не правильно заполнен Пароль"
+            FontSize="15"
+            Margin="0 0 0 7"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Bottom"
+            />
 
             <Button
                 Grid.Row="0"
@@ -257,7 +359,7 @@
             </Button>
 
             <Button
-                Grid.Row="10"
+                Grid.Row="9"
                 Height="40"
                 Width="205"
                 Style="{StaticResource ButtonStyle}"
@@ -265,8 +367,10 @@
                 Grid.ColumnSpan="2"
                 Content="Зарегистрироваться"
                 FontSize="20"
+                Margin="0 5 0 0"
+                VerticalAlignment="Top"
                 x:Name="bt_Registration"
-                Click="bt_Back_Click"
+                Click="bt_Registration_Click"
                 Background="White"
                 BorderThickness="2"
                 >

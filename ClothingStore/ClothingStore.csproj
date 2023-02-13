@@ -75,6 +75,7 @@
     </ApplicationDefinition>
     <Compile Include="ClassHelper\EFClass.cs" />
     <Compile Include="ClassHelper\MenuClass.cs" />
+    <Compile Include="ClassHelper\ValidationClass.cs" />
     <Compile Include="DB\BonusCard.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -159,6 +160,15 @@
     <Compile Include="DB\Type.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ClientPages\PersonalAccountPage.xaml.cs">
+      <DependentUpon>PersonalAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PublicPages\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PublicPages\CatalogePage.xaml.cs">
+      <DependentUpon>CatalogePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PublicPages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -171,6 +181,10 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\ClientPages\PersonalAccountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PublicPages\AuthorizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,6 +197,14 @@
     <Compile Include="Pages\PublicPages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\PublicPages\CartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PublicPages\CatalogePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PublicPages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,7 +257,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\ClientPages\" />
     <Folder Include="Pages\DirectorPages\" />
     <Folder Include="Pages\EmployeesPages\" />
   </ItemGroup>

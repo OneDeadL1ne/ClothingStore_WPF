@@ -16,8 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClothingStore.ClassHelper.EFClass;
+using static ClothingStore.ClassHelper.ValidationClass;
 using static System.Net.Mime.MediaTypeNames;
-
+using System.Diagnostics;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -32,6 +33,7 @@ namespace ClothingStore.Pages.PublicPages
             cb_Gender.ItemsSource = Context.Gender.ToList();
             cb_Gender.DisplayMemberPath = "GenTitle";
             cb_Gender.SelectedIndex = 0;
+
         }
 
         private void bt_Authorization_Click(object sender, RoutedEventArgs e)
@@ -67,8 +69,8 @@ namespace ClothingStore.Pages.PublicPages
         {
             ImgShowHide.Source = hideImage;
             tbVisiblePasswordbox.Visibility = Visibility.Visible;
-            tbPasswordbox.Visibility = Visibility.Collapsed;
-            tbVisiblePasswordbox.Text = tbPasswordbox.Password;
+            pbPasswordbox.Visibility = Visibility.Collapsed;
+            tbVisiblePasswordbox.Text = pbPasswordbox.Password;
         }
 
         private void HidePassword()
@@ -76,25 +78,25 @@ namespace ClothingStore.Pages.PublicPages
 
             ImgShowHide.Source = showImage;
             tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
-            tbPasswordbox.Visibility = Visibility.Visible;
+            pbPasswordbox.Visibility = Visibility.Visible;
 
-            tbPasswordbox.Focus();
+            pbPasswordbox.Focus();
         }
         //Template="{StaticResource passwordbox}"
         private void tbPasswordbox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (tbPasswordbox.Password.Length > 0)
+            if (pbPasswordbox.Password.Length > 0)
             {
-                tbPasswordbox.Foreground = Brushes.Black;
-                tbVisiblePasswordbox.Foreground= Brushes.Black;
-                
+                pbPasswordbox.Foreground = Brushes.Black;
+                tbVisiblePasswordbox.Foreground = Brushes.Black;
+
                 ImgShowHide.Visibility = Visibility.Visible;
 
                 ImgShowHide.Source = showImage;
                 tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
-                tbPasswordbox.Visibility = Visibility.Visible;
+                pbPasswordbox.Visibility = Visibility.Visible;
 
-                tbPasswordbox.Focus();
+                pbPasswordbox.Focus();
             }
             else
             {
@@ -102,51 +104,51 @@ namespace ClothingStore.Pages.PublicPages
             }
         }
 
-       
 
-        
 
-        
+
+
+
 
         private void tbVisiblePasswordbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            
+
             tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
-            tbPasswordbox.Visibility = Visibility.Visible;
-            tbPasswordbox.Focus();
+            pbPasswordbox.Visibility = Visibility.Visible;
+            pbPasswordbox.Focus();
         }
 
-     
+
 
         private void tbPasswordbox_LostFocus(object sender, RoutedEventArgs e)
         {
-            
-            if (tbPasswordbox.Password == "")
+
+            if (pbPasswordbox.Password == "")
             {
                 tbVisiblePasswordbox.Visibility = Visibility.Visible;
-                tbPasswordbox.Visibility = Visibility.Collapsed;
+                pbPasswordbox.Visibility = Visibility.Collapsed;
                 tbVisiblePasswordbox.Text = "Введи пароль";
                 tbVisiblePasswordbox.Foreground = Brushes.Gray;
 
-            }  
-             
-            
+            }
+
+
         }
 
         private void tbVisiblePasswordbox1_GotFocus(object sender, RoutedEventArgs e)
         {
             tbVisiblePasswordbox1.Visibility = Visibility.Collapsed;
-            tbPasswordbox1.Visibility = Visibility.Visible;
-            tbPasswordbox1.Focus();
+            pbPasswordbox1.Visibility = Visibility.Visible;
+            pbPasswordbox1.Focus();
         }
 
         private void tbPasswordbox1_LostFocus(object sender, RoutedEventArgs e)
         {
-            
-            if (tbPasswordbox1.Password == "")
+
+            if (pbPasswordbox1.Password == "")
             {
                 tbVisiblePasswordbox1.Visibility = Visibility.Visible;
-                tbPasswordbox1.Visibility = Visibility.Collapsed;
+                pbPasswordbox1.Visibility = Visibility.Collapsed;
                 tbVisiblePasswordbox1.Text = "Повтори пароль";
                 tbVisiblePasswordbox1.Foreground = Brushes.Gray;
 
@@ -155,29 +157,29 @@ namespace ClothingStore.Pages.PublicPages
 
         private void tbPasswordbox1_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (tbPasswordbox1.Password.Length > 0)
+            if (pbPasswordbox1.Password.Length > 0)
             {
-                tbPasswordbox1.Foreground = Brushes.Black;
+                pbPasswordbox1.Foreground = Brushes.Black;
                 tbVisiblePasswordbox1.Foreground = Brushes.Black;
 
-               
 
-                
+
+
                 tbVisiblePasswordbox1.Visibility = Visibility.Collapsed;
-                tbPasswordbox1.Visibility = Visibility.Visible;
+                pbPasswordbox1.Visibility = Visibility.Visible;
 
-                tbPasswordbox1.Focus();
+                pbPasswordbox1.Focus();
             }
-            
+
         }
 
         public void GotFocusText(object sender, RoutedEventArgs e)
         {
 
-            string str="";
-            
+            string str = "";
+
             TextBox textBox = (TextBox)sender;
-            
+
 
             switch (textBox.Name)
             {
@@ -241,7 +243,7 @@ namespace ClothingStore.Pages.PublicPages
             if (textBox.Text == "")
             {
                 textBox.Text = str;
-                
+
                 textBox.Foreground = Brushes.Gray;
             }
 
@@ -249,8 +251,119 @@ namespace ClothingStore.Pages.PublicPages
 
         private void bt_Back_Click(object sender, RoutedEventArgs e)
         {
-            ClassHelper.NavigateClass.authorizationFrame.Navigate(new AuthorizationPage());
+
+            ClassHelper.NavigateClass.authorizationFrame.GoBack();
+            ClassHelper.NavigateClass.authorizationFrame.RemoveBackEntry();
         }
+
+        private void bt_Registration_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshForm();
+            ValidationForm();
+
+
+        }
+
+        public bool ValidationForm()
+        {
+            bool IsOkey = true;
+
+
+            //Имя
+
+            if (ValidationText(tbFirstName.Text) || tbFirstName.Text == "Имя")
+            {
+                tb_ER_FName.Visibility = Visibility.Visible;
+                tbFirstName.BorderBrush = Brushes.Red;
+                IsOkey = false;
+            }
+
+
+            //Фамилия
+
+            if (ValidationText(tbLastName.Text) || tbLastName.Text == "Фамилия")
+            {
+                tb_ER_LName.Visibility = Visibility.Visible;
+                tbLastName.BorderBrush = Brushes.Red;
+                IsOkey = false;
+            }
+
+            //Отчество
+
+            if (ValidationText(tbPatronymic.Text))
+            {
+                tb_ER_PName.Visibility = Visibility.Visible;
+                tbPatronymic.BorderBrush = Brushes.Red;
+                IsOkey = false;
+            }
+
+            //Телефон 
+
+            if (ValidationPhone(tbPhone.Text) || (tbPhone.Text.Length<16 || tbPhone.Text.Length > 16))
+            {
+                tb_ER_Phone.Visibility = Visibility.Visible;
+                tbPhone.BorderBrush = Brushes.Red;
+                IsOkey = false;
+            }
+            else
+            {
+                tbPhone.Text = GetFormatedPhoneNumber(tbPhone.Text);
+                tbPhone.SelectionStart = tbPhone.Text.Length;
+            }
+
+            //Email
+
+
+
+
+
+
+
+            return IsOkey;
+        }
+        public void RefreshForm()
+        {
+            tb_ER_FName.Visibility = Visibility.Collapsed;
+            tb_ER_LName.Visibility = Visibility.Collapsed;
+            tb_ER_PName.Visibility = Visibility.Collapsed;
+            tb_ER_Phone.Visibility = Visibility.Collapsed;
+            tb_ER_Email.Visibility = Visibility.Collapsed;
+            tb_ER_Password.Visibility = Visibility.Collapsed;
+            tb_ER_PasswordRepeat.Visibility = Visibility.Collapsed;
+            tb_ER_Bitrhday.Visibility = Visibility.Collapsed;
+            tbFirstName.BorderBrush = Brushes.Black;
+            tbLastName.BorderBrush = Brushes.Black;
+            tbPhone.BorderBrush = Brushes.Black;
+            tbEmail.BorderBrush = Brushes.Black;
+            dpDate.BorderBrush = Brushes.Gray;
+            pbPasswordbox.BorderBrush = Brushes.Black;
+            tbPatronymic.BorderBrush = Brushes.Black;
+        }
+
+
+        private void tbPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+
+            if (ValidateSymbols(tbPhone.Text))
+            {
+                tbPhone.Text = GetFormatedPhoneNumber(tbPhone.Text);
+                tbPhone.SelectionStart = tbPhone.Text.Length;
+            }
+
+            if (tbPhone.Text.Contains("(("))
+            {
+                tbPhone.Clear();
+                
+
+            }
+
+
+
+
+        }
+
+
     }
 
 

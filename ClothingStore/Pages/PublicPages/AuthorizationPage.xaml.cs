@@ -16,6 +16,7 @@ using ClothingStore.ClassHelper;
 using static ClothingStore.ClassHelper.EFClass;
 using static ClothingStore.ClassHelper.NavigateClass;
 using static ClothingStore.ClassHelper.MenuClass;
+using static ClothingStore.ClassHelper.ValidationClass;
 using System.Text.RegularExpressions;
 using ClothingStore.DB;
 
@@ -38,10 +39,10 @@ namespace ClothingStore.Pages.PublicPages
 
         private void bt_Reg_Click(object sender, RoutedEventArgs e)
         {
-           
+
 
             authorizationFrame.Navigate(new RegistrationPage());
-
+            //authorizationFrame.RemoveBackEntry();
             //authorizationFrame.Visibility = Visibility.Collapsed;
             //SetIsEnabledTrue();
             //tb_Login.Text = "";
@@ -52,10 +53,7 @@ namespace ClothingStore.Pages.PublicPages
 
         private void bt_Enter_Click(object sender, RoutedEventArgs e)
         {
-            
-           
 
-            
             Employee employee = null;
             Customer customer = null;
             string login = tb_PhoneOrEmail.Text.Trim();
@@ -77,9 +75,6 @@ namespace ClothingStore.Pages.PublicPages
             }
 
 
-
-
-            //MessageBox.Show($"{PhoneOrEmail}");
 
             switch (PhoneOrEmail)
             {
@@ -105,7 +100,9 @@ namespace ClothingStore.Pages.PublicPages
                     employee = null;
                    
                     menuFrame.Navigate(new MenuPage(customer));
+                    SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     authorizationFrame.Visibility = Visibility.Collapsed;
+                   
                     return;
                 }
 
@@ -127,8 +124,14 @@ namespace ClothingStore.Pages.PublicPages
                 {
                     customer = IsCheckCustomers;
                     employee = null;
-                    menuFrame.Navigate (new MenuPage(customer));
+                    menuFrame.Navigate(new MenuPage(customer));
+                    SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     authorizationFrame.Visibility = Visibility.Collapsed;
+
+
+                    
+
+                    
                     return;
                 }
              
@@ -144,7 +147,7 @@ namespace ClothingStore.Pages.PublicPages
                 }
             }
 
-            
+          
 
 
 
@@ -153,10 +156,15 @@ namespace ClothingStore.Pages.PublicPages
 
         }
 
+        private void Tb_PhoneOrEmail_LostFocus(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void bt_Close_Click(object sender, RoutedEventArgs e)
         {
             authorizationFrame.Visibility = Visibility.Collapsed;
-            SetIsEnabledTrue();
+            SetIsEnabledTrue(mainFrame.Content.GetType().Name);
             tb_Passwordbox.Clear();
             tb_PhoneOrEmail.Clear();
             tb_Passwordbox_LostFocus(tb_Passwordbox,e);
@@ -169,10 +177,10 @@ namespace ClothingStore.Pages.PublicPages
         {
             string conde = @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)";
             
-       
-            if (Regex.IsMatch(login, @"^\d+$")) 
+        
+            
+            if (Regex.IsMatch(login, "^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$"))
             {
-
                 return "IsPhone";
             }
 
@@ -184,33 +192,44 @@ namespace ClothingStore.Pages.PublicPages
             
 
         }
-        public string GetFormattedPhoneNumber(string phone)
-        {
-            if (phone != null && phone.Trim().Length == 11)
 
-                return string.Format("+{0}({1}){2}-{3}-{4}",phone.Substring(0,1), phone.Substring(1, 3), phone.Substring(4, 3), phone.Substring(7, 2), phone.Substring(9,2));
-            return phone;
-        }
-
+        bool back = true;
         private void tb_PhoneOrEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
             string login = tb_PhoneOrEmail.Text.Trim();
             string answer = GetPhoneOrEmail(login);
             string phone = "";
 
 
+            
 
-            switch (answer) 
+            if (answer == "IsPhone")
             {
-                case "IsPhone":
+                if (back)
+                {
 
-                    phone = GetFormattedPhoneNumber(login);
+                    phone = GetFormatedPhoneNumber(login);
                     tb_PhoneOrEmail.Text = phone;
-
-                    
-                    break;
-
+                    tb_PhoneOrEmail.SelectionStart = phone.Length;
+                }
+                back = true;
             }
+
+            if (login.Contains("(("))
+            {
+                tb_PhoneOrEmail.Text = "";
+            }
+
+            if (answer == "null")
+            {
+                
+                back = false;
+            }
+               
+               
+
+            
             
         }
 

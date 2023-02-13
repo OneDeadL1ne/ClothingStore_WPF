@@ -7,17 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        MinHeight="700"
-        MinWidth="1200"
+        MinHeight="800"
+        ResizeMode="CanResize"
+        MinWidth="1250"
         WindowStartupLocation="CenterScreen"
-        WindowState="Normal"
+        
         
         Icon="{Icon:MaterialImage Kind=TshirtCrew}"
         >
     <Grid>
         
           <Frame x:Name="windowFrame"
-             NavigationUIVisibility="Hidden"  
+             NavigationUIVisibility="Hidden"
+                 
+                 
              />
 
           <Frame x:Name="AuthorizationFrame" 

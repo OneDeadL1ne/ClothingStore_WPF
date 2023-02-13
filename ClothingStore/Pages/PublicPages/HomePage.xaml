@@ -19,6 +19,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <!--MAC Width="1200" HEight="1400"-->
         <Grid   Grid.Row="0" Grid.Column="1"  Grid.RowSpan="3" Width="1200" Height="900" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
@@ -40,10 +41,10 @@
                 CornerRadius="20"
                 />
             <!--HEADER-->
-            <Frame Grid.ColumnSpan="4" x:Name="menuFrame"/>
+            <Frame Grid.ColumnSpan="4"  NavigationUIVisibility="Hidden" x:Name="menuFrame"/>
            
             
-            <Frame x:Name="mainFrame" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3"/>
+            <Frame x:Name="mainFrame" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" NavigationUIVisibility="Hidden"/>
 
             
         </Grid>

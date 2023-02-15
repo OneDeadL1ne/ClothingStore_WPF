@@ -16,7 +16,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClothingStore.ClassHelper.NavigateClass;
 using static ClothingStore.ClassHelper.MenuClass;
-using ClothingStore.ClassHelper;
 using ClothingStore.DB;
 using ClothingStore.Pages;
 using ClothingStore.Pages.ClientPages;

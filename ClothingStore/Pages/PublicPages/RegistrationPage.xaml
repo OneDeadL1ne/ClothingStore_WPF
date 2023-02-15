@@ -277,7 +277,7 @@
 
             
                     <Image Panel.ZIndex="2"  Visibility="Collapsed" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left"  x:Name="ImgShowHide" Stretch="Fill"  Width="30" 
-               MouseLeave="OnMouseLeave" PreviewMouseDown="OnPreviewMouseDown" PreviewMouseUp="OnPreviewMouseUp" Grid.Column="1"  Grid.Row="8" Margin="165,0,0,0"/>
+               MouseLeave="OnMouseLeave" PreviewMouseDown="OnPreviewMouseDown" PreviewMouseUp="OnPreviewMouseUp" Grid.Column="1"  Grid.Row="7" Margin="165,3,0,0"/>
 
             <TextBlock
             x:Name="tb_ER_Password"
@@ -303,6 +303,7 @@
                 Foreground="Gray"
                 VerticalAlignment="Top"
                 x:Name="pbPasswordbox1"
+                Visibility="Collapsed"
                 LostFocus="tbPasswordbox1_LostFocus"
                 PasswordChanged="tbPasswordbox1_PasswordChanged"
                 Template="{StaticResource passwordbox}"
@@ -312,6 +313,7 @@
                 Grid.Row="8"      
                 Width="416"
                 Height="35"
+                Visibility="Collapsed"
                 Style="{StaticResource tbStyle}"
                 x:Name="tbVisiblePasswordbox1"
                 Foreground="Gray"
@@ -324,7 +326,7 @@
             x:Name="tb_ER_PasswordRepeat"
             Grid.Row="8"
             Grid.ColumnSpan="2"
-            Text="*Не правильно заполнен Пароль"
+            Text="*Пароли не совпадают"
             FontSize="15"
             Margin="0 0 0 7"
             Visibility="Collapsed"

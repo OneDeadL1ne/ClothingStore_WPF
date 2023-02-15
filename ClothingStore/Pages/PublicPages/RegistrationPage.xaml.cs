@@ -82,7 +82,7 @@ namespace ClothingStore.Pages.PublicPages
 
             pbPasswordbox.Focus();
         }
-        //Template="{StaticResource passwordbox}"
+
         private void tbPasswordbox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (pbPasswordbox.Password.Length > 0)
@@ -93,15 +93,33 @@ namespace ClothingStore.Pages.PublicPages
                 ImgShowHide.Visibility = Visibility.Visible;
 
                 ImgShowHide.Source = showImage;
-                tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
-                pbPasswordbox.Visibility = Visibility.Visible;
+                if (pbPasswordbox1.Password.Length > 0)
+                {
+                    tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
+                    pbPasswordbox.Visibility = Visibility.Visible;
+                    pbPasswordbox1.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    tbVisiblePasswordbox.Visibility = Visibility.Collapsed;
+                    pbPasswordbox.Visibility = Visibility.Visible;
+                    tbVisiblePasswordbox1.Visibility = Visibility.Visible;
+                    pbPasswordbox1.Visibility = Visibility.Visible;
+
+                }
+
 
                 pbPasswordbox.Focus();
             }
             else
             {
+                tbVisiblePasswordbox1.Visibility = Visibility.Collapsed;
+                pbPasswordbox1.Visibility = Visibility.Collapsed;
                 ImgShowHide.Visibility = Visibility.Collapsed;
+                tb_ER_PasswordRepeat.Visibility = Visibility.Collapsed;
+                pbPasswordbox1.Clear();
             }
+
         }
 
 
@@ -139,6 +157,7 @@ namespace ClothingStore.Pages.PublicPages
         {
             tbVisiblePasswordbox1.Visibility = Visibility.Collapsed;
             pbPasswordbox1.Visibility = Visibility.Visible;
+            tbVisiblePasswordbox.Clear();
             pbPasswordbox1.Focus();
         }
 
@@ -148,6 +167,7 @@ namespace ClothingStore.Pages.PublicPages
             if (pbPasswordbox1.Password == "")
             {
                 tbVisiblePasswordbox1.Visibility = Visibility.Visible;
+
                 pbPasswordbox1.Visibility = Visibility.Collapsed;
                 tbVisiblePasswordbox1.Text = "Повтори пароль";
                 tbVisiblePasswordbox1.Foreground = Brushes.Gray;
@@ -170,6 +190,9 @@ namespace ClothingStore.Pages.PublicPages
 
                 pbPasswordbox1.Focus();
             }
+
+
+
 
         }
 
@@ -251,15 +274,45 @@ namespace ClothingStore.Pages.PublicPages
 
         private void bt_Back_Click(object sender, RoutedEventArgs e)
         {
+            BackAuth();
 
+
+        }
+        public void BackAuth()
+        {
             ClassHelper.NavigateClass.authorizationFrame.GoBack();
             ClassHelper.NavigateClass.authorizationFrame.RemoveBackEntry();
         }
 
         private void bt_Registration_Click(object sender, RoutedEventArgs e)
         {
+            int max = Context.Customer.ToList().LastOrDefault().CustomerID;
+            MessageBox.Show($"{max}");
             RefreshForm();
-            ValidationForm();
+            if (ValidationForm())
+            {
+                MessageBox.Show("Новый пользователь зарегистрирован");
+                Customer customer = new Customer()
+                {
+                    CustomerID = Context.Customer.ToList().Max().CustomerID,
+                    FName = tbFirstName.Text.Trim(),
+                    LName = tbLastName.Text.Trim(),                    
+                    BirthDate = Convert.ToDateTime(dpDate.SelectedDate.Value.Date.ToShortDateString()),
+                    GenderID = (cb_Gender.SelectedItem as Gender).GenderID,
+                    Password = pbPasswordbox.Password,
+                    Phone = tbPhone.Text.Trim(),
+                    Email = tbEmail.Text.Trim()
+                };
+
+                if (tbPatronymic.Text.Trim() != "Отчество")
+                {
+                    customer.Patronymic = tbPatronymic.Text.Trim();
+                }
+                Context.Customer.Add(customer);
+                Context.SaveChanges();
+                BackAuth();
+
+            }
 
 
         }
@@ -271,7 +324,7 @@ namespace ClothingStore.Pages.PublicPages
 
             //Имя
 
-            if (ValidationText(tbFirstName.Text) || tbFirstName.Text == "Имя")
+            if (!ValidationText(tbFirstName.Text) || tbFirstName.Text == "Имя")
             {
                 tb_ER_FName.Visibility = Visibility.Visible;
                 tbFirstName.BorderBrush = Brushes.Red;
@@ -281,7 +334,7 @@ namespace ClothingStore.Pages.PublicPages
 
             //Фамилия
 
-            if (ValidationText(tbLastName.Text) || tbLastName.Text == "Фамилия")
+            if (!ValidationText(tbLastName.Text) || tbLastName.Text == "Фамилия")
             {
                 tb_ER_LName.Visibility = Visibility.Visible;
                 tbLastName.BorderBrush = Brushes.Red;
@@ -290,7 +343,7 @@ namespace ClothingStore.Pages.PublicPages
 
             //Отчество
 
-            if (ValidationText(tbPatronymic.Text))
+            if (!ValidationText(tbPatronymic.Text))
             {
                 tb_ER_PName.Visibility = Visibility.Visible;
                 tbPatronymic.BorderBrush = Brushes.Red;
@@ -299,9 +352,9 @@ namespace ClothingStore.Pages.PublicPages
 
             //Телефон 
 
-            if (ValidationPhone(tbPhone.Text) || (tbPhone.Text.Length<16 || tbPhone.Text.Length > 16))
+            if (!ValidationPhone(tbPhone.Text) || (tbPhone.Text.Length < 16 || tbPhone.Text.Length > 16))
             {
-                
+
                 tb_ER_Phone.Visibility = Visibility.Visible;
                 tbPhone.BorderBrush = Brushes.Red;
                 IsOkey = false;
@@ -314,7 +367,52 @@ namespace ClothingStore.Pages.PublicPages
 
             //Email
 
+            if (!ValidationEmail(tbEmail.Text) || tbEmail.Text == "Email")
+            {
 
+                tb_ER_Email.Visibility = Visibility.Visible;
+                tbEmail.BorderBrush = Brushes.Red;
+                IsOkey = false;
+            }
+
+            //Bitrhday
+            try
+            {
+                
+               
+                if (ValidationDate(dpDate.SelectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture)))
+                {
+                    tb_ER_Bitrhday.Visibility = Visibility.Visible;
+                    dpDate.BorderBrush = Brushes.Red;
+                    IsOkey = false;
+                }
+
+            }
+            catch (Exception)
+            {
+                tb_ER_Bitrhday.Visibility = Visibility.Visible;
+                dpDate.BorderBrush = Brushes.Red;
+                IsOkey = false;
+
+
+            }
+            
+            if (!ValidationText(pbPasswordbox.Password))
+            {
+                tb_ER_Password.Visibility = Visibility.Visible;
+                tbVisiblePasswordbox.BorderBrush = Brushes.Red;
+                IsOkey = false;
+
+            }
+
+
+            if (pbPasswordbox.Password != pbPasswordbox1.Password)
+            {
+                tb_ER_PasswordRepeat.Visibility = Visibility.Visible;
+                tbVisiblePasswordbox1.BorderBrush = Brushes.Red;
+                pbPasswordbox1.BorderBrush = Brushes.Red;
+                IsOkey = false;
+            }
 
 
 
@@ -324,6 +422,16 @@ namespace ClothingStore.Pages.PublicPages
         }
         public void RefreshForm()
         {
+            if (pbPasswordbox1.Password.Length > 0)
+            {
+                pbPasswordbox1.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                pbPasswordbox1.Visibility = Visibility.Collapsed;
+            }
+
+
             tb_ER_FName.Visibility = Visibility.Collapsed;
             tb_ER_LName.Visibility = Visibility.Collapsed;
             tb_ER_PName.Visibility = Visibility.Collapsed;
@@ -339,6 +447,12 @@ namespace ClothingStore.Pages.PublicPages
             dpDate.BorderBrush = Brushes.Gray;
             pbPasswordbox.BorderBrush = Brushes.Black;
             tbPatronymic.BorderBrush = Brushes.Black;
+            pbPasswordbox.BorderBrush = Brushes.Black;
+            pbPasswordbox1.BorderBrush = Brushes.Black;
+            tbVisiblePasswordbox.BorderBrush = Brushes.Black;
+            tbVisiblePasswordbox1.BorderBrush = Brushes.Black;
+
+
         }
 
 
@@ -355,7 +469,7 @@ namespace ClothingStore.Pages.PublicPages
             if (tbPhone.Text.Contains("(("))
             {
                 tbPhone.Clear();
-                
+
 
             }
 

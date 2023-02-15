@@ -89,33 +89,66 @@ namespace ClothingStore.ClassHelper
             text= text.Trim();
             if (string.IsNullOrEmpty(text))
             {
-                return false;
+                return true;
             }
 
             if (ValidateNumbersAndSpecialSymbols(text))
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
         public static bool ValidationPhone(string phone)
         {
             phone= phone.Trim();
             if (string.IsNullOrEmpty(phone))
             {
-                return false;
+                return true;
             }
                 
 
             if (ValidateSymbols(phone))
             {
-                return false;
+                return true;
             }
                 
 
            
                 
+
+            return false;
+        }
+
+        public static bool ValidationEmail(string email)
+        {
+            email= email.Trim();
+            string conde = @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)";
+
+            if (Regex.IsMatch(email, conde))
+            {
+                
+                return true;
+            }
+            return false;
+        }
+
+        public static bool ValidationDate(string date)
+        {
+            date= date.Trim();
+          
+            string conddate = @"(\w+([-+.]\w+)*.\w+([-.]\w+)*\.\w+([-.]\w+)*)";
+
+            if (string.IsNullOrEmpty(date))
+            {
+                return false;
+            }
+
+            if (Regex.IsMatch(date, conddate))
+            {
+                return false;
+            }
+
 
             return true;
         }

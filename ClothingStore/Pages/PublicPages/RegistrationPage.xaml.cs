@@ -294,7 +294,7 @@ namespace ClothingStore.Pages.PublicPages
                 MessageBox.Show("Новый пользователь зарегистрирован");
                 Customer customer = new Customer()
                 {
-                    CustomerID = Context.Customer.ToList().Max().CustomerID,
+                    CustomerID = Context.Customer.ToList().LastOrDefault().CustomerID+1,
                     FName = tbFirstName.Text.Trim(),
                     LName = tbLastName.Text.Trim(),                    
                     BirthDate = Convert.ToDateTime(dpDate.SelectedDate.Value.Date.ToShortDateString()),

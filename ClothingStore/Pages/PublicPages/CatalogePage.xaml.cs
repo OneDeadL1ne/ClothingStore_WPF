@@ -26,10 +26,12 @@ namespace ClothingStore.Pages.PublicPages
         public CatalogePage()
         {
             InitializeComponent();
-            List<CurrentItem> products   = new List<CurrentItem>();
-            products = Context.CurrentItem.ToList();
+            //List<CurrentItem> products   = new List<CurrentItem>();
+            //products = Context.CurrentItem.ToList();
+            
+            
+            //lv_Products.ItemsSource = products;
 
-            lv_Products.ItemsSource = products;
             
         }
     }

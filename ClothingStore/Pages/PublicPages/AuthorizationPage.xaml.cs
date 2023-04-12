@@ -19,6 +19,7 @@ using static ClothingStore.ClassHelper.MenuClass;
 using static ClothingStore.ClassHelper.ValidationClass;
 using System.Text.RegularExpressions;
 using ClothingStore.DB;
+using System.Security.Policy;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -27,99 +28,114 @@ namespace ClothingStore.Pages.PublicPages
     /// </summary>
     public partial class AuthorizationPage : Page
     {
-        char[] char1 = new char[] { '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', ',', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', ';', ':', '+' };
-        char[] char2 = Enumerable.Range('а', 'я' - 'а' + 1).Select(c => (char)c).ToArray();
-        char[] char5 = Enumerable.Range('А', 'Я' - 'А' + 1).Select(c => (char)c).ToArray();
-        char[] char3 = Enumerable.Range('a', 'z' - 'a' + 1).Select(c => (char)c).ToArray();
-        char[] char4 = Enumerable.Range('A', 'Z' - 'A' + 1).Select(c => (char)c).ToArray();
+        private string login;
+        private string password;
+        
+        string email = null;
+        string phone = null;
         public AuthorizationPage()
         {
             InitializeComponent();
+            RefreshForm();
+            
         }
-
+        
         private void bt_Reg_Click(object sender, RoutedEventArgs e)
         {
 
 
-            authorizationFrame.Navigate(new RegistrationPage());
-            //authorizationFrame.RemoveBackEntry();
-            //authorizationFrame.Visibility = Visibility.Collapsed;
-            //SetIsEnabledTrue();
-            //tb_Login.Text = "";
-            //tb_Passwordbox.Password = "";
-
-
+            NavigatePage(authorizationFrame, windowFrame, new RegistrationPage());
+            
         }
 
         private void bt_Enter_Click(object sender, RoutedEventArgs e)
         {
-
-            Employee employee = null;
-            Customer customer = null;
-            string login = tb_PhoneOrEmail.Text.Trim();
-            string PhoneOrEmail;
-            string email = null;
-            string phone = null;
-
-            if (login[0]=='+')
-            {
-                string pattern = @"\D";
-                string target = "";
-                Regex regex = new Regex(pattern);
-                string result = regex.Replace(login, target);
-                PhoneOrEmail = GetPhoneOrEmail(result);
-            }
-            else
-            {
-                PhoneOrEmail = GetPhoneOrEmail(login);
-            }
-
-
-
+            login = tb_PhoneOrEmail.Text.Trim();
+            password = tb_Passwordbox.Password.Trim();
+            string PhoneOrEmail = GetPhoneOrEmail(login);
+            RefreshForm();
+           
+           
             switch (PhoneOrEmail)
             {
                 case "IsEmail":
-                    email = tb_PhoneOrEmail.Text;
+                    email = login;
                     phone = null;
+                    EnterAccount(login, password);
                     break;
                 case "IsPhone":
-                    phone= tb_PhoneOrEmail.Text;
+                    phone = login;
                     email = null;
+                    EnterAccount(login, password);
                     break;
                 case "null":
-                    
+                    tb_ER_Login.Visibility = Visibility.Visible;
+                    tb_PhoneOrEmail.BorderBrush = Brushes.Red;
                     break;
             }
 
-            if (email!=null && phone==null)
+            if (password == null || tbVisiblePasswordbox.Text == "Введи пароль")
             {
-                var IsCheckCustomers = Context.Customer.ToList().Where(i => i.Email == email && i.Password == tb_Passwordbox.Password).FirstOrDefault();
-                if (IsCheckCustomers!=null)
+                tb_ER_Pass.Visibility = Visibility.Visible;
+                tb_Passwordbox.BorderBrush = Brushes.Red;
+                tbVisiblePasswordbox.BorderBrush = Brushes.Red;
+
+                return;
+            }
+
+
+
+
+
+            //EnterAccount();
+        }
+
+        public void RefreshForm()
+        {
+            if (tb_ER_Login == null) return;
+            if (tb_ER_Pass == null) return;
+            tb_ER_Login.Visibility = Visibility.Collapsed;
+            tb_PhoneOrEmail.BorderBrush = Brushes.Black;
+            tb_ER_Pass.Visibility = Visibility.Collapsed;
+            tbVisiblePasswordbox.BorderBrush = Brushes.Black;
+            tbVisiblePasswordbox.BorderBrush = Brushes.Black;
+            tb_Passwordbox.BorderBrush= Brushes.Black;
+        }
+
+        public void EnterAccount(string login, string pass)
+        {
+            Employee employee = null;
+            Customer customer = null;
+
+            if (email != null && phone == null)
+            {
+                var IsCheckCustomers = Context.Customer.ToList().Where(i => i.Email == email && i.Password == password).FirstOrDefault();
+                if (IsCheckCustomers != null)
                 {
                     customer = IsCheckCustomers;
                     employee = null;
-                   
+
                     menuFrame.Navigate(new MenuPage(customer));
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     authorizationFrame.Visibility = Visibility.Collapsed;
-                   
+
                     return;
                 }
 
-                var IsCheckEmployee = Context.Employee.ToList().Where(i => i.Email==email && i.Password==tb_Passwordbox.Password).FirstOrDefault();
-                if (IsCheckEmployee!=null)
+                var IsCheckEmployee = Context.Employee.ToList().Where(i => i.Email == email && i.Password == password).FirstOrDefault();
+                if (IsCheckEmployee != null)
                 {
-                    employee= IsCheckEmployee;
+                    employee = IsCheckEmployee;
                     customer = null;
                     return;
                 }
             }
 
-            if (phone!=null && email==null)
+            if (phone != null && email == null)
             {
-               
 
-                var IsCheckCustomers = Context.Customer.ToList().Where(i => i.Phone == phone && i.Password == tb_Passwordbox.Password).FirstOrDefault();
+
+                var IsCheckCustomers = Context.Customer.ToList().Where(i => i.Phone == phone && i.Password == password).FirstOrDefault();
                 if (IsCheckCustomers != null)
                 {
                     customer = IsCheckCustomers;
@@ -128,37 +144,26 @@ namespace ClothingStore.Pages.PublicPages
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     authorizationFrame.Visibility = Visibility.Collapsed;
 
-
-                    
-
-                    
                     return;
                 }
-             
 
-                var IsCheckEmployee = Context.Employee.ToList().Where(i => i.Phone == phone && i.Password == tb_Passwordbox.Password).FirstOrDefault();
+
+                var IsCheckEmployee = Context.Employee.ToList().Where(i => i.Phone == phone && i.Password == password).FirstOrDefault();
                 if (IsCheckEmployee != null)
                 {
                     employee = IsCheckEmployee;
-                    customer= null;
+                    customer = null;
 
 
                     return;
                 }
             }
 
-          
-
-
-
-
-
-
         }
 
         private void Tb_PhoneOrEmail_LostFocus(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void bt_Close_Click(object sender, RoutedEventArgs e)
@@ -177,12 +182,21 @@ namespace ClothingStore.Pages.PublicPages
         {
             string conde = @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)";
             
-        
+            //"^\\+?\\d{1,1}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$"
             
-            if (Regex.IsMatch(login, "^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$"))
+            if (Regex.IsMatch(login, "(\\+7|8)[\\s(]*\\d{3}[)\\s]*\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}"))
             {
-                return "IsPhone";
+                if (login[0] != '+' || login.Length > 16)
+                {
+                    return "null";
+                }
+                else
+                {
+                    return "IsPhone";
+                }
             }
+         
+            
 
             if (Regex.IsMatch(login, conde))
             {
@@ -193,43 +207,31 @@ namespace ClothingStore.Pages.PublicPages
 
         }
 
-        bool back = true;
+       
         private void tb_PhoneOrEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            RefreshForm();
+
+
+
             string login = tb_PhoneOrEmail.Text.Trim();
             string answer = GetPhoneOrEmail(login);
             string phone = "";
-
-
             
 
+            
+            GetFormatedPhoneNumber(login);
+
+            phone = GetFormatedPhoneNumber(login);
+           
             if (answer == "IsPhone")
             {
-                if (back)
-                {
-
-                    phone = GetFormatedPhoneNumber(login);
+               
                     tb_PhoneOrEmail.Text = phone;
                     tb_PhoneOrEmail.SelectionStart = phone.Length;
-                }
-                back = true;
-            }
 
-            if (login.Contains("(("))
-            {
-                tb_PhoneOrEmail.Text = "";
-            }
-
-            if (answer == "null")
-            {
-                
-                back = false;
-            }
                
-               
-
-            
+            }
             
         }
 
@@ -276,6 +278,17 @@ namespace ClothingStore.Pages.PublicPages
 
             }
            
+        }
+
+        private void tb_Passwordbox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            RefreshForm();
+            
+        }
+
+        private void tbVisiblePasswordbox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshForm();
         }
     }
 }

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ClothingStore.Pages.PublicPages"
+      xmlns:c="clr-namespace:ClothingStore.ClassHelper"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CatalogePage">
@@ -36,6 +37,7 @@
             Grid.RowSpan="2"
             Background="Black"
             BorderBrush="Black"
+            ItemsSource="{Binding List}"
             d:ItemsSource="{d:SampleData ItemCount=8}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
             Grid.ColumnSpan="2"
@@ -60,8 +62,33 @@
                         CornerRadius="5"
                         Height="230"
                         >
-                        
+                            
+                        <StackPanel>
+                            
+                            
+                            <Image 
+                                
+                                Height="100"
+                                   Width="90"
+                                   Source="/Res/Images/Hide.jpg"/>
+                            <TextBlock Text="{Binding Name}"
+                                       Margin="5 0 0 0"/>
+                            <TextBlock Text="{Binding Price}"
+                                       FontWeight="Bold"
+                                       Margin="5 0 0 0"/>
+                            <Button
+                                
+                                Background="Blue"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Height="30"
+                                Width="50"
+                                Visibility="{Binding Path=EditClass.Employee.RoleI }"
+                                
+                                
+                                />
 
+                        </StackPanel>
                     </Border>
 
 

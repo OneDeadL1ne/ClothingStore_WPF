@@ -65,6 +65,7 @@
 
             <TextBox
                 x:Name="tbFirstName"
+                TextChanged="CheckErrors"
                 Grid.ColumnSpan="2"                                
                 Grid.Row="1" 
                 Width="416"
@@ -99,6 +100,7 @@
                 GotFocus="GotFocusText"
                 Style="{StaticResource tbStyle}"
                 Text="Фамилия"
+                TextChanged="CheckErrors"
                 Foreground="Gray"
                 />
             <TextBlock
@@ -177,7 +179,8 @@
                 Grid.Row="5"                                
                 Style="{StaticResource tbStyle}"
                 Text="Email"
-                Foreground="Gray"
+                Foreground="Gray" 
+                TextChanged="tbEmail_TextChanged"
                 
                 />
             <TextBlock
@@ -271,7 +274,7 @@
                 Foreground="Gray"
                GotFocus="tbVisiblePasswordbox_GotFocus"
                
-                Text="Введи пароль"
+                Text="Введи пароль" TextChanged="CheckErrors"
                 />
 
 
@@ -304,6 +307,7 @@
                 VerticalAlignment="Top"
                 x:Name="pbPasswordbox1"
                 Visibility="Collapsed"
+                
                 LostFocus="tbPasswordbox1_LostFocus"
                 PasswordChanged="tbPasswordbox1_PasswordChanged"
                 Template="{StaticResource passwordbox}"

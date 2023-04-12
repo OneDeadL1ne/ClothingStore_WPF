@@ -323,7 +323,7 @@
         <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Style.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="20"/>
+                    <Setter Property="CornerRadius" Value="18"/>
                 </Style>
             </Style.Resources>
             <Setter Property="Cursor" Value="Hand"/>

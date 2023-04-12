@@ -70,6 +70,19 @@
                 Height="40"
                 />
 
+            <TextBlock
+            x:Name="tb_ER_Login"
+            Grid.Row="2"
+            Grid.ColumnSpan="4"
+            Text="*Не правильно заполнены Почта/Телефон"
+            FontSize="15"
+            Margin="0 0 0 7"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Top"
+            />
+
             <PasswordBox
                 Grid.ColumnSpan="4"
                 Grid.Row="2"
@@ -81,6 +94,7 @@
                 HorizontalAlignment="Center"
                 Style="{StaticResource psStyle}"
                 Foreground="Gray"
+                PasswordChanged="tb_Passwordbox_PasswordChanged"
                 LostFocus="tb_Passwordbox_LostFocus"
                 x:Name="tb_Passwordbox"
                 Template="{StaticResource passwordbox}"
@@ -98,9 +112,21 @@
                 x:Name="tbVisiblePasswordbox"
                 Foreground="Gray"
                 GotFocus="tbVisiblePasswordbox_GotFocus"
-               
+                TextChanged="tbVisiblePasswordbox_TextChanged"
                 Text="Введи пароль"
                 />
+            <TextBlock
+            x:Name="tb_ER_Pass"
+            Grid.Row="3"
+            Grid.ColumnSpan="4"
+            Text="*Не правильно заполнен Пароль"
+            FontSize="15"
+            Margin="0 0 0 7"
+            Visibility="Collapsed"
+            HorizontalAlignment="Center"
+            Foreground="Red"
+            VerticalAlignment="Center"
+            />
 
             <TextBlock
                 FontSize="30"
@@ -111,20 +137,7 @@
                 >Вход в аккаунт</TextBlock>
 
             
-            <Button
-                x:Name="bt_Reg"
-                Grid.Row="5"
-                Grid.Column="0"
-                Grid.ColumnSpan="4"
-                Style="{StaticResource ButtonStyle}"
-                VerticalAlignment="Bottom"
-                HorizontalAlignment="Center"
-                Height="40"
-                Width="150"
-                Content="Регистрация"
-                Click="bt_Reg_Click"
-                FontSize="20"
-                />
+           
 
             <Button
                 x:Name="bt_Enter"
@@ -144,6 +157,21 @@
                 
 
             </Button>
+
+            <Button
+                x:Name="bt_Reg"
+                Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Style="{StaticResource ButtonStyle}"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Center"
+                Height="40"
+                Width="150"
+                Content="Регистрация"
+                Click="bt_Reg_Click"
+                FontSize="20"
+                />
 
             <TextBlock 
                 Text="Еще нет аккаунта?" 

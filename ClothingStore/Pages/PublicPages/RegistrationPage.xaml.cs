@@ -17,8 +17,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClothingStore.ClassHelper.EFClass;
 using static ClothingStore.ClassHelper.ValidationClass;
+using static ClothingStore.ClassHelper.NavigateClass;
 using static System.Net.Mime.MediaTypeNames;
 using System.Diagnostics;
+using System.Security.Policy;
+using System.Xml.Linq;
+using System.Text.RegularExpressions;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -30,17 +34,14 @@ namespace ClothingStore.Pages.PublicPages
         public RegistrationPage()
         {
             InitializeComponent();
+            
             cb_Gender.ItemsSource = Context.Gender.ToList();
             cb_Gender.DisplayMemberPath = "GenTitle";
             cb_Gender.SelectedIndex = 0;
 
         }
 
-        private void bt_Authorization_Click(object sender, RoutedEventArgs e)
-        {
-            ClassHelper.NavigateClass.authorizationFrame.Navigate(new AuthorizationPage());
-            ClassHelper.NavigateClass.authorizationFrame.Visibility = Visibility.Collapsed;
-        }
+       
 
         private readonly BitmapImage showImage = new BitmapImage(
             new Uri(@"\Res\Images\Show.jpg", UriKind.RelativeOrAbsolute));
@@ -89,7 +90,7 @@ namespace ClothingStore.Pages.PublicPages
             {
                 pbPasswordbox.Foreground = Brushes.Black;
                 tbVisiblePasswordbox.Foreground = Brushes.Black;
-
+                tb_ER_Password.Visibility = Visibility.Collapsed;
                 ImgShowHide.Visibility = Visibility.Visible;
 
                 ImgShowHide.Source = showImage;
@@ -105,10 +106,11 @@ namespace ClothingStore.Pages.PublicPages
                     pbPasswordbox.Visibility = Visibility.Visible;
                     tbVisiblePasswordbox1.Visibility = Visibility.Visible;
                     pbPasswordbox1.Visibility = Visibility.Visible;
+                    tbVisiblePasswordbox1.BorderBrush= Brushes.Black;
 
                 }
 
-
+               
                 pbPasswordbox.Focus();
             }
             else
@@ -117,9 +119,11 @@ namespace ClothingStore.Pages.PublicPages
                 pbPasswordbox1.Visibility = Visibility.Collapsed;
                 ImgShowHide.Visibility = Visibility.Collapsed;
                 tb_ER_PasswordRepeat.Visibility = Visibility.Collapsed;
+                tbVisiblePasswordbox1.BorderBrush = Brushes.Black;
                 pbPasswordbox1.Clear();
             }
-
+            
+            
         }
 
 
@@ -155,6 +159,14 @@ namespace ClothingStore.Pages.PublicPages
 
         private void tbVisiblePasswordbox1_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (tb_ER_PasswordRepeat == null) return;
+            tb_ER_PasswordRepeat.Visibility=Visibility.Collapsed;
+            tbVisiblePasswordbox1.BorderBrush = Brushes.Black;
+            pbPasswordbox1.BorderBrush= Brushes.Black;
+
+            
+
+           
             tbVisiblePasswordbox1.Visibility = Visibility.Collapsed;
             pbPasswordbox1.Visibility = Visibility.Visible;
             tbVisiblePasswordbox.Clear();
@@ -280,29 +292,30 @@ namespace ClothingStore.Pages.PublicPages
         }
         public void BackAuth()
         {
-            ClassHelper.NavigateClass.authorizationFrame.GoBack();
-            ClassHelper.NavigateClass.authorizationFrame.RemoveBackEntry();
+            
+            var entry = authorizationFrame.RemoveBackEntry();
+            while (entry != null) { entry = authorizationFrame.RemoveBackEntry(); }
+            NavigatePage(authorizationFrame, null, new AuthorizationPage());
         }
 
         private void bt_Registration_Click(object sender, RoutedEventArgs e)
         {
-            int max = Context.Customer.ToList().LastOrDefault().CustomerID;
-            MessageBox.Show($"{max}");
+            //int max = Context.Customer.ToList().LastOrDefault().CustomerID;
+
             RefreshForm();
             if (ValidationForm())
             {
                 MessageBox.Show("Новый пользователь зарегистрирован");
-                Customer customer = new Customer()
-                {
-                    CustomerID = Context.Customer.ToList().LastOrDefault().CustomerID+1,
-                    FName = tbFirstName.Text.Trim(),
-                    LName = tbLastName.Text.Trim(),                    
-                    BirthDate = Convert.ToDateTime(dpDate.SelectedDate.Value.Date.ToShortDateString()),
-                    GenderID = (cb_Gender.SelectedItem as Gender).GenderID,
-                    Password = pbPasswordbox.Password,
-                    Phone = tbPhone.Text.Trim(),
-                    Email = tbEmail.Text.Trim()
-                };
+                Customer customer = new Customer();
+                customer.CustomerID = Context.Customer.ToList().LastOrDefault().CustomerID + 1;
+                customer.FName = tbFirstName.Text.Trim();
+                customer.LName = tbLastName.Text.Trim();
+                customer.BirthDate = Convert.ToDateTime(dpDate.SelectedDate.Value.Date.ToShortDateString());
+                customer.GenderID = (cb_Gender.SelectedItem as Gender).GenderID;
+                customer.Password = pbPasswordbox.Password;
+                customer.Phone = tbPhone.Text.Trim();
+                customer.Email = tbEmail.Text.Trim();
+
 
                 if (tbPatronymic.Text.Trim() != "Отчество")
                 {
@@ -378,8 +391,8 @@ namespace ClothingStore.Pages.PublicPages
             //Bitrhday
             try
             {
-                
-               
+
+
                 if (ValidationDate(dpDate.SelectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture)))
                 {
                     tb_ER_Bitrhday.Visibility = Visibility.Visible;
@@ -396,8 +409,8 @@ namespace ClothingStore.Pages.PublicPages
 
 
             }
-            
-            if (!ValidationText(pbPasswordbox.Password))
+
+            if (ValidationText(pbPasswordbox.Password))
             {
                 tb_ER_Password.Visibility = Visibility.Visible;
                 tbVisiblePasswordbox.BorderBrush = Brushes.Red;
@@ -411,12 +424,9 @@ namespace ClothingStore.Pages.PublicPages
                 tb_ER_PasswordRepeat.Visibility = Visibility.Visible;
                 tbVisiblePasswordbox1.BorderBrush = Brushes.Red;
                 pbPasswordbox1.BorderBrush = Brushes.Red;
+                tbVisiblePasswordbox1.BorderBrush  = Brushes.Red;
                 IsOkey = false;
             }
-
-
-
-
 
             return IsOkey;
         }
@@ -455,30 +465,108 @@ namespace ClothingStore.Pages.PublicPages
 
         }
 
+        public void CheckErrors(object sender, TextChangedEventArgs e) 
+        {
+            TextBox textBox = (TextBox)sender;
+
+            switch (textBox.Name)
+            {
+                case "tbFirstName":
+                    
+                    if (!ValidationText(textBox.Text))
+                    {
+                        tb_ER_FName.Visibility = Visibility.Visible;
+                        textBox.BorderBrush = Brushes.Red;
+                        break;
+                    }
+
+                    if (ValidationText(textBox.Text) || textBox.Text == "")
+                    {
+                        if (tb_ER_FName == null)
+                        {
+                            return; 
+                        }
+                        else
+                        {
+                            tb_ER_FName.Visibility = Visibility.Collapsed;
+                        }
+                        
+                        textBox.BorderBrush = Brushes.Black;
+                        break;        
+                    }
+
+                    break;
+                case "tbLastName":
+                    if (!ValidationText(textBox.Text))
+                    {
+                        tb_ER_LName.Visibility = Visibility.Visible;
+                        textBox.BorderBrush = Brushes.Red;
+                        break;
+                    }
+
+                    if (ValidationText(textBox.Text) || textBox.Text == "")
+                    {
+                        if (tb_ER_LName == null)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            tb_ER_LName.Visibility = Visibility.Collapsed;
+                        }
+
+                        textBox.BorderBrush = Brushes.Black;
+                        break;
+                    }
+
+                    break;
+            }       
+        }
 
         private void tbPhone_TextChanged(object sender, TextChangedEventArgs e)
         {
+            if (tb_ER_Phone == null) return;
+            tb_ER_Phone.Visibility = Visibility.Collapsed;
+            tbPhone.BorderBrush= Brushes.Black;
 
-
-            if (ValidateSymbols(tbPhone.Text))
+            if (Regex.IsMatch(tbPhone.Text, "(\\+7|8)[\\s(]*\\d{3}[)\\s]*\\d{3}[\\s-]?\\d{2}[\\s-]?\\d{2}"))
             {
-                tbPhone.Text = GetFormatedPhoneNumber(tbPhone.Text);
-                tbPhone.SelectionStart = tbPhone.Text.Length;
+              
+                if (ValidateSymbols(tbPhone.Text))
+                {
+                   
+                    tbPhone.Text = GetFormatedPhoneNumber(tbPhone.Text);
+                    tbPhone.SelectionStart = tbPhone.Text.Length;
+                }
+                if (tbPhone.Text[0] != '+' || tbPhone.Text.Length > 16)
+                {
+                    tb_ER_Phone.Visibility = Visibility.Visible;
+                    tbPhone.BorderBrush = Brushes.Red;
+                    return;
+                }
+               
             }
-
-            if (tbPhone.Text.Contains("(("))
-            {
-                tbPhone.Clear();
-
-
-            }
-
-
-
-
         }
 
+        private void tbEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(tb_ER_Email == null) return;
+            tb_ER_Email.Visibility = Visibility.Collapsed;
+            tbEmail.BorderBrush = Brushes.Black;
 
+            string conde = @"(\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)";
+            
+            if (Regex.IsMatch(tbEmail.Text, conde))
+            {
+
+                if (!ValidationEmail(tbEmail.Text))
+                {
+                    tb_ER_Phone.Visibility = Visibility.Visible;
+                    tbPhone.BorderBrush = Brushes.Red;
+                    return;
+                }
+            }
+        }
     }
 
 

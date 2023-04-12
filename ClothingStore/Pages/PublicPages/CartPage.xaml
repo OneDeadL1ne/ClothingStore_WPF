@@ -9,6 +9,6 @@
       Title="CartPage">
 
     <Grid>
-        <Border Background="Blue"/>
+        <Border Background="Blue" CornerRadius="10"/>
     </Grid>
 </Page>

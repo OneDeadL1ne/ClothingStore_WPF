@@ -97,28 +97,56 @@
             Style="{StaticResource ButtonStyle}" 
             BorderThickness="0"
             x:Name="btn_Catalog"
+            Height="30"
+            Width="90"
             Click="bt_Catalog_Click"
-            >
-            <StackPanel Orientation="Horizontal" >
-                <Image Height="30"
-               Width="30"
-                    
-            Grid.Column="6"
-           
             
+            >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="14"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal" >
+                <Image Height="20"
+               Width="23"
+                       Source="{Icon:MaterialImage Kind=Table}" 
+                      Grid.Column="6" 
             />
+                
                 <TextBlock
                     VerticalAlignment="Center"
                     Text="Каталог"
                     FontSize="15"
+                    
                     />
 
             </StackPanel>
         </Button>
 
-        <Button x:Name="btn_Cart" Click="btn_Cart_Click" Grid.Column="3">
-            <StackPanel>
-                <TextBlock Text="Корзина"/>
+        <Button x:Name="btn_Cart" Click="btn_Cart_Click" Grid.Column="1"
+                Style="{StaticResource ButtonStyle}"
+                BorderThickness="0"
+                Height="30"
+                Width="85"
+                
+                >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="14"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal">
+                <Image
+                     Source="{Icon:MaterialImage Kind=Cart}" 
+            Height="20" 
+            Width="20" 
+            HorizontalAlignment="Left"
+                    >
+                    
+                </Image>
+                <TextBlock Text="Корзина"
+                           FontSize="15"/>
             </StackPanel>
 
         </Button>

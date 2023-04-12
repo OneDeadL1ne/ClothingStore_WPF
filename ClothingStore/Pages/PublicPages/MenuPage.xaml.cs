@@ -73,8 +73,8 @@ namespace ClothingStore.Pages.PublicPages
         {
             SetIsEnabledFalse();
 
-            authorizationFrame.Navigate(new AuthorizationPage());
-            
+            //authorizationFrame.Navigate(new AuthorizationPage());
+            NavigatePage(authorizationFrame, windowFrame, new AuthorizationPage());
             authorizationFrame.Visibility = Visibility.Visible;
 
 

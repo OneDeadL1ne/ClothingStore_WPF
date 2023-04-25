@@ -18,7 +18,7 @@ namespace ClothingStore.DB
         public Category()
         {
             this.Size = new HashSet<Size>();
-            this.Type = new HashSet<Type>();
+            this.TypeСlothes = new HashSet<TypeСlothes>();
         }
     
         public int CategoryID { get; set; }
@@ -27,6 +27,6 @@ namespace ClothingStore.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Size> Size { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Type> Type { get; set; }
+        public virtual ICollection<TypeСlothes> TypeСlothes { get; set; }
     }
 }

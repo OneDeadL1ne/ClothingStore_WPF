@@ -20,6 +20,7 @@ using static ClothingStore.ClassHelper.ValidationClass;
 using System.Text.RegularExpressions;
 using ClothingStore.DB;
 using System.Security.Policy;
+using System.Runtime.InteropServices;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -87,7 +88,7 @@ namespace ClothingStore.Pages.PublicPages
 
 
 
-            //EnterAccount();
+           
         }
 
         public void RefreshForm()
@@ -106,7 +107,7 @@ namespace ClothingStore.Pages.PublicPages
         {
             Employee employee = null;
             Customer customer = null;
-
+            
             if (email != null && phone == null)
             {
                 var IsCheckCustomers = Context.Customer.ToList().Where(i => i.Email == email && i.Password == password).FirstOrDefault();
@@ -114,19 +115,40 @@ namespace ClothingStore.Pages.PublicPages
                 {
                     customer = IsCheckCustomers;
                     employee = null;
-
-                    menuFrame.Navigate(new MenuPage(customer));
+                    CurrentUser.CurrentManager = employee;
+                    CurrentUser.CurrentDirector = employee;
+                    CurrentUser.CurrentCustomer = customer;
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     authorizationFrame.Visibility = Visibility.Collapsed;
-
+                    NavigatePage(menuFrame, windowFrame, new MenuPage());
+                    NavigatePage(mainFrame, windowFrame, new CatalogePage());
                     return;
                 }
 
                 var IsCheckEmployee = Context.Employee.ToList().Where(i => i.Email == email && i.Password == password).FirstOrDefault();
+                
                 if (IsCheckEmployee != null)
                 {
                     employee = IsCheckEmployee;
                     customer = null;
+
+                    if (employee.RoleID == 2)
+                    {
+                        CurrentUser.CurrentManager = employee;
+
+                    }
+
+                    if (employee.RoleID == 3)
+                    {
+                        CurrentUser.CurrentDirector = employee;
+                    }
+                 
+                    CurrentUser.CurrentCustomer = customer;
+                    NavigatePage(menuFrame, windowFrame, new MenuPage());
+                    SetIsEnabledTrue(mainFrame.Content.GetType().Name);
+                    NavigatePage(mainFrame, windowFrame, new CatalogePage());
+                    authorizationFrame.Visibility = Visibility.Collapsed;
+                   
                     return;
                 }
             }
@@ -140,8 +162,14 @@ namespace ClothingStore.Pages.PublicPages
                 {
                     customer = IsCheckCustomers;
                     employee = null;
-                    menuFrame.Navigate(new MenuPage(customer));
+                   
+                    CurrentUser.CurrentManager = employee;
+                    CurrentUser.CurrentCustomer = customer;
+                    CurrentUser.CurrentDirector = employee;
+                    NavigatePage(menuFrame, windowFrame, new MenuPage());
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
+                    NavigatePage(mainFrame, windowFrame, new CatalogePage());
+                  
                     authorizationFrame.Visibility = Visibility.Collapsed;
 
                     return;
@@ -153,7 +181,23 @@ namespace ClothingStore.Pages.PublicPages
                 {
                     employee = IsCheckEmployee;
                     customer = null;
+                    if (employee.RoleID==2)
+                    {
+                        CurrentUser.CurrentManager = employee;
 
+                    }
+
+                    if (employee.RoleID==3)
+                    {
+                        CurrentUser.CurrentDirector = employee;
+                    }
+                    
+                    CurrentUser.CurrentCustomer = customer;
+                    NavigatePage(menuFrame, windowFrame, new MenuPage());
+                    SetIsEnabledTrue(mainFrame.Content.GetType().Name);
+                    NavigatePage(mainFrame, windowFrame, new CatalogePage());
+                  
+                    authorizationFrame.Visibility = Visibility.Collapsed;
 
                     return;
                 }
@@ -170,6 +214,7 @@ namespace ClothingStore.Pages.PublicPages
         {
             authorizationFrame.Visibility = Visibility.Collapsed;
             SetIsEnabledTrue(mainFrame.Content.GetType().Name);
+            
             tb_Passwordbox.Clear();
             tb_PhoneOrEmail.Clear();
             tb_Passwordbox_LostFocus(tb_Passwordbox,e);

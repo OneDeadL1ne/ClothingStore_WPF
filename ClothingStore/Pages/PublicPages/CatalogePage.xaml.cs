@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClothingStore.ClassHelper.EFClass;
+using static ClothingStore.ClassHelper.MenuClass;
 using ClothingStore.DB;
+using ClothingStore.ClassHelper;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -26,13 +28,16 @@ namespace ClothingStore.Pages.PublicPages
         public CatalogePage()
         {
             InitializeComponent();
-            //List<CurrentItem> products   = new List<CurrentItem>();
-            //products = Context.CurrentItem.ToList();
-            
-            
-            //lv_Products.ItemsSource = products;
 
-            
+
+            lv_Products.ItemsSource = RefreshCatalog();
         }
+
+        public void IsCheked()
+        {
+
+        }
+
+        
     }
 }

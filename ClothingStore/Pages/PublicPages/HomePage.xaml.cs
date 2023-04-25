@@ -30,6 +30,7 @@ namespace ClothingStore.Pages.PublicPages
             menuFrame.Navigate(new MenuPage());
             mainFrame.Navigate(new CatalogePage());
             buttonCatalog.IsEnabled = false;
+            
         }
 
         

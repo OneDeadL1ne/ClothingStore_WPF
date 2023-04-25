@@ -9,9 +9,9 @@ namespace ClothingStore.ClassHelper
 {
     public class CurrentUser
     {
-        public static Employee Employee { get; set; }
-        public static Customer Customer { get; set; }
-        
+        public static Employee CurrentManager { get; set; } = null;
+        public static Customer CurrentCustomer { get; set; }= null;
+        public static Employee CurrentDirector { get; set; }= null;
 
     }
 }

@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:ClothingStore.Pages.PublicPages"
       xmlns:c="clr-namespace:ClothingStore.ClassHelper"
       mc:Ignorable="d" 
+      xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CatalogePage">
 
@@ -22,21 +23,100 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="Black" CornerRadius="10"/>
-        <TextBlock
-            Text="Каталог"
-            FontSize="20"
-            Grid.ColumnSpan="2"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center" 
-            />
+        <Border Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="4" Background="White" CornerRadius="10"/>
+
+        <StackPanel Grid.RowSpan="4" Orientation="Horizontal" Background="Salmon">
+            <Grid Width="200">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <ComboBox Grid.Row="1" Height="40" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Text="  ">
+                    <CheckBox Content="1" x:Name="cbColor1"/>
+                    <CheckBox Content="2" x:Name="cbColor2"/>
+                    <CheckBox Content="3" x:Name="cbColor3"/>
+                    <CheckBox Content="4" x:Name="cbColor4"/>
+                    
+                </ComboBox>
+                
+            </Grid>
+
+        </StackPanel>
+
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="0" Background="Salmon">
+            <Grid Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <Button
+                    Grid.Column="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Мужчины"
+                    FontSize="18"
+                    Height="34"
+                    Width="120"
+                    Style="{StaticResource ButtonStyle}"
+                    
+                />
+
+                <Button
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Женщины"
+                    FontSize="18"
+                    Height="34"
+                    Width="120"
+                    Style="{StaticResource ButtonStyle}"
+                    
+                />
+
+                <Button
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Дети"
+                    FontSize="18"
+                    Height="34"
+                    Width="120"
+                    Style="{StaticResource ButtonStyle}"
+                    
+                />
+
+            </Grid>
+
+        </StackPanel>
+
+       
+        
+
+        
 
         <ListView 
             x:Name="lv_Products" 
             Grid.Row="2" 
             Grid.RowSpan="2"
-            Background="Black"
-            BorderBrush="Black"
+            Background="White"
+            Foreground="White"
+            BorderBrush="White"
+            
+            HorizontalContentAlignment="Left"
             ItemsSource="{Binding List}"
             d:ItemsSource="{d:SampleData ItemCount=8}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
@@ -56,38 +136,54 @@
                     <!--шаблон одного элемента-->
 
                     <Border
-                        Margin="10"
-                        Background="Red"
-                        Width="163"
+                        Margin="5"
+                        
+                        Width="170"
                         CornerRadius="5"
-                        Height="230"
+                        Height="225"
                         >
-                            
                         <StackPanel>
-                            
-                            
-                            <Image 
-                                
-                                Height="100"
-                                   Width="90"
-                                   Source="/Res/Images/Hide.jpg"/>
-                            <TextBlock Text="{Binding Name}"
-                                       Margin="5 0 0 0"/>
-                            <TextBlock Text="{Binding Price}"
-                                       FontWeight="Bold"
-                                       Margin="5 0 0 0"/>
+                            <Border
+                                Margin="5 5 5 0" 
+                                Height="150"
+                                Width="160"
+                                CornerRadius="10 10 0 0 "
+                                >
+                                <Image
+                                    Source="/Res/Images/UnigloTshirtWhite.png"
+                                    />
+                            </Border>
+
+                            <TextBlock Text="{Binding currentItem.Price}"
+                                           FontWeight="Bold"
+                                       Foreground="Black"
+                                           Margin="3 5 0 0"/>
+                            <TextBlock
+                                Text=" "
+                                TextAlignment="Left"
+                                Foreground="Black"
+                                Margin="0 3 0 0">
+                                <Run Text="{Binding generalItem.Model}"/>
+                                <Run Text="{Binding generalItem.Brand}"/>
+                                <Run Text="{Binding type}"/>
+
+                            </TextBlock>
+
+                           
+
                             <Button
                                 
-                                Background="Blue"
+                                Background="White"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Height="30"
-                                Width="50"
-                                Visibility="{Binding Path=EditClass.Employee.RoleI }"
+                                Width="100"
+                                Content="Редактровать"
+                                Visibility="{Binding visibility  }"
                                 
                                 
                                 />
-
+                           
                         </StackPanel>
                     </Border>
 

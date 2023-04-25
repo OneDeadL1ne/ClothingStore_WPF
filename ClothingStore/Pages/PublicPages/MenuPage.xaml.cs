@@ -16,9 +16,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClothingStore.ClassHelper.NavigateClass;
 using static ClothingStore.ClassHelper.MenuClass;
-using ClothingStore.DB;
-using ClothingStore.Pages;
+using ClothingStore.Pages.PublicPages;
 using ClothingStore.Pages.ClientPages;
+using System.Diagnostics;
+using ClothingStore.Pages.EmployeesPages;
+using ClothingStore.Pages.EmployeesPages.ManagerPages;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -27,8 +29,7 @@ namespace ClothingStore.Pages.PublicPages
     /// </summary>
     public partial class MenuPage : Page
     {
-        private Employee employee = null; 
-        private Customer customer=null;
+      
         public MenuPage()
         {
             InitializeComponent();
@@ -36,102 +37,80 @@ namespace ClothingStore.Pages.PublicPages
             MenuClass.buttonCatalog = btn_Catalog;
             MenuClass.buttonCart = btn_Cart;
             MenuClass.buttonPersonalAccount = btn_PersonalAccount;
-            buttonPersonalAccount.Visibility = Visibility.Collapsed;
+            MenuClass.buttonAddEdit = btn_AddEdit;
+            MenuClass.buttonLists = btn_Lists;
+            if (CurrentUser.CurrentCustomer!=null )
+            {
+                MenuClass.buttonPersonalAccount.Visibility = Visibility.Visible;
+                MenuClass.buttonLogin.Visibility = Visibility.Collapsed;
+                buttonAddEdit.Visibility = Visibility.Visible;
+                buttonLists.Visibility = Visibility.Visible;
+            }
+
+            if (CurrentUser.CurrentManager != null )
+            {
+                MenuClass.buttonPersonalAccount.Visibility = Visibility.Visible;
+                MenuClass.buttonLogin.Visibility = Visibility.Collapsed;
+            }
+
+            if (CurrentUser.CurrentDirector != null)
+            {
+                MenuClass.buttonPersonalAccount.Visibility = Visibility.Visible;
+                MenuClass.buttonLogin.Visibility = Visibility.Collapsed;
+            }
+            if (CurrentUser.CurrentCustomer==null && CurrentUser.CurrentManager==null && CurrentUser.CurrentDirector==null)
+            {
+                MenuClass.buttonPersonalAccount.Visibility = Visibility.Collapsed;
+                MenuClass.buttonLogin.Visibility = Visibility.Visible;
+            }
+         
+
+
+            if (CurrentUser.CurrentManager == null && CurrentUser.CurrentDirector == null || CurrentUser.CurrentCustomer!=null )
+            {
+              //buttonAddEdit.Visibility = Visibility.Collapsed;
+              //buttonLists.Visibility= Visibility.Collapsed;
+            }
+           
         }
-       
-        public MenuPage(Customer customerpage)
-        {
-            InitializeComponent();
-            this.customer = customerpage;
-            this.employee = null;
-            MenuClass.buttonLogin = btn_Login;
-            MenuClass.buttonCatalog = btn_Catalog;
-            MenuClass.buttonCart = btn_Cart;
-            MenuClass.buttonPersonalAccount = btn_PersonalAccount;
-            buttonPersonalAccount.Visibility = Visibility.Visible;
-            buttonLogin.Visibility = Visibility.Collapsed;
-
-
-        }
-        public MenuPage(Employee employeepage)
-        {
-            InitializeComponent();
-            this.employee =  employeepage;
-            this.customer = null;
-            MenuClass.buttonLogin = btn_Login;
-            MenuClass.buttonCatalog = btn_Catalog;
-            MenuClass.buttonCart = btn_Cart;
-            MenuClass.buttonPersonalAccount = btn_PersonalAccount;
-            buttonPersonalAccount.Visibility = Visibility.Visible;
-            buttonLogin.Visibility = Visibility.Collapsed;
-
-
-        }
-
 
         private void bt_Login_Click(object sender, RoutedEventArgs e)
         {
-            SetIsEnabledFalse();
-
-            //authorizationFrame.Navigate(new AuthorizationPage());
+            SetIsEnabledFalse();  
             NavigatePage(authorizationFrame, windowFrame, new AuthorizationPage());
             authorizationFrame.Visibility = Visibility.Visible;
-
-
         }
 
         private void bt_Catalog_Click(object sender, RoutedEventArgs e)
         {
             SetFocusButton(sender);
-            //if (!windowFrame.CanGoBack && !windowFrame.CanGoForward)
-            //{
-
-            //    mainFrame.Navigate(new CatalogePage());
-            //    return;
-
-            //}
-            //var entry = windowFrame.RemoveBackEntry();
-            //while (entry != null)
-            //{
-            //    entry = windowFrame.RemoveBackEntry();
-            //}
-
             NavigatePage(mainFrame, windowFrame, new CatalogePage());
-            //mainFrame.Navigate(new CatalogePage()); 
-
         }
 
         private void btn_Cart_Click(object sender, RoutedEventArgs e)
         {
             SetFocusButton(sender);
-            //MessageBox.Show($"{mainFrame.Content.GetType().Name}");
-
-            
-            
             NavigatePage(mainFrame, windowFrame, new CartPage());
-            //mainFrame.Navigate(new CartPage());
+            
         }
 
         private void btn_PersonalAccount_Click(object sender, RoutedEventArgs e)
         {
             SetFocusButton(sender);
-            if (employee==null && customer !=null)
-            {
-                NavigatePage(mainFrame, windowFrame, new PersonalAccountPage(customer));
-            }
-            else
-            {
-                NavigatePage(mainFrame, windowFrame, new PersonalAccountPage(employee));
-            }
-            //mainFrame.Navigate(new PersonalAccountPage());
-
-
-
-
+            NavigatePage(mainFrame, windowFrame, new PersonalAccountPage());
         }
-         
 
-        
+        private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            SetFocusButton(sender);
+            NavigatePage(mainFrame, windowFrame, new AddEditPage());
+        }
+
+        private void btn_Lists_Click(object sender, RoutedEventArgs e)
+        {
+            SetFocusButton(sender);
+            NavigatePage(mainFrame, windowFrame, new ListPage());
+        }
     }
 }
 

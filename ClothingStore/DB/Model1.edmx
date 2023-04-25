@@ -195,7 +195,7 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Type">
+        <EntityType Name="TypeСlothes">
           <Key>
             <PropertyRef Name="TypeID" />
           </Key>
@@ -432,10 +432,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Item_Type">
-          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="TypeСlothes" Type="Self.TypeСlothes" Multiplicity="1" />
           <End Role="GeneralItem" Type="Self.GeneralItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Type">
+            <Principal Role="TypeСlothes">
               <PropertyRef Name="TypeID" />
             </Principal>
             <Dependent Role="GeneralItem">
@@ -481,12 +481,12 @@
         </Association>
         <Association Name="FK_Type_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Type" Type="Self.Type" Multiplicity="*" />
+          <End Role="TypeСlothes" Type="Self.TypeСlothes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="Type">
+            <Dependent Role="TypeСlothes">
               <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
@@ -544,7 +544,7 @@
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeСlothes" EntityType="Self.TypeСlothes" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BonusCard_Customer" Association="Self.FK_BonusCard_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="BonusCard" EntitySet="BonusCard" />
@@ -622,7 +622,7 @@
             <End Role="GeneralItem" EntitySet="GeneralItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Item_Type" Association="Self.FK_Item_Type">
-            <End Role="Type" EntitySet="Type" />
+            <End Role="TypeСlothes" EntitySet="TypeСlothes" />
             <End Role="GeneralItem" EntitySet="GeneralItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Passport_Employee" Association="Self.FK_Passport_Employee">
@@ -639,7 +639,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Type_Category" Association="Self.FK_Type_Category">
             <End Role="Category" EntitySet="Category" />
-            <End Role="Type" EntitySet="Type" />
+            <End Role="TypeСlothes" EntitySet="TypeСlothes" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -697,7 +697,7 @@
           <EntitySet Name="Size" EntityType="ClothingStoreModel.Size" />
           <EntitySet Name="Store" EntityType="ClothingStoreModel.Store" />
           <EntitySet Name="sysdiagrams" EntityType="ClothingStoreModel.sysdiagrams" />
-          <EntitySet Name="Type" EntityType="ClothingStoreModel.Type" />
+          <EntitySet Name="TypeСlothes" EntityType="ClothingStoreModel.TypeСlothes" />
           <AssociationSet Name="FK_BonusCard_Customer" Association="ClothingStoreModel.FK_BonusCard_Customer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="BonusCard" EntitySet="BonusCard" />
@@ -720,7 +720,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Type_Category" Association="ClothingStoreModel.FK_Type_Category">
             <End Role="Category" EntitySet="Category" />
-            <End Role="Type" EntitySet="Type" />
+            <End Role="TypeСlothes" EntitySet="TypeСlothes" />
           </AssociationSet>
           <AssociationSet Name="FK_Check_Employee" Association="ClothingStoreModel.FK_Check_Employee">
             <End Role="Employee" EntitySet="Employee" />
@@ -783,7 +783,7 @@
             <End Role="Passport" EntitySet="Passport" />
           </AssociationSet>
           <AssociationSet Name="FK_Item_Type" Association="ClothingStoreModel.FK_Item_Type">
-            <End Role="Type" EntitySet="Type" />
+            <End Role="TypeСlothes" EntitySet="TypeСlothes" />
             <End Role="GeneralItem" EntitySet="GeneralItem" />
           </AssociationSet>
           <AssociationSet Name="HistoryCurrentItem" Association="ClothingStoreModel.HistoryCurrentItem">
@@ -828,7 +828,7 @@
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="CategoryTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Size" Relationship="ClothingStoreModel.FK_Size_Category" FromRole="Category" ToRole="Size" />
-          <NavigationProperty Name="Type" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="Category" ToRole="Type" />
+          <NavigationProperty Name="TypeСlothes" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="Category" ToRole="TypeСlothes" />
         </EntityType>
         <EntityType Name="Check">
           <Key>
@@ -958,7 +958,7 @@
           <Property Name="Model" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_GeneralItem" FromRole="GeneralItem" ToRole="CurrentItem" />
           <NavigationProperty Name="CustomerGroup" Relationship="ClothingStoreModel.FK_Item_CustomerGroup" FromRole="GeneralItem" ToRole="CustomerGroup" />
-          <NavigationProperty Name="Type" Relationship="ClothingStoreModel.FK_Item_Type" FromRole="GeneralItem" ToRole="Type" />
+          <NavigationProperty Name="TypeСlothes" Relationship="ClothingStoreModel.FK_Item_Type" FromRole="GeneralItem" ToRole="TypeСlothes" />
         </EntityType>
         <EntityType Name="History">
           <Key>
@@ -1028,15 +1028,15 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Type">
+        <EntityType Name="TypeСlothes">
           <Key>
             <PropertyRef Name="TypeID" />
           </Key>
           <Property Name="TypeID" Type="Int32" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="TypeTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="Type" ToRole="Category" />
-          <NavigationProperty Name="GeneralItem" Relationship="ClothingStoreModel.FK_Item_Type" FromRole="Type" ToRole="GeneralItem" />
+          <NavigationProperty Name="Category" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="TypeСlothes" ToRole="Category" />
+          <NavigationProperty Name="GeneralItem" Relationship="ClothingStoreModel.FK_Item_Type" FromRole="TypeСlothes" ToRole="GeneralItem" />
         </EntityType>
         <Association Name="FK_BonusCard_Customer">
           <End Type="ClothingStoreModel.Customer" Role="Customer" Multiplicity="1" />
@@ -1100,12 +1100,12 @@
         </Association>
         <Association Name="FK_Type_Category">
           <End Type="ClothingStoreModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="ClothingStoreModel.Type" Role="Type" Multiplicity="*" />
+          <End Type="ClothingStoreModel.TypeСlothes" Role="TypeСlothes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="Type">
+            <Dependent Role="TypeСlothes">
               <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1291,10 +1291,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Item_Type">
-          <End Type="ClothingStoreModel.Type" Role="Type" Multiplicity="1" />
+          <End Type="ClothingStoreModel.TypeСlothes" Role="TypeСlothes" Multiplicity="1" />
           <End Type="ClothingStoreModel.GeneralItem" Role="GeneralItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Type">
+            <Principal Role="TypeСlothes">
               <PropertyRef Name="TypeID" />
             </Principal>
             <Dependent Role="GeneralItem">
@@ -1536,9 +1536,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Type">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Type">
-              <MappingFragment StoreEntitySet="Type">
+          <EntitySetMapping Name="TypeСlothes">
+            <EntityTypeMapping TypeName="ClothingStoreModel.TypeСlothes">
+              <MappingFragment StoreEntitySet="TypeСlothes">
                 <ScalarProperty Name="TypeTitle" ColumnName="TypeTitle" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />

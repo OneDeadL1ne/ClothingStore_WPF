@@ -53,6 +53,8 @@
                 Grid.ColumnSpan="3"
                 CornerRadius="20"
                 Background="White"
+                BorderBrush="Black"
+                BorderThickness="2"
                 />
 
             <TextBlock

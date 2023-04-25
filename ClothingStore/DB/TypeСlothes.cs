@@ -12,10 +12,10 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Type
+    public partial class TypeСlothes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type()
+        public TypeСlothes()
         {
             this.GeneralItem = new HashSet<GeneralItem>();
         }

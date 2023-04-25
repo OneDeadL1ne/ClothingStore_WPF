@@ -29,6 +29,6 @@ namespace ClothingStore.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CurrentItem> CurrentItem { get; set; }
         public virtual CustomerGroup CustomerGroup { get; set; }
-        public virtual Type Type { get; set; }
+        public virtual TypeСlothes TypeСlothes { get; set; }
     }
 }

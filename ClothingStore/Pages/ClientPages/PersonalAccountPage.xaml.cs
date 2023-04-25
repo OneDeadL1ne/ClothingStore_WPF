@@ -13,8 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClothingStore.ClassHelper.NavigateClass;
+using static ClothingStore.ClassHelper.CurrentUser;
 using ClothingStore.Pages.PublicPages;
 using ClothingStore.DB;
+using ClothingStore.ClassHelper;
 
 namespace ClothingStore.Pages.ClientPages
 {
@@ -23,36 +25,45 @@ namespace ClothingStore.Pages.ClientPages
     /// </summary>
     public partial class PersonalAccountPage : Page
     {
-        private Employee employee=null;
-        private Customer customer=null;
+       
+        
         public PersonalAccountPage()
-        {
-            InitializeComponent();
-        }
-        public PersonalAccountPage(Customer customerpage)
         {
 
             InitializeComponent();
-            this.customer = customerpage;
-            tb_FName.Text = customer.FName;
-            tb_Patronymic.Text = customer.Patronymic;
-            tb_Phone.Text = customer.Phone;
-            tb_LName.Text = customer.LName;
+            
+            if(CurrentManager != null )
+            {
+                tb_FName.Text = CurrentManager.FName;
+                tb_Patronymic.Text = CurrentManager.Patronymic;
+                tb_Phone.Text = CurrentManager.Phone;
+                tb_LName.Text = CurrentManager.MName;
+            }
+
+            if (CurrentCustomer != null)
+            {
+                tb_FName.Text = CurrentCustomer.FName;
+                tb_Patronymic.Text = CurrentCustomer.Patronymic;
+                tb_Phone.Text = CurrentCustomer.Phone;
+                tb_LName.Text = CurrentCustomer.LName;
+            }
+
+            if (CurrentDirector != null)
+            {
+                tb_FName.Text = CurrentDirector.FName;
+                tb_Patronymic.Text = CurrentDirector.Patronymic;
+                tb_Phone.Text = CurrentDirector.Phone;
+                tb_LName.Text = CurrentDirector.MName;
+            }
+
         }
-        public PersonalAccountPage(Employee employeepage)
-        {
-            InitializeComponent();
-            this.employee = employeepage;
-        }
+       
 
         private void btn_Exit_Click(object sender, RoutedEventArgs e)
         {
-            //windowFrame.RemoveBackEntry();
-            //menuFrame.Navigate(new MenuPage());
-            //mainFrame.Navigate(new CatalogePage());
-            //authorizationFrame.NavigationService.Refresh();
-            //authorizationFrame.Navigate(new AuthorizationPage());
-
+            CurrentDirector = null;
+            CurrentCustomer = null;
+            CurrentManager = null;
             if (!windowFrame.CanGoBack && !windowFrame.CanGoForward)
             {
                 return;
@@ -65,6 +76,7 @@ namespace ClothingStore.Pages.ClientPages
             }
 
             windowFrame.Navigate(new HomePage());
+
         }
     }
 }

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       xmlns:Gif="http://wpfanimatedgif.codeplex.com"
-       d:DesignHeight="60" d:DesignWidth="1200"
+      d:DesignHeight="60" d:DesignWidth="1200"
       Title="MenuPage">
 
     <Grid>
@@ -143,17 +143,70 @@
             Width="20" 
             HorizontalAlignment="Left"
                     >
-                    
+
                 </Image>
                 <TextBlock Text="Корзина"
                            FontSize="15"/>
             </StackPanel>
 
         </Button>
+        <Button
+            x:Name="btn_AddEdit" 
+            Grid.Column="2"
+            Style="{StaticResource ButtonStyle}"
+            BorderThickness="0"
+            Height="30"
+            Width="90"
+            Click="btn_AddProduct_Click"
+            >
+
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="14"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal">
+                <Image
+                    Source="{Icon:MaterialImage Kind=PlusCircleOutline}" 
+                    Height="20" 
+                    Width="20" 
+                    HorizontalAlignment="Left"
+                    >
+                </Image>
+                <TextBlock 
+                    Text="Добавить"
+                    FontSize="15"/>
+            </StackPanel>
+        </Button>
 
 
+        <Button
+            x:Name="btn_Lists" 
+            Grid.Column="3"
+            Style="{StaticResource ButtonStyle}"
+            BorderThickness="0"
+            Height="30"
+            Width="90"
+            Click="btn_Lists_Click"
+            >
 
-
-
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="14"/>
+                </Style>
+            </Button.Resources>
+            <StackPanel Orientation="Horizontal">
+                <Image
+                    Source="{Icon:MaterialImage Kind=FormatListText}" 
+                    Height="20" 
+                    Width="20" 
+                    HorizontalAlignment="Left"
+                    >
+                </Image>
+                <TextBlock 
+                    Text="Списки"
+                    FontSize="15"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Page>

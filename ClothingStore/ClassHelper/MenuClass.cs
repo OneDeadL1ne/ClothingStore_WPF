@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +10,10 @@ using System.Windows;
 using System.Windows.Controls;
 using static ClothingStore.ClassHelper.EFClass;
 using static ClothingStore.ClassHelper.ItemModel;
+using static ClothingStore.ClassHelper.NavigateClass;
+using ClothingStore.Pages;
+using ClothingStore.Pages.PublicPages;
+using System.Windows.Media;
 
 namespace ClothingStore.ClassHelper
 {
@@ -44,6 +47,15 @@ namespace ClothingStore.ClassHelper
                     buttonLists.IsEnabled = true;
                     break;
                 case "AddEditPage":
+                    if (CurrentUser.CurrentDirector != null)
+                    {
+                        NavigatePage(mainFrame, windowFrame, new AddEditPage()); 
+                    }
+
+                    if (CurrentUser.CurrentManager != null)
+                    {
+                        NavigatePage(mainFrame, windowFrame, new AddEditPage());
+                    }
                     buttonLogin.IsEnabled = true;
                     buttonCatalog.IsEnabled = true;
                     buttonCart.IsEnabled = true;
@@ -52,6 +64,15 @@ namespace ClothingStore.ClassHelper
                     buttonLists.IsEnabled = true;
                     break;
                 case "ListPage":
+                    if (CurrentUser.CurrentDirector != null)
+                    {
+                        NavigatePage(mainFrame, windowFrame, new AddEditPage());
+                    }
+
+                    if (CurrentUser.CurrentManager != null)
+                    {
+                        NavigatePage(mainFrame, windowFrame, new AddEditPage());
+                    }
                     buttonLogin.IsEnabled = true;
                     buttonCatalog.IsEnabled = true;
                     buttonCart.IsEnabled = true;
@@ -60,6 +81,7 @@ namespace ClothingStore.ClassHelper
                     buttonLists.IsEnabled = false;
                     break;
                 case "ListEmployeePage":
+                    
                     buttonLogin.IsEnabled = true;
                     buttonCatalog.IsEnabled = true;
                     buttonCart.IsEnabled = true;
@@ -86,37 +108,7 @@ namespace ClothingStore.ClassHelper
 
         }
 
-        public static List<ItemModel>RefreshCatalog()
-        {
-            List<CurrentItem> products = new List<CurrentItem>();
-            products = EFClass.Context.CurrentItem.ToList();
-            List<ItemModel> items = new List<ItemModel>();
-            foreach (var i in products)
-            {
-                
-                List<TypeСlothes> types = new List<TypeСlothes>();
-                
-                ItemModel item = new ItemModel();
-                item.generalItem = EFClass.Context.GeneralItem.ToList().Where(x=> x.GeneralItemID == i.GeneralItemID).First();
-                item.type = (item.generalItem.TypeСlothes as TypeСlothes).TypeTitle; 
-                item.currentItem = i;
-                item.visibility = Visibility.Collapsed;
-                if (CurrentUser.CurrentCustomer != null)
-                {
-                    item.visibility = Visibility.Collapsed;
-                }
-
-                if (CurrentUser.CurrentManager != null)
-                {
-                    item.visibility = Visibility.Visible;
-                }
-
-
-                items.Add(item);
-            }
-
-            return items;
-        }
+       
         public static void SetFocusButton(object sender)
         {
            

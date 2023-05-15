@@ -19,7 +19,7 @@ namespace ClothingStore.DB
         {
             this.CurrentItemCart = new HashSet<CurrentItemCart>();
             this.CurrentItemStore = new HashSet<CurrentItemStore>();
-            this.Photo = new HashSet<Photo>();
+            this.PhotoItem = new HashSet<PhotoItem>();
             this.History = new HashSet<History>();
         }
     
@@ -30,15 +30,15 @@ namespace ClothingStore.DB
         public bool IsActive { get; set; }
         public Nullable<decimal> Price { get; set; }
     
-        public virtual Color Color { get; set; }
+        public virtual ColorItem ColorItem { get; set; }
         public virtual GeneralItem GeneralItem { get; set; }
-        public virtual Size Size { get; set; }
+        public virtual SizeItem SizeItem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CurrentItemCart> CurrentItemCart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CurrentItemStore> CurrentItemStore { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Photo> Photo { get; set; }
+        public virtual ICollection<PhotoItem> PhotoItem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<History> History { get; set; }
     }

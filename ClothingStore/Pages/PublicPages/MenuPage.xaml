@@ -28,7 +28,7 @@
         <Border
             Grid.ColumnSpan="20"
             CornerRadius="10"
-            Background="White"
+            Background="#F4F5F7"
             />
 
 

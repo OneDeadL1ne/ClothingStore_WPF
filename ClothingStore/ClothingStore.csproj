@@ -90,13 +90,13 @@
     <Compile Include="DB\Cart.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Category.cs">
+    <Compile Include="DB\CategoryItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Check.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Color.cs">
+    <Compile Include="DB\ColorItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\CurrentItem.cs">
@@ -144,13 +144,13 @@
     <Compile Include="DB\Passport.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Photo.cs">
+    <Compile Include="DB\PhotoItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="DB\Size.cs">
+    <Compile Include="DB\SizeItem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="DB\sp_helpdiagramdefinition_Result.cs">
@@ -171,17 +171,14 @@
     <Compile Include="Pages\ClientPages\PersonalAccountPage.xaml.cs">
       <DependentUpon>PersonalAccountPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\EmployeesPages\DirectorPages\AddEditEmployeePage.xaml.cs">
-      <DependentUpon>AddEditEmployeePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\EmployeesPages\DirectorPages\ListEmployeePage.xaml.cs">
       <DependentUpon>ListEmployeePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\EmployeesPages\ManagerPages\AddEditProductPage.xaml.cs">
-      <DependentUpon>AddEditProductPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\EmployeesPages\ListPage.xaml.cs">
       <DependentUpon>ListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EmployeesPages\ManagerPages\AddProductPage.xaml.cs">
+      <DependentUpon>AddProductPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EmployeesPages\ManagerPages\ListProductPage.xaml.cs">
       <DependentUpon>ListProductPage.xaml</DependentUpon>
@@ -214,19 +211,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\EmployeesPages\DirectorPages\AddEditEmployeePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Pages\EmployeesPages\DirectorPages\ListEmployeePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\EmployeesPages\ManagerPages\AddEditProductPage.xaml">
+    <Page Include="Pages\EmployeesPages\ListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\EmployeesPages\ListPage.xaml">
+    <Page Include="Pages\EmployeesPages\ManagerPages\AddProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -338,6 +331,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Res\Images\defImg.jpeg" />
     <Resource Include="Res\Images\UnigloTshirtWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

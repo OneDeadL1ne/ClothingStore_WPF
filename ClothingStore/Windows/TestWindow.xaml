@@ -40,7 +40,7 @@
         </ControlTemplate>
 
         <Style TargetType="{x:Type Expander}">
-            
+
             <Setter Property="FontFamily" Value="Segoe Ui Dark"></Setter>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="VerticalContentAlignment" Value="Stretch"/>
@@ -162,9 +162,10 @@
     </Window.Resources>
 
     <Grid x:Name="gd" >
-        <Expander  Width="150"  FontSize="20">
+        <Expander  Width="250"  FontSize="20">
             <Expander.Header>
-                <ListBox Background="Transparent" x:Name="lv_Header"  IsHitTestVisible="False" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled"  BorderThickness="0"  ItemsSource="{Binding ElementName=lst,Path=SelectedItems}">
+                <StackPanel Orientation="Horizontal">
+                <ListBox Background="Transparent" x:Name="lv_Header"  IsHitTestVisible="False" BorderBrush="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled"  BorderThickness="0"  ItemsSource="{Binding ElementName=lst,Path=SelectedItems}" >
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel  Orientation="Horizontal"></WrapPanel>
@@ -173,22 +174,24 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Rectangle Fill="{Binding GroupTitle}" Width="16" Height="16" Margin="0,2,5,2" />
-                                <TextBlock Text="{Binding GroupTitle}"/>
+                                <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
+                                
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                    <TextBlock x:Name="tb_Count"/>
+                </StackPanel>
             </Expander.Header>
             <Expander.Content>
                 <ListBox  Background="Transparent" ItemContainerStyle="{StaticResource itemstyle}" HorizontalContentAlignment="Stretch" x:Name="lst" SelectionMode="Multiple">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <CheckBox x:Name="checkBox" Unchecked="checkBox_Checked" Checked="checkBox_Checked" IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Content="{Binding GroupTitle}"></CheckBox>
+                                <CheckBox x:Name="checkBox" Checked="checkBox_Checked" Unchecked="checkBox_Checked"  IsChecked="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Content="{Binding Name}"></CheckBox>
 
                             </StackPanel>
-                            
+
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -206,7 +209,7 @@
             Click="btn_GetId_Click"
             />
 
-       
+
 
     </Grid>
 </Window>

@@ -12,11 +12,11 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Photo
+    public partial class PhotoItem
     {
-        public string PhotoID { get; set; }
+        public string PhotoItemID { get; set; }
         public int CurrentItemID { get; set; }
-        public string PhotoPath { get; set; }
+        public byte[] PhotoPath { get; set; }
     
         public virtual CurrentItem CurrentItem { get; set; }
     }

@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -28,6 +29,12 @@ namespace ClothingStore.Windows
             //AuthorizationFrame.Navigate(new AuthorizationPage());
             ClassHelper.NavigateClass.authorizationFrame.Visibility= Visibility.Collapsed;
             windowFrame.Navigate(new HomePage());
+        }
+
+        private void AuthorizationFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            var fa = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.7));
+            (e.Content as Page).BeginAnimation(OpacityProperty, fa);
         }
     }
 }

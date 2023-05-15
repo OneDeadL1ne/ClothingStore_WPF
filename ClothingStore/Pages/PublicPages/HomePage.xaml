@@ -37,14 +37,14 @@
                 Grid.ColumnSpan="3"
                 Grid.Row="1"
                 Grid.RowSpan="4"
-                Background="#E5E5E5"
+                Background="White"
                 CornerRadius="20"
                 />
             <!--HEADER-->
             <Frame Grid.ColumnSpan="4"  NavigationUIVisibility="Hidden" x:Name="menuFrame"/>
            
             
-            <Frame x:Name="mainFrame" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="mainFrame" Grid.Row="1" Grid.RowSpan="3" Grid.ColumnSpan="3" NavigationUIVisibility="Hidden" Navigating="mainFrame_Navigating"/>
 
             
         </Grid>

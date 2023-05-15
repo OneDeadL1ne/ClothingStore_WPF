@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -32,6 +33,13 @@ namespace ClothingStore.Pages.PublicPages
             buttonCatalog.IsEnabled = false;
             
         }
+
+        private void mainFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            var fa = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.7));
+            (e.Content as Page).BeginAnimation(OpacityProperty, fa);
+        }
+
 
         
     }

@@ -10,71 +10,79 @@
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       Title="AddEditPage">
 
-    <Grid Background="Green">
+    <Grid Background="White">
 
 
         <StackPanel Margin="0 50 0 0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
 
 
 
-            <StackPanel
-                    x:Name="sp_AddProduct"
-                    Grid.Row="0"
+            <Button
                     
-                    Grid.RowSpan="4"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-            Margin="50"
+                    x:Name="btn_AddProduct"
+                    Click="btn_AddProduct_Click"
+                Width="270"
+                Height="270"
+               
+                FontSize="23"
+                
+                BorderBrush="Transparent"
+                Style="{StaticResource ButtonStyle}"
+                >
+
+
+           
+            <StackPanel
+                    x:Name="sp_AddProduct"             
+                    VerticalAlignment="Center"
+                HorizontalAlignment="Center" 
             >
                 <Image
                 Width="200"
-                Source="{Icon:MaterialImage Kind=ImageEdit, Brush=White}"
+                Source="{Icon:MaterialImage Kind=ImageEdit, Brush=Black}"
                 />
-                <Button
-                    
-                    x:Name="btn_AddProduct"
-                     
-                Width="250"
-                Height="50"
-                Content="Добавить товар"
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="Добавить Товар"
+                        
+                        />
+
+
+                </StackPanel>
+            </Button>
+
+            <Button
+                x:Name="btn_AddEmployee"
+                
+                Width="270"
+                Height="270"
+               
                 FontSize="23"
-                Margin="0 5 0 0"
+               
                 BorderBrush="Transparent"
                 Style="{StaticResource ButtonStyle}"
                 >
 
 
-                </Button>
-            </StackPanel>
-
-
-            <StackPanel 
-                x:Name="sp_AddEmployee"
-                Margin="50"
-                Grid.Row="0"
-                Grid.RowSpan="4"
-                Grid.Column="2"
-                Grid.ColumnSpan="2"
-            >
+           
+                <StackPanel 
+           
+                      VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                >
                 <Image
-                Width="192"
-                Source="{Icon:MaterialImage Kind=AccountCircle, Brush=White}"
+                Width="200"
+                Source="{Icon:MaterialImage Kind=AccountEdit, Brush=Black}"
                 />
-                <Button
-                x:Name="btn_Employee"
-                  Click="btn_Employee_Click"   
-                Width="250"
-                Height="50"
-                Content="Добавить сотрудника"
-                FontSize="23"
-                Margin="0 5 0 0"
-                BorderBrush="Transparent"
-                Style="{StaticResource ButtonStyle}"
-                >
-
-
-                </Button>
-            </StackPanel>
+                    <TextBlock
+                          VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="Добавить Сотрудника"
+                        />
+                </StackPanel>
+            
+            </Button>
 
         </StackPanel>
     </Grid>

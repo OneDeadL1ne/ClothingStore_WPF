@@ -9,72 +9,78 @@
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
       Title="ListPage">
 
-    <Grid Background="Green">
+    <Grid Background="White">
 
 
-        <StackPanel Margin="0 50 0 0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+        <StackPanel Margin="0,50,0,0"  Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Width="auto">
 
 
 
-            <StackPanel
-                    x:Name="sp_AddProduct"
-                    Grid.Row="0"
+            <Button
                     
-                    Grid.RowSpan="4"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-            Margin="50"
-            >
-                <Image
-                Width="200"
-                Source="{Icon:MaterialImage Kind=ImageEdit, Brush=White}"
-                />
-                <Button
-                    
-                    x:Name="btn_AddProduct"
-                     
-                Width="250"
-                Height="50"
-                Content="Список товаров"
+                    x:Name="btn_ListProduct"
+                    Click="btn_ListProduct_Click"
+                Width="270"
+                Height="270"
+                
                 FontSize="23"
-                Margin="0 5 0 0"
+           
                 BorderBrush="Transparent"
                 Style="{StaticResource ButtonStyle}"
                 >
 
 
-                </Button>
-            </StackPanel>
 
-
-            <StackPanel 
-                x:Name="sp_AddEmployee"
-                Margin="50"
-                Grid.Row="0"
-                Grid.RowSpan="4"
-                Grid.Column="2"
-                Grid.ColumnSpan="2"
+                <StackPanel
+                
             >
-                <Image
-                Width="192"
-                Source="{Icon:MaterialImage Kind=AccountCircle, Brush=White}"
+                    <Image
+                Width="200"
+                Source="{Icon:MaterialImage Kind=Image, Brush=Black}"
                 />
-                <Button
+                    <TextBlock
+                        Margin="0 05 0 0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="Список Товаров"
+                        
+                        />
+
+                </StackPanel>
+            </Button>
+
+            <Button
                 x:Name="btn_ListEmployee"
                   Click="btn_ListEmployee_Click"   
-                Width="250"
-                Height="50"
-                Content="Список сотрудников"
+                  Width="270"
+                Height="270"
+               
                 FontSize="23"
-                Margin="0 5 0 0"
+               
                 BorderBrush="Transparent"
                 Style="{StaticResource ButtonStyle}"
                 >
 
 
-                </Button>
-            </StackPanel>
 
+                <StackPanel 
+                x:Name="sp_AddEmployee"
+               
+            >
+                    <Image
+                Width="200"
+                Source="{Icon:MaterialImage Kind=Account, Brush=Black}"
+                />
+                    <TextBlock
+                        Margin="0 5 0 0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="Список Сотрудников"
+                        TextWrapping="WrapWithOverflow"
+                        />
+
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

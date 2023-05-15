@@ -21,6 +21,8 @@ using System.Text.RegularExpressions;
 using ClothingStore.DB;
 using System.Security.Policy;
 using System.Runtime.InteropServices;
+using System.Windows.Media.Animation;
+using static ClothingStore.ClassHelper.ItemModel;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -118,10 +120,13 @@ namespace ClothingStore.Pages.PublicPages
                     CurrentUser.CurrentManager = employee;
                     CurrentUser.CurrentDirector = employee;
                     CurrentUser.CurrentCustomer = customer;
+                    NavigatePage(menuFrame, windowFrame, new MenuPage());
+                    //NavigatePage(mainFrame, windowFrame, new CatalogePage());
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     authorizationFrame.Visibility = Visibility.Collapsed;
-                    NavigatePage(menuFrame, windowFrame, new MenuPage());
-                    NavigatePage(mainFrame, windowFrame, new CatalogePage());
+                  
+
+                 
                     return;
                 }
 
@@ -148,7 +153,7 @@ namespace ClothingStore.Pages.PublicPages
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     NavigatePage(mainFrame, windowFrame, new CatalogePage());
                     authorizationFrame.Visibility = Visibility.Collapsed;
-                   
+                    //RefreshCatalog();
                     return;
                 }
             }
@@ -169,9 +174,9 @@ namespace ClothingStore.Pages.PublicPages
                     NavigatePage(menuFrame, windowFrame, new MenuPage());
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
                     NavigatePage(mainFrame, windowFrame, new CatalogePage());
-                  
+                    
                     authorizationFrame.Visibility = Visibility.Collapsed;
-
+                    
                     return;
                 }
 
@@ -195,10 +200,10 @@ namespace ClothingStore.Pages.PublicPages
                     CurrentUser.CurrentCustomer = customer;
                     NavigatePage(menuFrame, windowFrame, new MenuPage());
                     SetIsEnabledTrue(mainFrame.Content.GetType().Name);
-                    NavigatePage(mainFrame, windowFrame, new CatalogePage());
+                    //NavigatePage(mainFrame, windowFrame, new CatalogePage());
                   
                     authorizationFrame.Visibility = Visibility.Collapsed;
-
+                    RefreshCatalog();
                     return;
                 }
             }
@@ -212,7 +217,11 @@ namespace ClothingStore.Pages.PublicPages
 
         private void bt_Close_Click(object sender, RoutedEventArgs e)
         {
-            authorizationFrame.Visibility = Visibility.Collapsed;
+            var animation = new DoubleAnimation(1, 0, TimeSpan.FromSeconds(0.3));
+            animation.Completed += Animation_Completed;
+            (authorizationFrame.Content as Page).BeginAnimation(OpacityProperty, animation);
+
+            
             SetIsEnabledTrue(mainFrame.Content.GetType().Name);
             
             tb_Passwordbox.Clear();
@@ -222,6 +231,13 @@ namespace ClothingStore.Pages.PublicPages
            
             
         }
+
+        private void Animation_Completed(object sender, EventArgs e)
+        {
+            authorizationFrame.Visibility = Visibility.Collapsed;
+        }
+
+       
 
         private string GetPhoneOrEmail(string login)
         {

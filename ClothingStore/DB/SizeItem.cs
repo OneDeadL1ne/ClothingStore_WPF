@@ -12,21 +12,20 @@ namespace ClothingStore.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Category
+    public partial class SizeItem
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public SizeItem()
         {
-            this.Size = new HashSet<Size>();
-            this.TypeСlothes = new HashSet<TypeСlothes>();
+            this.CurrentItem = new HashSet<CurrentItem>();
         }
     
+        public int SizeID { get; set; }
         public int CategoryID { get; set; }
-        public string CategoryTitle { get; set; }
+        public string SizeTitle { get; set; }
     
+        public virtual CategoryItem CategoryItem { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Size> Size { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TypeСlothes> TypeСlothes { get; set; }
+        public virtual ICollection<CurrentItem> CurrentItem { get; set; }
     }
 }

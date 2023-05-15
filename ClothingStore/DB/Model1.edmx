@@ -20,7 +20,7 @@
           <Property Name="CartID" Type="int" Nullable="false" />
           <Property Name="CustomerID" Type="int" />
         </EntityType>
-        <EntityType Name="Category">
+        <EntityType Name="CategoryItem">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
@@ -37,12 +37,13 @@
           <Property Name="CheckDateTime" Type="datetime" Nullable="false" />
           <Property Name="TotalPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
-        <EntityType Name="Color">
+        <EntityType Name="ColorItem">
           <Key>
             <PropertyRef Name="ColorID" />
           </Key>
           <Property Name="ColorID" Type="int" Nullable="false" />
           <Property Name="ColorTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColorHex" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="CurrentItem">
           <Key>
@@ -154,13 +155,13 @@
           <Property Name="Number" Type="nchar" MaxLength="6" Nullable="false" />
           <Property Name="DateOfRelease" Type="date" Nullable="false" />
         </EntityType>
-        <EntityType Name="Photo">
+        <EntityType Name="PhotoItem">
           <Key>
-            <PropertyRef Name="PhotoID" />
+            <PropertyRef Name="PhotoItemID" />
           </Key>
-          <Property Name="PhotoID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="PhotoItemID" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="CurrentItemID" Type="int" Nullable="false" />
-          <Property Name="PhotoPath" Type="nvarchar(max)" />
+          <Property Name="PhotoPath" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -169,7 +170,7 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="RoleTitle" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <EntityType Name="Size">
+        <EntityType Name="SizeItem">
           <Key>
             <PropertyRef Name="SizeID" />
           </Key>
@@ -252,10 +253,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CurrentItem_Color">
-          <End Role="Color" Type="Self.Color" Multiplicity="1" />
+          <End Role="ColorItem" Type="Self.ColorItem" Multiplicity="1" />
           <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Color">
+            <Principal Role="ColorItem">
               <PropertyRef Name="ColorID" />
             </Principal>
             <Dependent Role="CurrentItem">
@@ -276,10 +277,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CurrentItem_Size">
-          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="SizeItem" Type="Self.SizeItem" Multiplicity="1" />
           <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Size">
+            <Principal Role="SizeItem">
               <PropertyRef Name="SizeID" />
             </Principal>
             <Dependent Role="CurrentItem">
@@ -457,33 +458,33 @@
         </Association>
         <Association Name="FK_Photo_CurrentItem">
           <End Role="CurrentItem" Type="Self.CurrentItem" Multiplicity="1" />
-          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
+          <End Role="PhotoItem" Type="Self.PhotoItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CurrentItem">
               <PropertyRef Name="CurrentItemID" />
             </Principal>
-            <Dependent Role="Photo">
+            <Dependent Role="PhotoItem">
               <PropertyRef Name="CurrentItemID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Size_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Size" Type="Self.Size" Multiplicity="*" />
+          <End Role="CategoryItem" Type="Self.CategoryItem" Multiplicity="1" />
+          <End Role="SizeItem" Type="Self.SizeItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="CategoryItem">
               <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="Size">
+            <Dependent Role="SizeItem">
               <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Type_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="CategoryItem" Type="Self.CategoryItem" Multiplicity="1" />
           <End Role="TypeСlothes" Type="Self.TypeСlothes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="CategoryItem">
               <PropertyRef Name="CategoryID" />
             </Principal>
             <Dependent Role="TypeСlothes">
@@ -525,9 +526,9 @@
         <EntityContainer Name="Хранилище ClothingStoreModelContainer">
           <EntitySet Name="BonusCard" EntityType="Self.BonusCard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryItem" EntityType="Self.CategoryItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Check" EntityType="Self.Check" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColorItem" EntityType="Self.ColorItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentItem" EntityType="Self.CurrentItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentItemCart" EntityType="Self.CurrentItemCart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CurrentItemStore" EntityType="Self.CurrentItemStore" Schema="dbo" store:Type="Tables" />
@@ -539,9 +540,9 @@
           <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HistoryCurrentItem" EntityType="Self.HistoryCurrentItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Passport" EntityType="Self.Passport" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoItem" EntityType="Self.PhotoItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SizeItem" EntityType="Self.SizeItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeСlothes" EntityType="Self.TypeСlothes" Schema="dbo" store:Type="Tables" />
@@ -562,7 +563,7 @@
             <End Role="Check" EntitySet="Check" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItem_Color" Association="Self.FK_CurrentItem_Color">
-            <End Role="Color" EntitySet="Color" />
+            <End Role="ColorItem" EntitySet="ColorItem" />
             <End Role="CurrentItem" EntitySet="CurrentItem" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItem_GeneralItem" Association="Self.FK_CurrentItem_GeneralItem">
@@ -570,7 +571,7 @@
             <End Role="CurrentItem" EntitySet="CurrentItem" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItem_Size" Association="Self.FK_CurrentItem_Size">
-            <End Role="Size" EntitySet="Size" />
+            <End Role="SizeItem" EntitySet="SizeItem" />
             <End Role="CurrentItem" EntitySet="CurrentItem" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItemCart_Cart" Association="Self.FK_CurrentItemCart_Cart">
@@ -631,14 +632,14 @@
           </AssociationSet>
           <AssociationSet Name="FK_Photo_CurrentItem" Association="Self.FK_Photo_CurrentItem">
             <End Role="CurrentItem" EntitySet="CurrentItem" />
-            <End Role="Photo" EntitySet="Photo" />
+            <End Role="PhotoItem" EntitySet="PhotoItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Size_Category" Association="Self.FK_Size_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Size" EntitySet="Size" />
+            <End Role="CategoryItem" EntitySet="CategoryItem" />
+            <End Role="SizeItem" EntitySet="SizeItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Type_Category" Association="Self.FK_Type_Category">
-            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryItem" EntitySet="CategoryItem" />
             <End Role="TypeСlothes" EntitySet="TypeСlothes" />
           </AssociationSet>
         </EntityContainer>
@@ -679,9 +680,9 @@
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="BonusCard" EntityType="ClothingStoreModel.BonusCard" />
           <EntitySet Name="Cart" EntityType="ClothingStoreModel.Cart" />
-          <EntitySet Name="Category" EntityType="ClothingStoreModel.Category" />
+          <EntitySet Name="CategoryItem" EntityType="ClothingStoreModel.CategoryItem" />
           <EntitySet Name="Check" EntityType="ClothingStoreModel.Check" />
-          <EntitySet Name="Color" EntityType="ClothingStoreModel.Color" />
+          <EntitySet Name="ColorItem" EntityType="ClothingStoreModel.ColorItem" />
           <EntitySet Name="CurrentItem" EntityType="ClothingStoreModel.CurrentItem" />
           <EntitySet Name="CurrentItemCart" EntityType="ClothingStoreModel.CurrentItemCart" />
           <EntitySet Name="CurrentItemStore" EntityType="ClothingStoreModel.CurrentItemStore" />
@@ -692,9 +693,9 @@
           <EntitySet Name="GeneralItem" EntityType="ClothingStoreModel.GeneralItem" />
           <EntitySet Name="History" EntityType="ClothingStoreModel.History" />
           <EntitySet Name="Passport" EntityType="ClothingStoreModel.Passport" />
-          <EntitySet Name="Photo" EntityType="ClothingStoreModel.Photo" />
+          <EntitySet Name="PhotoItem" EntityType="ClothingStoreModel.PhotoItem" />
           <EntitySet Name="Role" EntityType="ClothingStoreModel.Role" />
-          <EntitySet Name="Size" EntityType="ClothingStoreModel.Size" />
+          <EntitySet Name="SizeItem" EntityType="ClothingStoreModel.SizeItem" />
           <EntitySet Name="Store" EntityType="ClothingStoreModel.Store" />
           <EntitySet Name="sysdiagrams" EntityType="ClothingStoreModel.sysdiagrams" />
           <EntitySet Name="TypeСlothes" EntityType="ClothingStoreModel.TypeСlothes" />
@@ -715,11 +716,11 @@
             <End Role="CurrentItemCart" EntitySet="CurrentItemCart" />
           </AssociationSet>
           <AssociationSet Name="FK_Size_Category" Association="ClothingStoreModel.FK_Size_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Size" EntitySet="Size" />
+            <End Role="CategoryItem" EntitySet="CategoryItem" />
+            <End Role="SizeItem" EntitySet="SizeItem" />
           </AssociationSet>
           <AssociationSet Name="FK_Type_Category" Association="ClothingStoreModel.FK_Type_Category">
-            <End Role="Category" EntitySet="Category" />
+            <End Role="CategoryItem" EntitySet="CategoryItem" />
             <End Role="TypeСlothes" EntitySet="TypeСlothes" />
           </AssociationSet>
           <AssociationSet Name="FK_Check_Employee" Association="ClothingStoreModel.FK_Check_Employee">
@@ -727,7 +728,7 @@
             <End Role="Check" EntitySet="Check" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItem_Color" Association="ClothingStoreModel.FK_CurrentItem_Color">
-            <End Role="Color" EntitySet="Color" />
+            <End Role="ColorItem" EntitySet="ColorItem" />
             <End Role="CurrentItem" EntitySet="CurrentItem" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItem_GeneralItem" Association="ClothingStoreModel.FK_CurrentItem_GeneralItem">
@@ -735,7 +736,7 @@
             <End Role="CurrentItem" EntitySet="CurrentItem" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItem_Size" Association="ClothingStoreModel.FK_CurrentItem_Size">
-            <End Role="Size" EntitySet="Size" />
+            <End Role="SizeItem" EntitySet="SizeItem" />
             <End Role="CurrentItem" EntitySet="CurrentItem" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItemCart_CurrentItem" Association="ClothingStoreModel.FK_CurrentItemCart_CurrentItem">
@@ -748,7 +749,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Photo_CurrentItem" Association="ClothingStoreModel.FK_Photo_CurrentItem">
             <End Role="CurrentItem" EntitySet="CurrentItem" />
-            <End Role="Photo" EntitySet="Photo" />
+            <End Role="PhotoItem" EntitySet="PhotoItem" />
           </AssociationSet>
           <AssociationSet Name="FK_CurrentItemStore_Store" Association="ClothingStoreModel.FK_CurrentItemStore_Store">
             <End Role="Store" EntitySet="Store" />
@@ -821,14 +822,14 @@
           <NavigationProperty Name="Check" Relationship="ClothingStoreModel.FK_Check_Cart" FromRole="Cart" ToRole="Check" />
           <NavigationProperty Name="CurrentItemCart" Relationship="ClothingStoreModel.FK_CurrentItemCart_Cart" FromRole="Cart" ToRole="CurrentItemCart" />
         </EntityType>
-        <EntityType Name="Category">
+        <EntityType Name="CategoryItem">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="CategoryTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Size" Relationship="ClothingStoreModel.FK_Size_Category" FromRole="Category" ToRole="Size" />
-          <NavigationProperty Name="TypeСlothes" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="Category" ToRole="TypeСlothes" />
+          <NavigationProperty Name="SizeItem" Relationship="ClothingStoreModel.FK_Size_Category" FromRole="CategoryItem" ToRole="SizeItem" />
+          <NavigationProperty Name="TypeСlothes" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="CategoryItem" ToRole="TypeСlothes" />
         </EntityType>
         <EntityType Name="Check">
           <Key>
@@ -842,13 +843,14 @@
           <NavigationProperty Name="Cart" Relationship="ClothingStoreModel.FK_Check_Cart" FromRole="Check" ToRole="Cart" />
           <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Check_Employee" FromRole="Check" ToRole="Employee" />
         </EntityType>
-        <EntityType Name="Color">
+        <EntityType Name="ColorItem">
           <Key>
             <PropertyRef Name="ColorID" />
           </Key>
           <Property Name="ColorID" Type="Int32" Nullable="false" />
           <Property Name="ColorTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_Color" FromRole="Color" ToRole="CurrentItem" />
+          <Property Name="ColorHex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_Color" FromRole="ColorItem" ToRole="CurrentItem" />
         </EntityType>
         <EntityType Name="CurrentItem">
           <Key>
@@ -860,12 +862,12 @@
           <Property Name="SizeID" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Color" Relationship="ClothingStoreModel.FK_CurrentItem_Color" FromRole="CurrentItem" ToRole="Color" />
+          <NavigationProperty Name="ColorItem" Relationship="ClothingStoreModel.FK_CurrentItem_Color" FromRole="CurrentItem" ToRole="ColorItem" />
           <NavigationProperty Name="GeneralItem" Relationship="ClothingStoreModel.FK_CurrentItem_GeneralItem" FromRole="CurrentItem" ToRole="GeneralItem" />
-          <NavigationProperty Name="Size" Relationship="ClothingStoreModel.FK_CurrentItem_Size" FromRole="CurrentItem" ToRole="Size" />
+          <NavigationProperty Name="SizeItem" Relationship="ClothingStoreModel.FK_CurrentItem_Size" FromRole="CurrentItem" ToRole="SizeItem" />
           <NavigationProperty Name="CurrentItemCart" Relationship="ClothingStoreModel.FK_CurrentItemCart_CurrentItem" FromRole="CurrentItem" ToRole="CurrentItemCart" />
           <NavigationProperty Name="CurrentItemStore" Relationship="ClothingStoreModel.FK_CurrentItemStore_CurrentItem" FromRole="CurrentItem" ToRole="CurrentItemStore" />
-          <NavigationProperty Name="Photo" Relationship="ClothingStoreModel.FK_Photo_CurrentItem" FromRole="CurrentItem" ToRole="Photo" />
+          <NavigationProperty Name="PhotoItem" Relationship="ClothingStoreModel.FK_Photo_CurrentItem" FromRole="CurrentItem" ToRole="PhotoItem" />
           <NavigationProperty Name="History" Relationship="ClothingStoreModel.HistoryCurrentItem" FromRole="CurrentItem" ToRole="History" />
         </EntityType>
         <EntityType Name="CurrentItemCart">
@@ -981,14 +983,14 @@
           <Property Name="DateOfRelease" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Passport_Employee" FromRole="Passport" ToRole="Employee" />
         </EntityType>
-        <EntityType Name="Photo">
+        <EntityType Name="PhotoItem">
           <Key>
-            <PropertyRef Name="PhotoID" />
+            <PropertyRef Name="PhotoItemID" />
           </Key>
-          <Property Name="PhotoID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhotoItemID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="CurrentItemID" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_Photo_CurrentItem" FromRole="Photo" ToRole="CurrentItem" />
+          <Property Name="PhotoPath" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_Photo_CurrentItem" FromRole="PhotoItem" ToRole="CurrentItem" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -998,15 +1000,15 @@
           <Property Name="RoleTitle" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Employee" Relationship="ClothingStoreModel.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
         </EntityType>
-        <EntityType Name="Size">
+        <EntityType Name="SizeItem">
           <Key>
             <PropertyRef Name="SizeID" />
           </Key>
           <Property Name="SizeID" Type="Int32" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="SizeTitle" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="ClothingStoreModel.FK_Size_Category" FromRole="Size" ToRole="Category" />
-          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_Size" FromRole="Size" ToRole="CurrentItem" />
+          <NavigationProperty Name="CategoryItem" Relationship="ClothingStoreModel.FK_Size_Category" FromRole="SizeItem" ToRole="CategoryItem" />
+          <NavigationProperty Name="CurrentItem" Relationship="ClothingStoreModel.FK_CurrentItem_Size" FromRole="SizeItem" ToRole="CurrentItem" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -1035,7 +1037,7 @@
           <Property Name="TypeID" Type="Int32" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="TypeTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Category" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="TypeСlothes" ToRole="Category" />
+          <NavigationProperty Name="CategoryItem" Relationship="ClothingStoreModel.FK_Type_Category" FromRole="TypeСlothes" ToRole="CategoryItem" />
           <NavigationProperty Name="GeneralItem" Relationship="ClothingStoreModel.FK_Item_Type" FromRole="TypeСlothes" ToRole="GeneralItem" />
         </EntityType>
         <Association Name="FK_BonusCard_Customer">
@@ -1087,22 +1089,22 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Size_Category">
-          <End Type="ClothingStoreModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="ClothingStoreModel.Size" Role="Size" Multiplicity="*" />
+          <End Type="ClothingStoreModel.CategoryItem" Role="CategoryItem" Multiplicity="1" />
+          <End Type="ClothingStoreModel.SizeItem" Role="SizeItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="CategoryItem">
               <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="Size">
+            <Dependent Role="SizeItem">
               <PropertyRef Name="CategoryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Type_Category">
-          <End Type="ClothingStoreModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="ClothingStoreModel.CategoryItem" Role="CategoryItem" Multiplicity="1" />
           <End Type="ClothingStoreModel.TypeСlothes" Role="TypeСlothes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Category">
+            <Principal Role="CategoryItem">
               <PropertyRef Name="CategoryID" />
             </Principal>
             <Dependent Role="TypeСlothes">
@@ -1123,10 +1125,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CurrentItem_Color">
-          <End Type="ClothingStoreModel.Color" Role="Color" Multiplicity="1" />
+          <End Type="ClothingStoreModel.ColorItem" Role="ColorItem" Multiplicity="1" />
           <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Color">
+            <Principal Role="ColorItem">
               <PropertyRef Name="ColorID" />
             </Principal>
             <Dependent Role="CurrentItem">
@@ -1147,10 +1149,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CurrentItem_Size">
-          <End Type="ClothingStoreModel.Size" Role="Size" Multiplicity="1" />
+          <End Type="ClothingStoreModel.SizeItem" Role="SizeItem" Multiplicity="1" />
           <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Size">
+            <Principal Role="SizeItem">
               <PropertyRef Name="SizeID" />
             </Principal>
             <Dependent Role="CurrentItem">
@@ -1184,12 +1186,12 @@
         </Association>
         <Association Name="FK_Photo_CurrentItem">
           <End Type="ClothingStoreModel.CurrentItem" Role="CurrentItem" Multiplicity="1" />
-          <End Type="ClothingStoreModel.Photo" Role="Photo" Multiplicity="*" />
+          <End Type="ClothingStoreModel.PhotoItem" Role="PhotoItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CurrentItem">
               <PropertyRef Name="CurrentItemID" />
             </Principal>
-            <Dependent Role="Photo">
+            <Dependent Role="PhotoItem">
               <PropertyRef Name="CurrentItemID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1353,9 +1355,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Category">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Category">
-              <MappingFragment StoreEntitySet="Category">
+          <EntitySetMapping Name="CategoryItem">
+            <EntityTypeMapping TypeName="ClothingStoreModel.CategoryItem">
+              <MappingFragment StoreEntitySet="CategoryItem">
                 <ScalarProperty Name="CategoryTitle" ColumnName="CategoryTitle" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
               </MappingFragment>
@@ -1372,9 +1374,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Color">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Color">
-              <MappingFragment StoreEntitySet="Color">
+          <EntitySetMapping Name="ColorItem">
+            <EntityTypeMapping TypeName="ClothingStoreModel.ColorItem">
+              <MappingFragment StoreEntitySet="ColorItem">
+                <ScalarProperty Name="ColorHex" ColumnName="ColorHex" />
                 <ScalarProperty Name="ColorTitle" ColumnName="ColorTitle" />
                 <ScalarProperty Name="ColorID" ColumnName="ColorID" />
               </MappingFragment>
@@ -1490,12 +1493,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Photo">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Photo">
-              <MappingFragment StoreEntitySet="Photo">
+          <EntitySetMapping Name="PhotoItem">
+            <EntityTypeMapping TypeName="ClothingStoreModel.PhotoItem">
+              <MappingFragment StoreEntitySet="PhotoItem">
                 <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
                 <ScalarProperty Name="CurrentItemID" ColumnName="CurrentItemID" />
-                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+                <ScalarProperty Name="PhotoItemID" ColumnName="PhotoItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1507,9 +1510,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Size">
-            <EntityTypeMapping TypeName="ClothingStoreModel.Size">
-              <MappingFragment StoreEntitySet="Size">
+          <EntitySetMapping Name="SizeItem">
+            <EntityTypeMapping TypeName="ClothingStoreModel.SizeItem">
+              <MappingFragment StoreEntitySet="SizeItem">
                 <ScalarProperty Name="SizeTitle" ColumnName="SizeTitle" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="SizeID" ColumnName="SizeID" />

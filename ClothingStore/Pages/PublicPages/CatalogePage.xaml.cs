@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClothingStore.ClassHelper.EFClass;
 using static ClothingStore.ClassHelper.MenuClass;
+using static ClothingStore.ClassHelper.ItemModel;
 using ClothingStore.DB;
 using ClothingStore.ClassHelper;
 
@@ -25,18 +26,17 @@ namespace ClothingStore.Pages.PublicPages
     /// </summary>
     public partial class CatalogePage : Page
     {
+        List<ItemModel> products = new List<ItemModel>();
         public CatalogePage()
         {
             InitializeComponent();
 
-
-            lv_Products.ItemsSource = RefreshCatalog();
+          
+            products = RefreshCatalog();
+            lv_Products.ItemsSource = products;
         }
 
-        public void IsCheked()
-        {
-
-        }
+      
 
         
     }

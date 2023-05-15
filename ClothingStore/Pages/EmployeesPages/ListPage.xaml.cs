@@ -1,4 +1,5 @@
-﻿using ClothingStore.Pages.EmployeesPages.DirectorPages;
+﻿using ClothingStore.ClassHelper;
+using ClothingStore.Pages.EmployeesPages.DirectorPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,33 @@ namespace ClothingStore.Pages.EmployeesPages.ManagerPages
         public ListPage()
         {
             InitializeComponent();
+            
+            btn_ListEmployee.Visibility = Visibility.Collapsed;
+            if (CurrentUser.CurrentDirector != null)
+            {
+                btn_ListEmployee.Visibility = Visibility.Visible;
+              
+            }
+
+            if (CurrentUser.CurrentManager != null)
+            {
+                btn_ListEmployee.Visibility = Visibility.Collapsed;
+               
+
+            }
+
+            if (CurrentUser.CurrentCustomer !=null)
+            {
+                btn_ListEmployee.Visibility = Visibility.Collapsed;
+                btn_ListProduct.Visibility = Visibility.Collapsed;
+            }
+
+            if (CurrentUser.CurrentManager == null && CurrentUser.CurrentDirector == null)
+            {
+                //btn_ListEmployee.Visibility = Visibility.Collapsed;
+                //btn_ListProduct.Visibility = Visibility.Collapsed;
+            }
+
         }
         private void btn_ListEmployee_Click(object sender, RoutedEventArgs e)
         {
@@ -32,6 +60,11 @@ namespace ClothingStore.Pages.EmployeesPages.ManagerPages
             NavigatePage(mainFrame, windowFrame, new ListEmployeePage());
                
            
+        }
+
+        private void btn_ListProduct_Click(object sender, RoutedEventArgs e)
+        {
+            NavigatePage(mainFrame, windowFrame, new ListProductPage());
         }
     }
 }

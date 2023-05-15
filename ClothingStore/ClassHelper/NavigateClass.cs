@@ -20,6 +20,11 @@ namespace ClothingStore.ClassHelper
 
         public static void NavigatePage(Frame frame, Frame window, Page page)
         {
+            if (page == null) 
+            { 
+                frame.Visibility = Visibility.Collapsed;
+                return;
+            }
             if (window == null)
             {
                 var entry = frame.RemoveBackEntry();
@@ -43,6 +48,7 @@ namespace ClothingStore.ClassHelper
 
 
             }
+
             frame.Navigate(page);
 
 

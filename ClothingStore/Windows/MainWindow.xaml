@@ -15,7 +15,7 @@
         
         Icon="{Icon:MaterialImage Kind=TshirtCrew}"
         >
-    <Grid>
+    <Grid Background="White">
         
           <Frame x:Name="windowFrame"
              NavigationUIVisibility="Hidden"
@@ -24,7 +24,9 @@
              />
 
           <Frame x:Name="AuthorizationFrame" 
-             NavigationUIVisibility="Hidden"/>
+             NavigationUIVisibility="Hidden"
+                 
+                 Navigating="AuthorizationFrame_Navigating"/>
 
 
 

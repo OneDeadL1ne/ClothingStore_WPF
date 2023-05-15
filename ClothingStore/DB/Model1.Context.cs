@@ -29,9 +29,9 @@ namespace ClothingStore.DB
     
         public virtual DbSet<BonusCard> BonusCard { get; set; }
         public virtual DbSet<Cart> Cart { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<CategoryItem> CategoryItem { get; set; }
         public virtual DbSet<Check> Check { get; set; }
-        public virtual DbSet<Color> Color { get; set; }
+        public virtual DbSet<ColorItem> ColorItem { get; set; }
         public virtual DbSet<CurrentItem> CurrentItem { get; set; }
         public virtual DbSet<CurrentItemCart> CurrentItemCart { get; set; }
         public virtual DbSet<CurrentItemStore> CurrentItemStore { get; set; }
@@ -42,9 +42,9 @@ namespace ClothingStore.DB
         public virtual DbSet<GeneralItem> GeneralItem { get; set; }
         public virtual DbSet<History> History { get; set; }
         public virtual DbSet<Passport> Passport { get; set; }
-        public virtual DbSet<Photo> Photo { get; set; }
+        public virtual DbSet<PhotoItem> PhotoItem { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Size> Size { get; set; }
+        public virtual DbSet<SizeItem> SizeItem { get; set; }
         public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeСlothes> TypeСlothes { get; set; }

@@ -18,6 +18,7 @@ using ClothingStore.Pages;
 using static ClothingStore.ClassHelper.NavigateClass;
 using static ClothingStore.ClassHelper.MenuClass;
 using ClothingStore.Pages.EmployeesPages.DirectorPages;
+using ClothingStore.Pages.EmployeesPages.ManagerPages;
 
 namespace ClothingStore.Pages.PublicPages
 {
@@ -26,43 +27,41 @@ namespace ClothingStore.Pages.PublicPages
     /// </summary>
     public partial class AddEditPage : Page
     {
-        private bool _isListing = false;
+      
         public AddEditPage()
         {
             InitializeComponent();
-            //sp_AddEmployee.Visibility = Visibility.Collapsed;
+            btn_AddEmployee.Visibility = Visibility.Collapsed;
             if (CurrentUser.CurrentDirector != null)
             {
-                //sp_AddEmployee.Visibility = Visibility.Visible;
+                btn_AddEmployee.Visibility = Visibility.Visible;
+                    
             }
 
             if (CurrentUser.CurrentManager != null)
             {
-                //sp_AddEmployee.Visibility = Visibility.Collapsed;
-            }
-           
-        }
-
-        
-
-
-         
-          
-        
-
-     
-
-        private void btn_Employee_Click(object sender, RoutedEventArgs e)
-        {
-            if (_isListing)
-            {
-                //NavigatePage(mainFrame, windowFrame, new ListEmployeePage());
-                mainFrame.Navigate(new ListEmployeePage());
-            }
-            else
-            {
+                btn_AddEmployee.Visibility = Visibility.Collapsed;
                 
             }
+
+            if (CurrentUser.CurrentCustomer != null)
+            {
+                btn_AddEmployee.Visibility = Visibility.Collapsed;
+                btn_AddProduct.Visibility = Visibility.Collapsed;
+            }
+
+            if (CurrentUser.CurrentManager==null && CurrentUser.CurrentDirector==null)
+            {
+                //btn_AddEmployee.Visibility = Visibility.Collapsed;
+                //btn_AddProduct.Visibility = Visibility.Collapsed;
+            }
+        
+
+        }
+
+        private void btn_AddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            NavigatePage(mainFrame, windowFrame, new AddProductPage());
         }
     }
 }

@@ -9,6 +9,8 @@
       Title="CartPage">
 
     <Grid>
-        <Border Background="Blue" CornerRadius="10"/>
+        <Border Background="White" CornerRadius="10">
+            <TextBlock Text="Корзина" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30"/>
+        </Border>
     </Grid>
 </Page>

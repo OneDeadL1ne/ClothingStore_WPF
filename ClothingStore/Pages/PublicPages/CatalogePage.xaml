@@ -7,7 +7,7 @@
       xmlns:c="clr-namespace:ClothingStore.ClassHelper"
       mc:Ignorable="d" 
       xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="840" d:DesignWidth="800"
       Title="CatalogePage">
 
     <Grid>
@@ -36,13 +36,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <ComboBox Grid.Row="1" Height="40" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Text="  ">
-                    <CheckBox Content="1" x:Name="cbColor1"/>
-                    <CheckBox Content="2" x:Name="cbColor2"/>
-                    <CheckBox Content="3" x:Name="cbColor3"/>
-                    <CheckBox Content="4" x:Name="cbColor4"/>
-                    
-                </ComboBox>
+               
                 
             </Grid>
 
@@ -150,11 +144,11 @@
                                 CornerRadius="10 10 0 0 "
                                 >
                                 <Image
-                                    Source="/Res/Images/UnigloTshirtWhite.png"
+                                    Source="{Binding photoPath}"
                                     />
                             </Border>
 
-                            <TextBlock Text="{Binding currentItem.Price}"
+                            <TextBlock Text="{Binding price}"
                                            FontWeight="Bold"
                                        Foreground="Black"
                                            Margin="3 5 0 0"/>
@@ -163,8 +157,8 @@
                                 TextAlignment="Left"
                                 Foreground="Black"
                                 Margin="0 3 0 0">
-                                <Run Text="{Binding generalItem.Model}"/>
-                                <Run Text="{Binding generalItem.Brand}"/>
+                                <Run Text="{Binding model}"/>
+                                <Run Text="{Binding brand}"/>
                                 <Run Text="{Binding type}"/>
 
                             </TextBlock>

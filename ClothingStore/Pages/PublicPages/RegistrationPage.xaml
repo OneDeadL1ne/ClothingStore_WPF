@@ -52,7 +52,7 @@
                 Grid.RowSpan="15"
                 Grid.ColumnSpan="3"
                 CornerRadius="20"
-                Background="White"
+                Background="WhiteSmoke"
                 BorderBrush="Black"
                 BorderThickness="2"
                 />
